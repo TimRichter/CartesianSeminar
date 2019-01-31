@@ -52,18 +52,14 @@ Guest participants are always welcome!
 ### Summer term 2018
 #### June 2018 - Georg on "Ernst Mach: The Science of Mechanics"
 * Mach - 1919 - The Science of Mechanics
-* Mach - 1897 - Die Mechanik in ihrer Entwicklung - historisch-kritisch dargestellt
-
-  (3rd ed 1897 - google scan)
-
+* Mach - 1897 - Die Mechanik in ihrer Entwicklung - historisch-kritisch dargestellt (3rd ed)
 * Ernst Mach - 1912 - Die Mechanik in ihrer Entwicklung - historisch-kritisch dagestellt
-
-  Latex copy Introduction and parts of Chpt 2 by Bernd Paysan http://bernd-paysan.de/mach.pdf
+  * see [latex copy Introduction and parts of Chpt 2 by Bernd Paysan](http://bernd-paysan.de/mach.pdf)
     
 #### April 2018 
 * Richard v. Mises: "Wahrscheinlichkeit, Statistik und Wahrheit"
 * Richard von Mises: Probability, Statistics, and Truth
-    - we'll read the first chapter, maybe more
+  * we'll read the first chapter, maybe more
 * see also: Interpretations of Probability (SEP)
 
 ### Winter term 2017/18
