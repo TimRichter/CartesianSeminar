@@ -22,14 +22,14 @@ Guest participants are always welcome!
 * Bridgman - 1922 - Dimensional Analysis
 
 #### 11. and 18.12.2018 : Luise on Hans Liebigs "Konrad Zuse - Erfinder des Computers"
-* Konrad Zuse, Erfinder des Computers - im Vergleich mit Alan Turing und John v. Neumann
+* [Hans Liebig - 2011 - Konrad Zuse, Erfinder des Computers - im Vergleich mit Alan Turing und John v. Neumann](https://link.springer.com/article/10.1007%2Fs00287-011-0576-1)
 
 #### 4.12.2018: reading proposals 
 * Jessica - on DNA computing, Turing and privacy:
   * Amos, Paun, Rozenberg, Salomaa - 2002 - Topics in the theory of DNA computing
   * Kari - 1997 - DNA Computing - Arrival of Biological Mathematics
-  * Alan Turing (SEP)
-  * Privacy and Information Technology (SEP)
+  * [Alan Turing (SEP)](https://plato.stanford.edu/entries/turing/)
+  * [Privacy and Information Technology (SEP)](https://plato.stanford.edu/entries/it-privacy/)
 
 * Nicola :
   * Straumann - 1986 - Thermodynamik
