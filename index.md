@@ -14,20 +14,19 @@ Building 4, Room 2.01 (second floor)
 
 Guest participants are always welcome!
 
-## Reading
-### Winter term 2018/19
+## Current reading (winter term 2018/19)
 
-#### starting 08.01.2019: Nicola on Thermodynamics
+### starting 08.01.2019: Nicola on Thermodynamics
 * Straumann - 1986 - Thermodynamik
 * Bridgman - 1922 - Dimensional Analysis
 
-#### 11. and 18.12.2018 : Luise on Hans Liebigs "Konrad Zuse - Erfinder des Computers"
+### 11. and 18.12.2018 : Luise on Hans Liebigs "Konrad Zuse - Erfinder des Computers"
 * [Hans Liebig - 2011 - Konrad Zuse, Erfinder des Computers - im Vergleich mit Alan Turing und John v. Neumann](https://link.springer.com/article/10.1007%2Fs00287-011-0576-1)
 
-#### 4.12.2018: reading proposals 
+### 4.12.2018: reading proposals 
 * Jessica - on DNA computing, Turing and privacy:
-  * Amos, Paun, Rozenberg, Salomaa - 2002 - Topics in the theory of DNA computing
-  * Kari - 1997 - DNA Computing - Arrival of Biological Mathematics
+  * [Amos, Paun, Rozenberg, Salomaa - 2002 - Topics in the theory of DNA computing](https://core.ac.uk/download/pdf/82716986.pdf)
+  * [Kari - 1997 - DNA Computing - Arrival of Biological Mathematics](https://idp.springer.com/authorize/casa?redirect_uri=https://link.springer.com/content/pdf/10.1007/BF03024425.pdf&casa_token=EdaKxIdA8ycAAAAA:5KT4lTYCNJCxRudkRijDFaa-DL5naJrnErtXa3PwjSEZA1OpFjMXqqz5Vkext5dMsanOmTvcd9l-apoB)
   * [Alan Turing (SEP)](https://plato.stanford.edu/entries/turing/)
   * [Privacy and Information Technology (SEP)](https://plato.stanford.edu/entries/it-privacy/)
 
@@ -35,19 +34,21 @@ Guest participants are always welcome!
   * Straumann - 1986 - Thermodynamik
 
 * Nikolas' - (philosophical aspects of) AI and quantum theory:
-  * The Chinese Room Argument (SEP)
-  * Hanks, McDermott - 1986 - Default Reasoning, Nonmonotonic Logics, and the Frame Problem
-  * Lifschitz - 2013 - The Dramatic True Story of the Frame Default
-  * McCarthy, Hayes - 1969 - Some Philosophical Problems from the Standpoint of Artificial Intelligence
-  * Philosophical Issues in Quantum Theory (SEP)
-  * Quantum Approaches to Consciousness (SEP)
+  * [The Chinese Room Argument (SEP)](https://plato.stanford.edu/entries/chinese-room/)
+  * [Hanks, McDermott - 1986 - Default Reasoning, Nonmonotonic Logics, and the Frame Problem](http://www.aaai.org/Papers/AAAI/1986/AAAI86-054.pdf)
+  * [Lifschitz - 2013 - The Dramatic True Story of the Frame Default](https://link.springer.com/article/10.1007/s10992-014-9332-8)
+  * [McCarthy, Hayes - 1969 - Some Philosophical Problems from the Standpoint of Artificial Intelligence](https://www.csee.umbc.edu/courses/771/spring03/papers/mcchay69.pdf)
+  * [Philosophical Issues in Quantum Theory (SEP)](https://plato.stanford.edu/entries/qt-issues/)
+  * [Quantum Approaches to Consciousness (SEP)](https://plato.stanford.edu/entries/qt-consciousness/)
 * Tim - quantum theory:
-  * Coecke - 2014 - The Logic of Entanglement Datei
-  * Coecke - 2005 - Kindergarten Quantum Mechanics Datei
+  * [Coecke - 2004 - The Logic of Entanglement](https://arxiv.org/pdf/quant-ph/0402014)
+  * [Coecke - 2005 - Kindergarten Quantum Mechanics](https://arxiv.org/pdf/quant-ph/0510032)
     
-#### September 2018 
-* Jan von Plato: The Development of Proof Theory (SEP)
+### September 2018 
+* [Jan von Plato: The Development of Proof Theory (SEP)](https://plato.stanford.edu/entries/proof-theory-development/)
 
+
+## Archive
 ### Summer term 2018
 #### June 2018 - Georg on "Ernst Mach: The Science of Mechanics"
 * Mach - 1919 - The Science of Mechanics
@@ -68,17 +69,17 @@ Guest participants are always welcome!
 * Nicola: 
   * Richard von Mises - 1928 - "Wahrscheinlichkeit, Statistik und Wahrheit Datei"
     editions: 1st (1928), 2nd (1936), 3rd (1951), 4th (1972)
-  * Thomas Kuhn: "Black Body Theory and the Quantum Discontinuity 1894-1912" (Chicago & London, 1978) Datei
+  * Thomas Kuhn: "Black Body Theory and the Quantum Discontinuity 1894-1912" (Chicago & London, 1978)
 * Tim:
-  * McBride - Turing-Completeness Totally Free Datei
+  * McBride - Turing-Completeness Totally Free
     
 #### February 2018 : Pavlović, Escardó - 2001 - Calculus in Coinductive Form
 * we'll read the version with notes by Favio Miranda from the Seminar "Recursion for Coalgebras" 2001
 * published paper: Pavlović, Escardó - 1998 - Calculus in Coinductive Form (IEEE Symposium Logic in Computer Science)
 * see also: Continuity and Infinitesimals (SEP)
-* Nicola's Idris formalization: CoinductiveCalculus.lidr
+* Nicola's Idris formalization: [CoinductiveCalculus.lidr](1802/CoinductiveCalculus.lidr)
 
 #### Fall 2017 
-* Ulrike Herrmann - "Kein Kapitalismus ist auch keine Lösung - Kapitel 3"
-* Adam Smith's Moral and Political Theory Datei (SEP)
+* Ulrike Herrmann - Kein Kapitalismus ist auch keine Lösung - Kapitel 3
+* Adam Smith's Moral and Political Theory (SEP)
 
