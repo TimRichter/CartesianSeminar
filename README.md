@@ -26,10 +26,10 @@ Guest participants are always welcome!
 
 #### 4.12.2018: reading proposals 
 * Jessica - on DNA computing, Turing and privacy:
-** Amos, Paun, Rozenberg, Salomaa - 2002 - Topics in the theory of DNA computing
-** Kari - 1997 - DNA Computing - Arrival of Biological Mathematics
-** Alan Turing (SEP)
-** Privacy and Information Technology (SEP)
++ Amos, Paun, Rozenberg, Salomaa - 2002 - Topics in the theory of DNA computing
++ Kari - 1997 - DNA Computing - Arrival of Biological Mathematics
++ Alan Turing (SEP)
++ Privacy and Information Technology (SEP)
 
 * Nicola :
 ** Straumann - 1986 - Thermodynamik
