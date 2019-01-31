@@ -1,4 +1,4 @@
-# CartesianSeminar
+# Cartesian Seminar
 
 The Potsdam Cartesian Seminar is an open topic weekly seminar that was started
 in 2000 by Cezar Ionescu and Nicola Botta at the Potsdam Institute of Climate 
@@ -6,17 +6,21 @@ Impact Research and is located at the Institute of Computer Science of the Unive
 of Potsdam since 2014. Guided by the rules René Descartes formulated in his "Discours 
 de la méthode" we aim for a thorough understanding of the texts we read.
 
+## Current participants
+
+Nicolas Bertrand, Sebastian Böhne, Nicola Botta, Nuria Brede, Georg Duchrau, Tim Richter, Jessica Trebst, Luise Werner, Max Wiedenhöft
+
 ## Place and time
   Tuesdays, 10-12 am  
   Institute of Computer Science, University of Potsdam  
   Campus Griebnitzsee (August-Bebel-Str. 89)  
-  Building 4, Room 2.01 (second floor)
+  Building 4, Room 2.01
 
 Guest participants are always welcome!
 
 ## Current reading (winter term 2018/19)
 
-### starting 08.01.2019: Nicola on Thermodynamics
+### starting 08.01.2019: Nicola on thermodynamics
 * Straumann - 1986 - Thermodynamik
 * Bridgman - 1922 - Dimensional Analysis
 
@@ -24,7 +28,7 @@ Guest participants are always welcome!
 * [Hans Liebig - 2011 - Konrad Zuse, Erfinder des Computers - im Vergleich mit Alan Turing und John v. Neumann](https://link.springer.com/article/10.1007%2Fs00287-011-0576-1)
 
 ### 4.12.2018: reading proposals 
-* Jessica - on DNA computing, Turing and privacy:
+* Jessica - DNA computing, Turing and privacy:
   * [Amos, Paun, Rozenberg, Salomaa - 2002 - Topics in the theory of DNA computing](https://core.ac.uk/download/pdf/82716986.pdf)
   * [Kari - 1997 - DNA Computing - Arrival of Biological Mathematics](https://idp.springer.com/authorize/casa?redirect_uri=https://link.springer.com/content/pdf/10.1007/BF03024425.pdf&casa_token=EdaKxIdA8ycAAAAA:5KT4lTYCNJCxRudkRijDFaa-DL5naJrnErtXa3PwjSEZA1OpFjMXqqz5Vkext5dMsanOmTvcd9l-apoB)
   * [Alan Turing (SEP)](https://plato.stanford.edu/entries/turing/)
