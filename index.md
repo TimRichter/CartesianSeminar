@@ -53,22 +53,24 @@ Guest participants are always welcome!
 #### June 2018 - Georg on "Ernst Mach: The Science of Mechanics"
 * Mach - 1919 - The Science of Mechanics
 * Mach - 1897 - Die Mechanik in ihrer Entwicklung - historisch-kritisch dargestellt
-    (3rd ed 1897 - google scan)
+
+  (3rd ed 1897 - google scan)
+
 * Ernst Mach - 1912 - Die Mechanik in ihrer Entwicklung - historisch-kritisch dagestellt
-   Latex copy Introduction and parts of Chpt 2 by Bernd Paysan http://bernd-paysan.de/mach.pdf
+
+  Latex copy Introduction and parts of Chpt 2 by Bernd Paysan http://bernd-paysan.de/mach.pdf
     
 #### April 2018 
 * Richard v. Mises: "Wahrscheinlichkeit, Statistik und Wahrheit"
 * Richard von Mises: Probability, Statistics, and Truth
-    we'll read the first chapter, maybe more, see also
-* Interpretations of Probability (SEP)
+    - we'll read the first chapter, maybe more
+* see also: Interpretations of Probability (SEP)
 
 ### Winter term 2017/18
 #### proposals for summer term 2018
 
 * Nicola: 
   * Richard von Mises - 1928 - "Wahrscheinlichkeit, Statistik und Wahrheit Datei"
-    editions: 1st (1928), 2nd (1936), 3rd (1951), 4th (1972)
   * Thomas Kuhn: "Black Body Theory and the Quantum Discontinuity 1894-1912" (Chicago & London, 1978)
 * Tim:
   * McBride - Turing-Completeness Totally Free
