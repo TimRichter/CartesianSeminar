@@ -7,10 +7,10 @@ of Potsdam since 2014. Guided by the rules René Descartes formulated in his "Di
 de la méthode" we aim for a thorough understanding of the texts we read.
 
 ## Place and time
-Tuesdays, 10-12 am
-Institute of Computer Science, University of Potsdam
-Campus Griebnitzsee (August-Bebel-Str. 89)
-Building 4, Room 2.01 (second floor)
+  Tuesdays, 10-12 am
+  Institute of Computer Science, University of Potsdam
+  Campus Griebnitzsee (August-Bebel-Str. 89)
+  Building 4, Room 2.01 (second floor)
 
 Guest participants are always welcome!
 
