@@ -1,5 +1,3 @@
-# Cartesian Seminar
-
 The Potsdam Cartesian Seminar is an open topic weekly seminar that was started
 in 2000 by Cezar Ionescu and Nicola Botta at the Potsdam Institute of Climate 
 Impact Research and is located at the Institute of Computer Science of the University
@@ -8,7 +6,8 @@ de la méthode" we aim for a thorough understanding of the texts we read.
 
 ## Current participants
 
-Nicolas Bertrand, Sebastian Böhne, Nicola Botta, Nuria Brede, Georg Duchrau, Tim Richter, Jessica Trebst, Luise Werner, Max Wiedenhöft
+Nicolas Bertrand, Sebastian Böhne, Nicola Botta, Nuria Brede, Georg Duchrau, Tim Richter,
+Jessica Trebst, Luise Werner, Max Wiedenhöft
 
 ## Place and time
   Tuesdays, 10-12 am  
