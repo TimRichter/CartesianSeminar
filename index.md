@@ -9,8 +9,8 @@ de la méthode" we aim for a thorough understanding of the texts we read.
 Nikolas Bertrand, Sebastian Böhne, Nicola Botta, Nuria Brede, Georg Duchrau, Cezar Ionescu, Tim Richter,
 Jessica Trebst, Luise Werner, Max Wiedenhöft
 ### Past 
-Marc Beilcke, Frederick Brumm, Ingram Jaccard, Henrik Jürges, Manuel Keilmann, Thomas Kern, 
-Christoph Kreitz, Eva Richter, Juliane Scherlitzki, Carla Schreiber, Axel Wiepke
+Marc Beilcke, Frederick Brumm, Margrit Dittmann, Ingram Jaccard, Henrik Jürges, Manuel Keilmann, Thomas Kern, 
+Christoph Kreitz, Eva Richter, Matthias Seidel, Juliane Scherlitzki, Carla Schreiber, Axel Wiepke
 
 Guests are always welcome!
 
@@ -111,7 +111,7 @@ with sidesteps to
 * Ingeborg Brettschneider-Clasen - 1967 - Das Antinomieproblem
 
 ### Summer term 2015
-* Einstein - Über die spezielle und allgemeine Relativitätstheorie
+* Einstein - 1921 - Über die spezielle und allgemeine Relativitätstheorie
 * presented by Frederick:
   * Turing - 1950 - The Word Problem in Semi-Groups with Cancellation
   * Boone - 1958 - An Analysis of Turings - The Word Problem in Semi-Groups with Cancellation
@@ -119,6 +119,16 @@ with sidesteps to
 ### Winter term 2014/15
 * Abel, Pientka, Thibodeau, Setzer: Copatterns - Programming Infinite Structures by Observations
 * presented by Tim: Ihringer - 2003 - Allgemeine Algebra
+  * see also: Hyland, Power - 2007 - The Category Theoretic Understanding of Universal Algebra - Lawvere Theories and Monads
+
+### Summer term 2014
+* Planck - 1932 - Der Kausalbegriff in der Physik
+* Planck - 1908 - Die Einheit des physikalischen Weltbildes
+* Turner - 2004 - Total functional programming
+* Wells - 1995 - Communicating Mathematics - Unseful Ideas from Computer Science
 
 ### Winter term 2013/14
 * Tarski - 1935 - Der Wahrheitsbegriff in den formalisierten Sprachen 
+
+### Winter term 2012/13
+* Sebastian presents Frege - 1879 - Begriffsschrift
