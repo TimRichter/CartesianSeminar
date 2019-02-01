@@ -30,7 +30,6 @@ Guests are always welcome!
 ### 11. and 18.12.2018 : Luise on Hans Liebigs "Konrad Zuse - Erfinder des Computers"
 * [Hans Liebig - 2011 - Konrad Zuse, Erfinder des Computers - im Vergleich mit Alan Turing und John v. Neumann](https://link.springer.com/article/10.1007%2Fs00287-011-0576-1)
 * [online Simulation of Zuse's Z3](http://gymoberwil.educanet2.ch/a.hu/projektarbeit/zuse/simu.htm#)
-* [Wikipedia: Selectron](https://de.wikipedia.org/wiki/Selectron)
 
 ### 4.12.2018: reading proposals 
 * Jessica - DNA computing, Turing and privacy:
