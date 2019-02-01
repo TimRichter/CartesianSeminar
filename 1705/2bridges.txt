@@ -1,0 +1,86 @@
+2-Brückenproblem (statt 3-~, wegen weniger rechnen und so...)
+=============================================================
+
+Wir haben nur 2 Brücken: 
+  die 1. ist sicher,
+  die 2. kann mit Wkt. 1/2 lebend passiert werden.
+
+Fugitive F und pursuer P wählen je eine Brücke.
+F stirbt durch die Brücke oder durch P, falls dieser dieselbe
+Brücke wählt.
+
+Eine mixed strategy für F ist gegeben durch die Wahrscheinlichkeit
+f \in [0,1], mit der F Brücke 1 wählt. Analog p für P.
+
+Die Überlebenswahrscheinlichkeit für F ergibt sich als Funktion 
+eines (mixed?) strategy profiles (f, p):
+
+  PL f p =  f * (1 - p) + 1/2 * (1 - f) * p
+         =  1/2 * p + f * (1   - 3/2 * p)
+         =  f       + p * (1/2 - 3/2 * f)
+
+  Offenbar sind dann
+    \forall f . PL f 2/3 = 1/3    und
+    \forall p . PL 1/3 p = 1/3
+
+
+(f, p) ist ein Nash-Gleichgewicht (NE), falls
+
+    (FF f p):   \forall f' . PL f' p <= PL f p     und
+    (PP f p):   \forall p' . PL f p' >= PL f p
+
+Nach Obigem gilt
+
+    \forall f . (FF f 2/3) und
+    \forall p . (PP 1/3 p).
+
+Insbesondere ist (1/3, 2/3) ein NE (in dem F mit Wkt. 1/3 überlebt).
+
+Wählt P diese "Gleichgewichtsstrategie" pE = 2/3, so überlebt F ganz 
+unabhängig von seiner Strategiewahl mit Wkt. 1/3. Soweit hatten wir 
+das am letzten Dienstag auch mit 3 Brücken. Offen geblieben  war 
+die Frage, warum pE nun tatsächlich die "beste" Strategie für P ist.  
+
+Ich hatte schon vermutet (aber nicht zeigen können), dass pE die
+beste Strategie für P ist, weil F bei jeder anderen Wahl von P eine 
+Strategie wählen könnte, die ihm eine Überlebenschance grösser als die
+Überlebenschance im "Gleichgewicht" (hier 1/3) bescherte! Das ist 
+tatsächlich so:
+
+Behauptung: für p /= 2/3 existiert f mit PL f p > 1/3
+
+Beweis: 
+1.Fall p < 2/3: 
+
+  Es ist dann (1 - 3/2 * p) > 0. Sei f = 1. Dann ist
+
+    PL f p = 1/2 * p  + (1 - 3/2 * p) = 1 - p > 1/3.
+
+2.Fall p > 2/3: 
+
+  Es ist (1 - 3/2 * p) < 0. Sei f = 0. Dann ist  
+
+    PL f p = 1/2 * p > 1/3. 
+        
+
+Für 3 Brücken ist die Situation qualitativ dieselbe: Ist 
+(fE, pE) das Gleichgewicht, so ist für alle f und p (das sind 
+nun Paare...)
+
+  PL f pE = PL fE pE = PL fE p
+
+Wählt P die Strategie pE, so ist PL f pE unabhängig von f, 
+insbesondere auch gleich PL fE pE.
+
+Wählt P eine Strategie p /= pE, so ist PL f p 
+      (i)   linear in f,
+      (ii)  nicht konstant, und
+      (iii) nimmt bei fE den Wert PL fE p = PL fE pE an !!
+
+Nun kann (falls fE nicht am Rand liegt... aber das wäre sowieso ein
+Skandal!) F durch Änderung seiner Strategie (von fE in Richtung des
+Gradienten) ein f mit  PL f p > PL fE pE finden.
+
+Ich denke, wir hatten fast alles. Nur (iii) hatten wir übersehen.
+
+
