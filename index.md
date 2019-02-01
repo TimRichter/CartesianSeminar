@@ -131,7 +131,7 @@ with sidesteps to
 * Tarski - 1935 - Der Wahrheitsbegriff in den formalisierten Sprachen 
 
 ### Summer term 2013
-* Hilbert - 1918 . Mathematisches Denken
+* Hilbert - 1918 - Mathematisches Denken
 
 ### Winter term 2012/13
 * Sebastian presents Frege - 1879 - Begriffsschrift
