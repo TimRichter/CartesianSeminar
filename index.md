@@ -91,7 +91,7 @@ with sidesteps to
 
 ### Summer term 2017
 * [Ross - Game Theory (SEP)](https://plato.stanford.edu/entries/game-theory/)
-  * see also: [2bridges.txt](1705/2bridges.txt)
+  * see also: [2bridges](1705/2bridges)
 
 ### Winter term 2016/17
 * presented by Axel: The Turing Test (SEP)
