@@ -1,13 +1,18 @@
 The Potsdam Cartesian Seminar is an open topic weekly seminar that was started
-in 2000 by Cezar Ionescu and Nicola Botta at the Potsdam Institute of Climate 
+around 2000 by Cezar Ionescu and Nicola Botta at the Potsdam Institute for Climate 
 Impact Research and is located at the Institute of Computer Science of the University
 of Potsdam since 2014. Guided by the rules René Descartes formulated in his "Discours 
 de la méthode" we aim for a thorough understanding of the texts we read.
 
-## Current participants
-
-Nikolas Bertrand, Sebastian Böhne, Nicola Botta, Nuria Brede, Georg Duchrau, Tim Richter,
+## Participants
+### Present
+Nikolas Bertrand, Sebastian Böhne, Nicola Botta, Nuria Brede, Georg Duchrau, Cezar Ionescu, Tim Richter,
 Jessica Trebst, Luise Werner, Max Wiedenhöft
+### Past 
+Marc Beilcke, Frederick Brumm, Ingram Jaccard, Henrik Jürges, Manuel Keilmann, Thomas Kern, 
+Christoph Kreitz, Eva Richter, Juliane Scherlitzki, Carla Schreiber, Axel Wiepke
+
+Guests are always welcome!
 
 ## Place and time
   Tuesdays, 10-12 am  
@@ -15,7 +20,6 @@ Jessica Trebst, Luise Werner, Max Wiedenhöft
   Campus Griebnitzsee (August-Bebel-Str. 89)  
   Building 4, Room 2.01
 
-Guest participants are always welcome!
 
 ## Current reading (winter term 2018/19)
 
