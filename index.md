@@ -6,7 +6,7 @@ de la méthode" we aim for a thorough understanding of the texts we read.
 
 ## Current participants
 
-Nicolas Bertrand, Sebastian Böhne, Nicola Botta, Nuria Brede, Georg Duchrau, Tim Richter,
+Nikolas Bertrand, Sebastian Böhne, Nicola Botta, Nuria Brede, Georg Duchrau, Tim Richter,
 Jessica Trebst, Luise Werner, Max Wiedenhöft
 
 ## Place and time
@@ -25,6 +25,8 @@ Guest participants are always welcome!
 
 ### 11. and 18.12.2018 : Luise on Hans Liebigs "Konrad Zuse - Erfinder des Computers"
 * [Hans Liebig - 2011 - Konrad Zuse, Erfinder des Computers - im Vergleich mit Alan Turing und John v. Neumann](https://link.springer.com/article/10.1007%2Fs00287-011-0576-1)
+* [online Simulation of Zuse's Z3](http://gymoberwil.educanet2.ch/a.hu/projektarbeit/zuse/simu.htm#)
+* [Wikipedia: Selectron](https://de.wikipedia.org/wiki/Selectron)
 
 ### 4.12.2018: reading proposals 
 * Jessica - DNA computing, Turing and privacy:
@@ -36,7 +38,7 @@ Guest participants are always welcome!
 * Nicola :
   * Straumann - 1986 - Thermodynamik
 
-* Nikolas' - (philosophical aspects of) AI and quantum theory:
+* Nikolas - (philosophical aspects of) AI and quantum theory:
   * [The Chinese Room Argument (SEP)](https://plato.stanford.edu/entries/chinese-room/)
   * [Hanks, McDermott - 1986 - Default Reasoning, Nonmonotonic Logics, and the Frame Problem](http://www.aaai.org/Papers/AAAI/1986/AAAI86-054.pdf)
   * [Lifschitz - 2013 - The Dramatic True Story of the Frame Default](https://link.springer.com/article/10.1007/s10992-014-9332-8)
@@ -50,6 +52,10 @@ Guest participants are always welcome!
 ### September 2018 
 * [Jan von Plato: The Development of Proof Theory (SEP)](https://plato.stanford.edu/entries/proof-theory-development/)
 
+with sidesteps to
+* Gentzen - 1935 - Untersuchungen über das logische Schliessen [I](https://link.springer.com/content/pdf/10.1007/BF01201353.pdf) und
+  [II](https://link.springer.com/content/pdf/10.1007/BF01201363.pdf)
+* [Wadler - 2015 - Propositions as types](https://dl.acm.org/citation.cfm?id=2699407) - see also [Video](https://www.youtube.com/watch?v=IOiZatlZtGU)
 
 ## Archive
 ### Summer term 2018
@@ -59,28 +65,50 @@ Guest participants are always welcome!
 * Ernst Mach - 1912 - Die Mechanik in ihrer Entwicklung - historisch-kritisch dagestellt
   * see [latex copy Introduction and parts of Chpt 2 by Bernd Paysan](http://bernd-paysan.de/mach.pdf)
     
-#### April 2018 
+#### March 2018 
 * Richard v. Mises: "Wahrscheinlichkeit, Statistik und Wahrheit"
 * Richard von Mises: Probability, Statistics, and Truth
-  * we'll read the first chapter, maybe more
 * see also: Interpretations of Probability (SEP)
 
 ### Winter term 2017/18
 #### proposals for summer term 2018
 
 * Nicola: 
-  * Richard von Mises - 1928 - "Wahrscheinlichkeit, Statistik und Wahrheit Datei"
+  * Richard von Mises - 1928 - "Wahrscheinlichkeit, Statistik und Wahrheit"
   * Thomas Kuhn: "Black Body Theory and the Quantum Discontinuity 1894-1912" (Chicago & London, 1978)
 * Tim:
   * McBride - Turing-Completeness Totally Free
     
-#### February 2018 : Pavlović, Escardó - 2001 - Calculus in Coinductive Form
+#### January 2018 
+* Ulrike Herrmann - Kein Kapitalismus ist auch keine Lösung - Kapitel 3 on Adam Smith
+* see also: Adam Smith's Moral and Political Theory (SEP)
+
+#### October 2017 : Pavlović, Escardó - 2001 - Calculus in Coinductive Form
 * we'll read the version with notes by Favio Miranda from the Seminar "Recursion for Coalgebras" 2001
 * published paper: Pavlović, Escardó - 1998 - Calculus in Coinductive Form (IEEE Symposium Logic in Computer Science)
 * see also: Continuity and Infinitesimals (SEP)
 * Nicola's Idris formalization: [CoinductiveCalculus.lidr](1802/CoinductiveCalculus.lidr)
 
-#### Fall 2017 
-* Ulrike Herrmann - Kein Kapitalismus ist auch keine Lösung - Kapitel 3
-* Adam Smith's Moral and Political Theory (SEP)
-
+### Summer term 2017
+* [Ross - Game Theory (SEP)](https://plato.stanford.edu/entries/game-theory/)
+  * see also: [2bridges.txt](1705/2bridges.txt)
+### Winter term 2016/17
+* presented by Axel: The Turing Test (SEP)
+* Paul Lorenzen - 1965 - Methodisches Denken 
+### Summer term 2016
+* Noam Chomsky - 1956 - Three Models for the Description of Language
+* Hans Wäsche - 1959 - Eine Bemerkung zur Paradoxie des Zeno von Elea über "Achilles und die Schildkröte"
+### Winter term 2015/16
+* Brown, Priest - 2004 - Chunk and permeate, a paraconsistent inference strategy. part I - the infinitesimal calculus
+* presented by Carla and Thomas: Dirk Hoffmann - 2011 - Grenzen der Mathematik - Kapitel 4 : Beweistheorie
+* Ingeborg Brettschneider-Clasen - 1967 - Das Antinomieproblem
+### Summer term 2015
+* Einstein - Über die spezielle und allgemeine Relativitätstheorie
+* presented by Frederick:
+  * Turing - 1950 - The Word Problem in Semi-Groups with Cancellation
+  * Boone - 1958 - An Analysis of Turings - The Word Problem in Semi-Groups with Cancellation
+### Winter term 2014/15
+* Abel, Pientka, Thibodeau, Setzer: Copatterns - Programming Infinite Structures by Observations
+* presented by Tim: Ihringer - 2003 - Allgemeine Algebra
+### Winter term 2013/14
+* Tarski - 1935 - Der Wahrheitsbegriff in den formalisierten Sprachen 
