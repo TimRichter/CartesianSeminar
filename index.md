@@ -92,23 +92,29 @@ with sidesteps to
 ### Summer term 2017
 * [Ross - Game Theory (SEP)](https://plato.stanford.edu/entries/game-theory/)
   * see also: [2bridges.txt](1705/2bridges.txt)
+
 ### Winter term 2016/17
 * presented by Axel: The Turing Test (SEP)
 * Paul Lorenzen - 1965 - Methodisches Denken 
+
 ### Summer term 2016
 * Noam Chomsky - 1956 - Three Models for the Description of Language
 * Hans Wäsche - 1959 - Eine Bemerkung zur Paradoxie des Zeno von Elea über "Achilles und die Schildkröte"
+
 ### Winter term 2015/16
 * Brown, Priest - 2004 - Chunk and permeate, a paraconsistent inference strategy. part I - the infinitesimal calculus
 * presented by Carla and Thomas: Dirk Hoffmann - 2011 - Grenzen der Mathematik - Kapitel 4 : Beweistheorie
 * Ingeborg Brettschneider-Clasen - 1967 - Das Antinomieproblem
+
 ### Summer term 2015
 * Einstein - Über die spezielle und allgemeine Relativitätstheorie
 * presented by Frederick:
   * Turing - 1950 - The Word Problem in Semi-Groups with Cancellation
   * Boone - 1958 - An Analysis of Turings - The Word Problem in Semi-Groups with Cancellation
+
 ### Winter term 2014/15
 * Abel, Pientka, Thibodeau, Setzer: Copatterns - Programming Infinite Structures by Observations
 * presented by Tim: Ihringer - 2003 - Allgemeine Algebra
+
 ### Winter term 2013/14
 * Tarski - 1935 - Der Wahrheitsbegriff in den formalisierten Sprachen 
