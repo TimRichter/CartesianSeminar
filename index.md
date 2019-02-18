@@ -6,11 +6,11 @@ de la méthode" we aim for a thorough understanding of the texts we read.
 
 ## Participants
 ### Present
-Nikolas Bertrand, Sebastian Böhne, Nicola Botta, Nuria Brede, Georg Duchrau, Cezar Ionescu, Tim Richter,
+Nikolas Bertrand, Sebastian Böhne, Nicola Botta, Nuria Brede, Georg Duchrau, Cezar Ionescu, Tim Richter, Juliane Scherlitzki,
 Jessica Trebst, Luise Werner, Max Wiedenhöft
 ### Past 
 Marc Beilcke, Frederick Brumm, Margrit Dittmann, Ingram Jaccard, Henrik Jürges, Manuel Keilmann, Thomas Kern, 
-Christoph Kreitz, Eva Richter, Matthias Seidel, Juliane Scherlitzki, Carla Schreiber, Axel Wiepke
+Christoph Kreitz, Eva Richter, Matthias Seidel, Carla Schreiber, Axel Wiepke
 
 Guests are always welcome!
 
@@ -22,6 +22,9 @@ Guests are always welcome!
 
 
 ## Current reading (winter term 2018/19)
+
+### 19. and 26.02.2019 : Jessica on DNA computing
+  * [Amos, Paun, Rozenberg, Salomaa - 2002 - Topics in the theory of DNA computing](https://core.ac.uk/download/pdf/82716986.pdf)
 
 ### starting 08.01.2019: Nicola on thermodynamics
 * Straumann - 1986 - Thermodynamik
