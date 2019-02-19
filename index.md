@@ -108,6 +108,7 @@ with sidesteps to
 * Hans Wäsche - 1959 - Eine Bemerkung zur Paradoxie des Zeno von Elea über "Achilles und die Schildkröte"
 
 ### Winter term 2015/16
+* Korb - 1977 - Einführung in die Spieltheorie mit Beispielen aus der Wirtschaftspraxis
 * Brown, Priest - 2004 - Chunk and permeate, a paraconsistent inference strategy. part I - the infinitesimal calculus
 * presented by Carla and Thomas: Dirk Hoffmann - 2011 - Grenzen der Mathematik - Kapitel 4 : Beweistheorie
 * Ingeborg Brettschneider-Clasen - 1967 - Das Antinomieproblem
@@ -116,7 +117,7 @@ with sidesteps to
 * Einstein - 1921 - Über die spezielle und allgemeine Relativitätstheorie
 * presented by Frederick:
   * Turing - 1950 - The Word Problem in Semi-Groups with Cancellation
-  * Boone - 1958 - An Analysis of Turings - The Word Problem in Semi-Groups with Cancellation
+  * Boone - 1958 - An Analysis of Turing's "The Word Problem in Semi-Groups with Cancellation"
 
 ### Winter term 2014/15
 * Abel, Pientka, Thibodeau, Setzer: Copatterns - Programming Infinite Structures by Observations
@@ -130,10 +131,23 @@ with sidesteps to
 * Wells - 1995 - Communicating Mathematics - Unseful Ideas from Computer Science
 
 ### Winter term 2013/14
+* Tarski - 1986(1966) - What are logical notions?
 * Tarski - 1935 - Der Wahrheitsbegriff in den formalisierten Sprachen 
 
 ### Summer term 2013
-* Hilbert - 1918 - Mathematisches Denken
+* continued: Frege - Begriffsschrift
+* Hilbert - 1918 - Axiomatisches Denken
+* Frege - 1891 - Function und Begriff
 
 ### Winter term 2012/13
+* Turing - 1936 - On Computable Numbers, with an Application to the Entscheidungsproblem
 * Sebastian presents Frege - 1879 - Begriffsschrift
+
+### Summer term 2012
+* Tarski - 1936 - Grundlegung der wissenschaftlichen Semantik
+* Lawvere - 1969 - Diagonal Arguments and Cartesian Closed Categories
+
+### Winter term 2011/12
+* Kolmogorov - 1931 - Zur Deutung der  intuitionistischen Logik
+* Church - 1932 - A Set of Postulates for the Foundation of Logic
+* Cardone, Hindley - 2009 - Lambda-Calculus and Combinators in the 20th Century 
