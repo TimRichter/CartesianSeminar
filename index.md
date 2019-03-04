@@ -25,6 +25,9 @@ Guests are always welcome!
 
 ### 19. and 26.02.2019 : Jessica on DNA computing
   * [Amos, Paun, Rozenberg, Salomaa - 2002 - Topics in the theory of DNA computing](https://core.ac.uk/download/pdf/82716986.pdf)
+  with sidesteps to
+  * [Adleman - 1994 - Molecular computation of solutions to combinatorial problems](http://science.sciencemag.org/content/266/5187/1021/tab-pdf)
+  * [Salomaa - 1981 - Jewels of formal language theory](https://www.worldcat.org/title/jewels-of-formal-language-theory/oclc/6816103)
 
 ### starting 08.01.2019: Nicola on thermodynamics
 * Straumann - 1986 - Thermodynamik
