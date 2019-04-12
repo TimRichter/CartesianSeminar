@@ -6,7 +6,7 @@ de la méthode" we aim for a thorough understanding of the texts we read.
 
 ## Participants
 ### Present
-Nikolas Bertrand, Sebastian Böhne, Nicola Botta, Nuria Brede, Georg Duchrau, Cezar Ionescu, Tim Richter, Juliane Scherlitzki,
+Nikolas Bertrand, Sebastian Böhne, Nicola Botta, Nuria Brede, Georg Duchrau, Christoph Glinzer, Jan Heuer, Cezar Ionescu, Tim Richter, Juliane Scherlitzki,
 Jessica Trebst, Luise Werner, Max Wiedenhöft
 ### Past 
 Marc Beilcke, Frederick Brumm, Margrit Dittmann, Ingram Jaccard, Henrik Jürges, Manuel Keilmann, Thomas Kern, 
@@ -21,53 +21,35 @@ Guests are always welcome!
   Building 4, Room 2.01
 
 
-## Current reading (winter term 2018/19)
+## Current reading (summer term 2019)
+### April 16th and 23rd :
+  * [Hughes - 1989 - Why functional programming matters](https://academic.oup.com/comjnl/article/32/2/98/543535)
+  * [Altenkirch, McBride, McKinna - 2005 - Why dependent types matter](http://www.cs.nott.ac.uk/~psztxa/talks/splst11.pdf)
 
-### 19. and 26.02.2019 : Jessica on DNA computing
+## Archive
+### Winter term 2018/2019
+#### 19. and 26.02.2019 : Jessica on DNA computing
   * [Amos, Paun, Rozenberg, Salomaa - 2002 - Topics in the theory of DNA computing](https://core.ac.uk/download/pdf/82716986.pdf)
 
 with sidesteps to
   * [Adleman - 1994 - Molecular computation of solutions to combinatorial problems](http://science.sciencemag.org/content/266/5187/1021/tab-pdf)
   * [Salomaa - 1981 - Jewels of formal language theory](https://www.worldcat.org/title/jewels-of-formal-language-theory/oclc/6816103)
 
-### starting 08.01.2019: Nicola on thermodynamics
+#### starting January 2019: Nicola on thermodynamics
 * Straumann - 1986 - Thermodynamik
 * Bridgman - 1922 - Dimensional Analysis
 
-### 11. and 18.12.2018 : Luise on Hans Liebigs "Konrad Zuse - Erfinder des Computers"
+#### 11. and 18.12.2018 : Luise on Hans Liebigs "Konrad Zuse - Erfinder des Computers"
 * [Hans Liebig - 2011 - Konrad Zuse, Erfinder des Computers - im Vergleich mit Alan Turing und John v. Neumann](https://link.springer.com/article/10.1007%2Fs00287-011-0576-1)
 * [online Simulation of Zuse's Z3](http://gymoberwil.educanet2.ch/a.hu/projektarbeit/zuse/simu.htm#)
-
-### 4.12.2018: reading proposals 
-* Jessica - DNA computing, Turing and privacy:
-  * [Amos, Paun, Rozenberg, Salomaa - 2002 - Topics in the theory of DNA computing](https://core.ac.uk/download/pdf/82716986.pdf)
-  * [Kari - 1997 - DNA Computing - Arrival of Biological Mathematics](https://idp.springer.com/authorize/casa?redirect_uri=https://link.springer.com/content/pdf/10.1007/BF03024425.pdf&casa_token=EdaKxIdA8ycAAAAA:5KT4lTYCNJCxRudkRijDFaa-DL5naJrnErtXa3PwjSEZA1OpFjMXqqz5Vkext5dMsanOmTvcd9l-apoB)
-  * [Alan Turing (SEP)](https://plato.stanford.edu/entries/turing/)
-  * [Privacy and Information Technology (SEP)](https://plato.stanford.edu/entries/it-privacy/)
-
-* Nicola :
-  * Straumann - 1986 - Thermodynamik
-
-* Nikolas - (philosophical aspects of) AI and quantum theory:
-  * [The Chinese Room Argument (SEP)](https://plato.stanford.edu/entries/chinese-room/)
-  * [Hanks, McDermott - 1986 - Default Reasoning, Nonmonotonic Logics, and the Frame Problem](http://www.aaai.org/Papers/AAAI/1986/AAAI86-054.pdf)
-  * [Lifschitz - 2013 - The Dramatic True Story of the Frame Default](https://link.springer.com/article/10.1007/s10992-014-9332-8)
-  * [McCarthy, Hayes - 1969 - Some Philosophical Problems from the Standpoint of Artificial Intelligence](https://www.csee.umbc.edu/courses/771/spring03/papers/mcchay69.pdf)
-  * [Philosophical Issues in Quantum Theory (SEP)](https://plato.stanford.edu/entries/qt-issues/)
-  * [Quantum Approaches to Consciousness (SEP)](https://plato.stanford.edu/entries/qt-consciousness/)
-* Tim - quantum theory:
-  * [Coecke - 2004 - The Logic of Entanglement](https://arxiv.org/pdf/quant-ph/0402014)
-  * [Coecke - 2005 - Kindergarten Quantum Mechanics](https://arxiv.org/pdf/quant-ph/0510032)
     
-### September 2018 
+#### September 2018 
 * [Jan von Plato: The Development of Proof Theory (SEP)](https://plato.stanford.edu/entries/proof-theory-development/)
 
 with sidesteps to
 * Gentzen - 1935 - Untersuchungen über das logische Schliessen [I](https://link.springer.com/content/pdf/10.1007/BF01201353.pdf) und
   [II](https://link.springer.com/content/pdf/10.1007/BF01201363.pdf)
 * [Wadler - 2015 - Propositions as types](https://dl.acm.org/citation.cfm?id=2699407) - see also [Video](https://www.youtube.com/watch?v=IOiZatlZtGU)
-
-## Archive
 ### Summer term 2018
 #### June 2018 - Georg on "Ernst Mach: The Science of Mechanics"
 * Mach - 1919 - The Science of Mechanics
