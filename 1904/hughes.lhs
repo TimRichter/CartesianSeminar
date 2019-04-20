@@ -21,8 +21,8 @@ right is the data constructor for the empty list.
 
 Hughes' "reduce" which he writes like this
 
-(reduce (⊕) (⊗) [] = x
-(reduce (⊕) (⊗) (el:list) = el ⊕ (reduce (⊕) x list)
+reduce (⊕) x [] = x
+reduce (⊕) x (el:list) = el ⊕ (reduce (⊕) x list)
 
 is called "foldr" in Haskell:
 
