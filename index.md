@@ -23,10 +23,12 @@ Guests are always welcome!
 
 
 ## Current reading (summer term 2019)
+
 ### April 16th and 23rd :
   * [Hughes - 1989 - Why functional programming matters](https://academic.oup.com/comjnl/article/32/2/98/543535)  - see also
     * the [Keynote by John Hughes and Mary Sheeran at Lambda Days 2017](https://www.youtube.com/watch?v=1qBHf8DrWR8)
     * Haskell implementation of Hughes' examples (incomplete): [hughes.lhs](1904/hughes.lhs)
+
 ## Archive
 ### Winter term 2018/2019
 #### 19. and 26.02.2019 : Jessica on DNA computing
