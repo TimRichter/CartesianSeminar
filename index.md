@@ -6,11 +6,12 @@ de la méthode" we aim for a thorough understanding of the texts we read.
 
 ## Participants
 ### Present
-Nikolas Bertrand, Sebastian Böhne, Nicola Botta, Nuria Brede, Georg Duchrau, Christoph Glinzer, Jan Heuer, Cezar Ionescu, Tim Richter, Juliane Scherlitzki,
-Jessica Trebst, Luise Werner, Max Wiedenhöft
+Nikolas Bertrand, Sebastian Böhne, Nicola Botta, Nuria Brede, Georg Duchrau, Christoph Glinzer, 
+Jan Heuer, Cezar Ionescu, Tim Richter, Juliane Scherlitzki, Jessica Trebst, Luise Werner, 
+Max Wiedenhöft
 ### Past 
-Marc Beilcke, Frederick Brumm, Margrit Dittmann, Ingram Jaccard, Henrik Jürges, Manuel Keilmann, Thomas Kern, 
-Christoph Kreitz, Eva Richter, Matthias Seidel, Carla Schreiber, Axel Wiepke
+Marc Beilcke, Frederick Brumm, Margrit Dittmann, Ingram Jaccard, Henrik Jürges, Manuel Keilmann, 
+Thomas Kern, Christoph Kreitz, Eva Richter, Matthias Seidel, Carla Schreiber, Axel Wiepke
 
 Guests are always welcome!
 
@@ -23,9 +24,9 @@ Guests are always welcome!
 
 ## Current reading (summer term 2019)
 ### April 16th and 23rd :
-  * [Hughes - 1989 - Why functional programming matters](https://academic.oup.com/comjnl/article/32/2/98/543535)
-  * [Altenkirch, McBride, McKinna - 2005 - Why dependent types matter](http://www.cs.nott.ac.uk/~psztxa/talks/splst11.pdf)
-
+  * [Hughes - 1989 - Why functional programming matters](https://academic.oup.com/comjnl/article/32/2/98/543535)  - see also
+    * the [Keynote by John Hughes and Mary Sheeran at Lambda Days 2017](https://www.youtube.com/watch?v=1qBHf8DrWR8)
+    * Haskell implementation of Hughes' examples (incomplete): [hughes.lhs](1904/hughes.lhs)
 ## Archive
 ### Winter term 2018/2019
 #### 19. and 26.02.2019 : Jessica on DNA computing
