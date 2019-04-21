@@ -111,7 +111,7 @@ The single constructor [Node] of [Tree] has type:
 
 < Node :: l -> [Tree l] -> Tree l
 
-> exampleTree :: Tree(Int)
+> exampleTree :: Tree Int
 > exampleTree = Node 1 [Node 2 [], Node 3 [Node 4 []]]
 
 Hughes gives redtree as an analog to his reduce or our foldr
@@ -130,9 +130,9 @@ Here l is the label type, r the result type of redtree and a the result
 type of redtree' (which by the first redtree'-pattern above is just the 
 type of the argument a). The types of ⊕ and ⊗ then have to be as given.
 
-> redtree  plus times a (Node label subtrees) = label `plus` redtree' plus times a subtrees
+> redtree  plus times a (Node label subtrees) = label `plus` (redtree' plus times a subtrees)
 > redtree' plus times a [] = a
-> redtree' plus times a (subtree:rest) = redtree plus times a subtree `times` redtree' plus times a rest
+> redtree' plus times a (subtree:rest) = (redtree plus times a subtree) `times` (redtree' plus times a rest)
 
 * Interlude: Folds for inductive datatypes
 
@@ -155,7 +155,7 @@ foldTree has to have the following type:
 The implementation by pattern matching follows this recipe:
 for any constructor C of D, the fold reduces a generic term
 of D built with constructor C to an application of 
-the corresponding c. Constructor arguments of type D 
+the corresponding function c. Constructor arguments of type D 
 are replaced by recursive calls, other arguments are
 just passed to c.
 
@@ -182,9 +182,9 @@ rt' = redtree' plus times a
 
 Then
 
-< rt  (Node ts l) = l `plus` rt' ts
+< rt  (Node ts l) = l `plus` (rt' ts)
 < rt' [] = a
-< rt' (t:ts) = rt t `times` rt' ts
+< rt' (t:ts) = (rt t) `times` (rt' ts)
 
 We observe
 
@@ -230,13 +230,13 @@ and reimplement redtree using foldTree:
 
 We give Hughes' examples:
 
-> sumtree :: Tree(Int) -> Int
+> sumtree :: Tree Int -> Int
 > sumtree = foldTreeH (+) (+) 0
 >
-> labels :: Tree(l) -> [l]
+> labels :: Tree l -> [l]
 > labels = foldTreeH (:) (++) []
 >
-> maptree :: (l -> l') -> Tree(l) -> Tree(l')
+> maptree :: (l -> l') -> Tree l -> Tree l'
 > maptree f = foldTreeH op (:) []  
 >    where label `op` subtrees = Node (f label) subtrees
 
@@ -246,14 +246,14 @@ We give Hughes' examples:
 ** Special case: give g in foldTree as a foldr
 
 < foldTree' :: (r -> (l -> r) -> (l -> r)) -> (l -> r) -> Tree l -> r
-< foldTree' h n = foldTree (foldr h n)
+< foldTree' h n = foldTree (flip (foldr h n))
 
 We have: for each h, n and tree of the appropriate types
 
-foldTree' h n tree = foldTreeH (flip ($)) c n
+foldTree' h n tree = foldTreeH (flip ($)) h n
 
-Problem: Can we simulate redtree (⊕) (⊗) a  with foldTree' c n ?
-Probably not.
+Problem: Can we write redtree (⊕) (⊗) a  as foldTree' h n
+for appropriate h and n? We can't. But how to prove this?
 
 ** unfold
 
