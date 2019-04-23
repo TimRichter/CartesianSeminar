@@ -1,5 +1,5 @@
 The Potsdam Cartesian Seminar is an open topic weekly seminar that was started
-around 2000 by Cezar Ionescu and Nicola Botta at the Potsdam Institute for Climate 
+around 2000 by Rupert Klein and Cezar Ionescu at the Potsdam Institute for Climate 
 Impact Research and is located at the Institute of Computer Science of the University
 of Potsdam since 2014. Guided by the rules René Descartes formulated in his "Discours 
 de la méthode" we aim for a thorough understanding of the texts we read.
