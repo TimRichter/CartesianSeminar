@@ -33,11 +33,11 @@ is called "foldr" in Haskell:
 Note that in current GHC (the most popular modern Haskell
 system), foldr is no longer literally defined like this:
 foldr now has a more general type (it works on all types in
-a the type class "Foldable" - try ":t foldr" in ghci!).
+the type class "Foldable" - try ":t foldr" in ghci!).
 But of course [] is in Foldable, and GHC's foldr
 implementation is equivalent to the above.
 
-We can now implement Hughes` reduce examples with foldr.
+We can now implement Hughes' reduce examples with foldr.
 
 We will always write explicit type declarations. Haskell
 (like Miranda) doesn't need them, it has powerful type
@@ -62,13 +62,13 @@ with the binary operations
 
 < (&&),(||) :: Bool -> Bool -> Bool
 
-we can write
+("and" and "or") we can write
 
 > alltrue, anytrue :: [Bool] -> Bool
 > alltrue = foldr (&&) True
 > anytrue = foldr (||) False
 
-Concatenation of two lists can be written with a fold:
+Concatenation of two lists can be written with a foldr:
 
 > (++) :: [a] -> [a] -> [a]
 > (++) xs ys = foldr (:) ys xs
@@ -78,7 +78,7 @@ The length of a list:
 > length :: [a] -> Int
 > length = foldr (\el -> \len -> (1 + len)) 0
 
-Here (\x -> t) is notation for the Lambda
+Here (\x -> t) is notation for the lambda
 abstraction λ x. t (where x is the variable bound
 by the lambda - it may, but does not have to, occur
 as a free variable in term t).
@@ -106,6 +106,12 @@ treeof α ::= α @ (listof (treeof α))
 which we write
 
 > data Tree l = Node l [Tree l] deriving Show
+
+(the "deriving Show" instructs Haskell to implement
+
+< show :: Tree l -> String
+
+- a simple display function for trees).
 
 The single constructor [Node] of [Tree] has type:
 
@@ -195,23 +201,23 @@ Proof. By structural induction on [Tree l].
  case []:
 
   (foldr `times` a) (map rt [])
- ={ def. map }
+ ={ definition of map }=
   (foldr `times` a) []
- ={ def. foldr }
+ ={ definition of foldr }=
   a
- ={ def. rt' }= 
+ ={ definition of rt' }= 
   rt' []
 
  case (t:ts):
 
   (foldr `times` a) (map rt (t:ts))
- ={ def. map } 
+ ={ definition of map }=
   (foldr `times` a) (rt t : map rt ts)
- ={ def. foldr } 
+ ={ definition of foldr }= 
   rt t `times` (foldr `times` a) (map rt ts)
- ={ ind. hyp. }
+ ={ induction hypothesis }=
   rt t `times` rt' ts
- ={ def. rt' }=
+ ={ definition of rt' }=
   rt' (t:ts)
 
 Thus, using foldr and map, we can get rid of the mutual recursion
@@ -252,8 +258,9 @@ We have: for each h, n and tree of the appropriate types
 
 foldTree' h n tree = foldTreeH (flip ($)) h n
 
-Problem: Can we write redtree (⊕) (⊗) a  as foldTree' h n
-for appropriate h and n? We can't. But how to prove this?
+Problem: Can we write redtree (⊕) (⊗) a (resp. our foldTreeH plus times a) 
+as foldTree' h n for appropriate h and n? In general we can't. 
+Try to prove this!
 
 ** unfold
 
@@ -263,18 +270,21 @@ for appropriate h and n? We can't. But how to prove this?
 >         l        = fst genStep
 >         subtrees = map (unfoldTree gen) (snd genStep)
 
-can be used to generate tree examples
+can be used to generate trees. For example, let's generate
+a "tree of proper divisors" of an integer. We need a little
+preparation. filter p xs gives a list of all elements of xs
+satisfying the boolean predicate p:
 
 > filter :: (l->Bool) -> [l] -> [l]
 > filter p = foldr op []  where
 >    op x xs = if p x then (x:xs) else xs
 
-proper divisors of an integer
+We use it to generate the list of proper divisors of an integer
 
 > divs :: Integer -> [Integer]
 > divs n = filter (\d -> n `mod` d == 0) [2..(n-1)]
 
-build a tree of proper divisors...
+and use unfoldTree to build the tree of proper divisors:
 
 > divsTree :: Integer -> Tree(Integer)
 > divsTree = unfoldTree (\n -> (n, divs n))
@@ -283,16 +293,22 @@ build a tree of proper divisors...
 4.1 Newton-Raphson square roots
 
 sqrt n is a zero of the function   f x = x² - n
-The f' x = 2*x
+The derivative of f at x is        f'x = 2*x
 
-y + d = x
+So the graph of the linear function
 
-(x² - n)/d = 2*x
+g y = f x + f'x * (y - x)
 
-So d = (x² - n) / 2*x
-     = x/2 - n/(2*x) 
+is tangent to the graph of f at (x,f x). Newton's method
+uses the observation that if x is "close enough"
+(can be made precise...) to a zero x0 of f and f'x /= 0,
+the unique zero y0 of the linear g is even closer to x0. 
 
-and y = x - d = x/2 + n/(2*x)
+y0 = x - ((f x) / (f' x))
+   = x - ((x² - n)/(2*x))
+   = x - x/2 + n/(2*x)
+   = x/2 + n/(2*x)
+   = (x + n/x)/2
 
 > next :: Double -> Double -> Double
 > next n x = (x + n/x)/2
@@ -335,10 +351,24 @@ We skip to
 
 5. An Example from Artificial Intelligence
 
-> class NDS pos where
->   moves :: pos -> [pos]
+Hughes postulates a type position of "game states"
+and a function 
 
-> gametree :: NDS pos => pos -> Tree(pos)
+< moves :: position -> [position]
+
+computing the next states reachable from a given state.
+We cannot give postulates in Haskell. Instead, we use
+type classes. We call a type with a "moves" function
+a "nondeterministic dynamical system" (NDS) and define
+a type class for these:
+
+> class NDS position where
+>   moves :: position -> [position]
+
+Functions using an NDS structure can now be implemented
+with a "type class constraint", e.g.: 
+
+> gametree :: NDS pos => pos -> Tree pos
 > gametree p = unfoldTree next p where
 >   next p = (p, moves p)
 
