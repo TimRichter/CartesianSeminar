@@ -78,7 +78,7 @@ The length of a list:
 > length :: [a] -> Int
 > length = foldr (\el -> \len -> (1 + len)) 0
 
-Here (\x -> t) is notation for a the Lambda
+Here (\x -> t) is notation for the Lambda
 abstraction λ x. t (where x is the variable bound
 by the lambda - it may, but does not have to, occur
 as a free variable in term t).
