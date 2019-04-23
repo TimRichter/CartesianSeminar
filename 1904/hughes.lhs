@@ -282,6 +282,18 @@ build a tree of proper divisors...
 4. Gluing programs together
 4.1 Newton-Raphson square roots
 
+sqrt n is a zero of the function   f x = x² - n
+The f' x = 2*x
+
+y + d = x
+
+(x² - n)/d = 2*x
+
+So d = (x² - n) / 2*x
+     = x/2 - n/(2*x) 
+
+and y = x - d = x/2 + n/(2*x)
+
 > next :: Double -> Double -> Double
 > next n x = (x + n/x)/2
 >
@@ -314,9 +326,23 @@ build a tree of proper divisors...
 > differentiate :: Double -> (Double -> Double) -> Double -> [Double]
 > differentiate h0 f x = map (easydiff f x) (repeat (\h -> h/2) h0)
 
+The speedup things look fishy. In the 1990 version Hughes adds
+something about estimating the power n of h in the error term...
+
+Surely n does not grow with the index of the sequence...
+
+We skip to
+
+5. An Example from Artificial Intelligence
+
+> class NDS pos where
+>   moves :: pos -> [pos]
+
+> gametree :: NDS pos => pos -> Tree(pos)
+> gametree p = unfoldTree next p where
+>   next p = (p, moves p)
 
 t.b.c.
-
 
 
 
