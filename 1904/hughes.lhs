@@ -264,16 +264,21 @@ Try to prove this!
 
 ** unfold
 
-> unfoldTree :: (s -> (l,[s])) -> s -> Tree(l)
+> unfoldTree :: (s -> (l,[s])) -> s -> Tree l
 > unfoldTree gen seed = Node l subtrees  where
 >         genStep  = gen seed
 >         l        = fst genStep
 >         subtrees = map (unfoldTree gen) (snd genStep)
 
-can be used to generate trees. For example, let's generate
-a "tree of proper divisors" of an integer. We need a little
-preparation. filter p xs gives a list of all elements of xs
-satisfying the boolean predicate p:
+can be used to generate trees. Hughes uses a special case
+in section 5:
+
+> reptree :: (l -> [l]) -> l -> Tree l
+> reptree f a = unfoldTree (\x -> (x,f x)) a
+
+As an example, let's generate a "tree of proper divisors" of
+an integer. We need a little preparation. filter p xs gives
+a list of all elements of xs satisfying the boolean predicate p:
 
 > filter :: (l->Bool) -> [l] -> [l]
 > filter p = foldr op []  where
@@ -287,7 +292,9 @@ We use it to generate the list of proper divisors of an integer
 and use unfoldTree to build the tree of proper divisors:
 
 > divsTree :: Integer -> Tree(Integer)
-> divsTree = unfoldTree (\n -> (n, divs n))
+> divsTree = reptree divs
+
+< divsTree = unfoldTree (\n -> (n, divs n))
 
 4. Gluing programs together
 4.1 Newton-Raphson square roots
@@ -369,8 +376,7 @@ Functions using an NDS structure can now be implemented
 with a "type class constraint", e.g.: 
 
 > gametree :: NDS pos => pos -> Tree pos
-> gametree p = unfoldTree next p where
->   next p = (p, moves p)
+> gametree = reptree moves
 
 t.b.c.
 
