@@ -120,8 +120,8 @@ The single constructor [Node] of [Tree] has type:
 > exampleTree :: Tree Int
 > exampleTree = Node 1 [Node 2 [], Node 3 [Node 4 []]]
 
-Hughes gives redtree as an analog to his reduce or our foldr
-in an ad hoc manner using a mutual recursion
+Hughes gives redtree as an analog to his reduce or our
+foldr in an ad hoc manner using a mutual recursion
 
 < redtree  (⊕) (⊗) a (label @ subtrees) = label ⊕ redtree' (⊕) (⊗) a subtrees)
 < redtree' (⊕) (⊗) a [] = a
@@ -132,9 +132,10 @@ We can deduce types for these functions:
 > redtree  :: (l -> a -> r) -> (r -> a -> a) -> a -> (Tree l) -> r
 > redtree' :: (l -> a -> r) -> (r -> a -> a) -> a -> [Tree l] -> a   
 
-Here l is the label type, r the result type of redtree and a the result 
-type of redtree' (which by the first redtree'-pattern above is just the 
-type of the argument a). The types of ⊕ and ⊗ then have to be as given.
+Here l is the label type, r the result type of redtree
+and a the result type of redtree' (which by the first 
+redtree'-pattern above is just the type of the argument a). 
+The types of ⊕ and ⊗ then have to be as given.
 
 > redtree  plus times a (Node label subtrees) = label `plus` (redtree' plus times a subtrees)
 > redtree' plus times a [] = a
@@ -160,10 +161,10 @@ foldTree has to have the following type:
 
 The implementation by pattern matching follows this recipe:
 for any constructor C of D, the fold reduces a generic term
-of D built with constructor C to an application of 
-the corresponding function c. Constructor arguments of type D 
-are replaced by recursive calls, other arguments are
-just passed to c.
+of D built with constructor C to an application of the 
+corresponding function c. Constructor arguments of type D 
+are replaced by recursive calls, other arguments are just
+passed to c.
 
 > foldTree g (Node l ts) = g l (map (foldTree g) ts)
 
@@ -172,12 +173,13 @@ we have to do the recursive call on each tree in this list,
 which is achieved using "map".
 
 Well, if this is the "general" fold, we should be able to
-express redtree by foldTree. More specifically, there should be
+express redtree by foldTree. More specifically, we should be
+able to implement
 
 > gFromPTA :: (l -> a -> r) -> (r -> a -> a) -> a -> (l -> [r] -> r)
 
-such that for any plus, times, a and tree of the appropriate types
-we have
+such that for any plus, times, a and tree of the appropriate
+types we have
 
 redtree plus times a tree = foldTree (gFromPTA plus time a) tree
 
@@ -220,8 +222,8 @@ Proof. By structural induction on [Tree l].
  ={ definition of rt' }=
   rt' (t:ts)
 
-Thus, using foldr and map, we can get rid of the mutual recursion
-and just write
+Thus, using foldr and map, we can get rid of the mutual
+recursion and just write
 
 < rt (Node ts l) = l `plus` ((foldr `times` a ) . (map rt))
 
@@ -246,6 +248,12 @@ We give Hughes' examples:
 > maptree f = foldTreeH op (:) []  
 >    where label `op` subtrees = Node (f label) subtrees
 
+It is also possible to implement foldTree using redtree:
+
+> foldTreeR :: (l -> [r] -> r) -> Tree l -> r
+> foldTreeR g = redtree g (:) []
+
+Prove that foldTreeR equals foldTree !
 
 * More on trees 
 
@@ -258,29 +266,27 @@ We have: for each h, n and tree of the appropriate types
 
 foldTree' h n tree = foldTreeH (flip ($)) h n
 
-Problem: Can we write redtree (⊕) (⊗) a (resp. our foldTreeH plus times a) 
-as foldTree' h n for appropriate h and n? In general we can't. 
-Try to prove this!
+Problem: Can we write redtree (⊕) (⊗) a (resp. our 
+foldTreeH plus times a) as foldTree' h n for appropriate 
+h and n? In general we can't. Try to prove this!
 
 ** unfold
 
-> unfoldTree :: (s -> (l,[s])) -> s -> Tree l
-> unfoldTree gen seed = Node l subtrees  where
->         genStep  = gen seed
->         l        = fst genStep
->         subtrees = map (unfoldTree gen) (snd genStep)
+> unfoldTree :: (s -> l) -> (s -> [s]) -> s -> Tree l
+> unfoldTree label children seed = Node (label seed) subtrees  where
+>         subtrees = map (unfoldTree label children) (children seed)
 
 can be used to generate trees. Hughes uses a special case
 in section 5:
 
 > reptree :: (l -> [l]) -> l -> Tree l
-> reptree f a = unfoldTree (\x -> (x,f x)) a
+> reptree f a = unfoldTree id f a
 
 As an example, let's generate a "tree of proper divisors" of
 an integer. We need a little preparation. filter p xs gives
 a list of all elements of xs satisfying the boolean predicate p:
 
-> filter :: (l->Bool) -> [l] -> [l]
+> filter :: (l -> Bool) -> [l] -> [l]
 > filter p = foldr op []  where
 >    op x xs = if p x then (x:xs) else xs
 
@@ -289,12 +295,10 @@ We use it to generate the list of proper divisors of an integer
 > divs :: Integer -> [Integer]
 > divs n = filter (\d -> n `mod` d == 0) [2..(n-1)]
 
-and use unfoldTree to build the tree of proper divisors:
+and use reptree to build the tree of proper divisors:
 
 > divsTree :: Integer -> Tree(Integer)
 > divsTree = reptree divs
-
-< divsTree = unfoldTree (\n -> (n, divs n))
 
 4. Gluing programs together
 4.1 Newton-Raphson square roots
@@ -307,9 +311,10 @@ So the graph of the linear function
 g y = f x + f'x * (y - x)
 
 is tangent to the graph of f at (x,f x). Newton's method
-uses the observation that if x is "close enough"
-(can be made precise...) to a zero x0 of f and f'x /= 0,
-the unique zero y0 of the linear g is even closer to x0. 
+uses the observation that if x is "close enough" (this 
+can be made precise...) to a zero x0 of f and f'x /= 0,
+the unique zero y0 of the linear g is even closer to x0,
+and is easily computed:
 
 y0 = x - ((f x) / (f' x))
    = x - ((x² - n)/(2*x))
@@ -376,7 +381,22 @@ Functions using an NDS structure can now be implemented
 with a "type class constraint", e.g.: 
 
 > gametree :: NDS pos => pos -> Tree pos
+
 > gametree = reptree moves
+
+For example, let's do tic-tac-toe. A place on the 
+board can have an X, an O or be empty:
+
+> data Entry = E | X | O
+
+We represent the type of positions in a ttt-game
+as matrices of boardentries:
+
+> type TTTPos = [[Entry]]
+
+Of course, we are only interested in 3x3 matrices,
+but never mind.
+
 
 t.b.c.
 

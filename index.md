@@ -7,7 +7,7 @@ de la méthode" we aim for a thorough understanding of the texts we read.
 ## Participants
 ### Present
 Nikolas Bertrand, Sebastian Böhne, Nicola Botta, Nuria Brede, Georg Duchrau, Christoph Glinzer, 
-Jan Heuer, Cezar Ionescu, Miro Pütz, Tim Richter, Juliane Scherlitzki, Jessica Trebst, Luise Werner, 
+Jan Heuer, Cezar Ionescu, Tim Richter, Juliane Scherlitzki, Jessica Trebst, Luise Werner, 
 Max Wiedenhöft
 ### Past 
 Marc Beilcke, Frederick Brumm, Margrit Dittmann, Ingram Jaccard, Henrik Jürges, Manuel Keilmann, 
@@ -24,7 +24,10 @@ Guests are always welcome!
 
 ## Current reading (summer term 2019)
 
-### April 16th and 23rd :
+### starting May 21st : again Nicola on thermodynamics
+  * Straumann - 1986 - Thermodynamik
+
+### April 16th - May 14th :
   * [Hughes - 1989 - Why functional programming matters](https://academic.oup.com/comjnl/article/32/2/98/543535)  - see also
     * the [Keynote by John Hughes and Mary Sheeran at Lambda Days 2017](https://www.youtube.com/watch?v=1qBHf8DrWR8)
     * Haskell implementation of Hughes' examples (incomplete): [hughes.lhs](1904/hughes.lhs)
