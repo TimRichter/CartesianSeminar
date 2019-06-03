@@ -24,7 +24,12 @@ Guests are always welcome!
 
 ## Current reading (summer term 2019)
 
-### starting May 21st : again Nicola on thermodynamics
+### starting June 4th: Sebastian on Manfred Spitzer's "Digitale Demenz"
+  * [Spitzer - 2012 - Digitale Demenz](https://www.buch7.de/store/product_details/1022453946)
+  * [Appel, Schreiner - 2014 - Digitale Demenz? Mythen und wissenschaftliche Befundlage zur Auswirkung von Internetnutzung](https://econtent.hogrefe.com/doi/full/10.1026/0033-3042/a000186)
+  * [Spitzer - 2015 - Über vermeintlcihe neue Erkenntnisse zu den Risiken und Nebenwirkungen digitatler Informationstechnik](https://econtent.hogrefe.com/doi/full/10.1026/0033-3042/a000251)
+
+### May 21st, 28th : Nicola on thermodynamics
   * Straumann - 1986 - Thermodynamik
 
 ### April 16th - May 14th :
