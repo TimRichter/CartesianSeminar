@@ -24,6 +24,11 @@ Guests are always welcome!
 
 ## Current reading (summer term 2019)
 
+### proposal Jan: [Janhunen, Niemelä - 2016 - The Answer Set Programming Paradigm](https://www.aaai.org/ojs/index.php/aimagazine/article/view/2671)
+
+### July 2nd and July 9th: Nicola on responsibility and blame
+  * [Chockler, Halpern - 2004 - Responsibility and Blame: A Structural Model Approach](https://arxiv.org/abs/cs/0312038)
+
 ### starting June 4th: Sebastian on Manfred Spitzer's "Digitale Demenz"
   * [Spitzer - 2012 - Digitale Demenz](https://www.buch7.de/store/product_details/1022453946)
   * [Appel, Schreiner - 2014 - Digitale Demenz? Mythen und wissenschaftliche Befundlage zur Auswirkung von Internetnutzung](https://econtent.hogrefe.com/doi/full/10.1026/0033-3042/a000186)
