@@ -24,7 +24,10 @@ Guests are always welcome!
 
 ## Current reading (summer term 2019)
 
-### proposal Jan: [Janhunen, Niemelä - 2016 - The Answer Set Programming Paradigm](https://www.aaai.org/ojs/index.php/aimagazine/article/view/2671)
+### proposal Jan: Answer set programming
+  * [Janhunen, Niemelä - 2016 - The Answer Set Programming Paradigm](https://www.aaai.org/ojs/index.php/aimagazine/article/view/2671)
+  * [Lifschitz - 2016 - Answer Sets and the Language of Answer Set Programming](https://www.semanticscholar.org/paper/Answer-Sets-and-the-Language-of-Answer-Set-Lifschitz/3e71fec7ed1e7c546204a43486536a6b895bb52c)
+  * [Gebser, Schaub - 2016 - Modeling and Language Extension](https://www.cs.uni-potsdam.de/wv/publications/DBLP_journals/aim/GebserS16.pdf)
 
 ### July 2nd and July 9th: Nicola on responsibility and blame
   * [Chockler, Halpern - 2004 - Responsibility and Blame: A Structural Model Approach](https://arxiv.org/abs/cs/0312038)
