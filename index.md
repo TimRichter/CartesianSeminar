@@ -22,30 +22,40 @@ Guests are always welcome!
   Building 4, Room 2.01
 
 
-## Current reading (summer term 2019)
-
-### starting July 23rd: Jan on Answer set programming
-  * [Janhunen, Niemelä - 2016 - The Answer Set Programming Paradigm](https://www.aaai.org/ojs/index.php/aimagazine/article/view/2671)
-  * [Lifschitz - 2016 - Answer Sets and the Language of Answer Set Programming](https://www.semanticscholar.org/paper/Answer-Sets-and-the-Language-of-Answer-Set-Lifschitz/3e71fec7ed1e7c546204a43486536a6b895bb52c)
-  * [Gebser, Schaub - 2016 - Modeling and Language Extension](https://www.cs.uni-potsdam.de/wv/publications/DBLP_journals/aim/GebserS16.pdf)
-
-### July 2nd, 9th, 16th: Nicola on responsibility and blame
-  * [Chockler, Halpern - 2004 - Responsibility and Blame: A Structural Model Approach](https://arxiv.org/abs/cs/0312038)
-
-### starting June 4th: Sebastian on Manfred Spitzer's "Digitale Demenz"
+## Current reading (winter term 2019)
+### starting October 8th: Sebastian on Manfred Spitzer's "Digitale Demenz" - continuation
   * [Spitzer - 2012 - Digitale Demenz](https://www.buch7.de/store/product_details/1022453946)
   * [Appel, Schreiner - 2014 - Digitale Demenz? Mythen und wissenschaftliche Befundlage zur Auswirkung von Internetnutzung](https://econtent.hogrefe.com/doi/full/10.1026/0033-3042/a000186)
   * [Spitzer - 2015 - Über vermeintliche neue Erkenntnisse zu den Risiken und Nebenwirkungen digitaler Informationstechnik](https://econtent.hogrefe.com/doi/full/10.1026/0033-3042/a000251)
 
-### May 21st, 28th : Nicola on thermodynamics
+## Archive
+### Summer term 2019
+
+#### September 17th, 24th, October 1st: Blockchain technology
+  * [Nakamoto - 2008 - Bitcoin - A Peer-to-Peer Electronic Cash System](http://www.academia.edu/download/54517945/Bitcoin_paper_Original_2.pdf)
+  * [Mazières - 2015 - The Stellar Consensus Protocol - A Federated Model for Internet-level Consensus](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.696.93&amp=&rep=rep1&amp=&type=pdf)
+
+#### starting July 23rd: Jan on Answer set programming
+  * [Janhunen, Niemelä - 2016 - The Answer Set Programming Paradigm](https://www.aaai.org/ojs/index.php/aimagazine/article/view/2671)
+  * [Lifschitz - 2016 - Answer Sets and the Language of Answer Set Programming](https://www.semanticscholar.org/paper/Answer-Sets-and-the-Language-of-Answer-Set-Lifschitz/3e71fec7ed1e7c546204a43486536a6b895bb52c)
+  * [Gebser, Schaub - 2016 - Modeling and Language Extension](https://www.cs.uni-potsdam.de/wv/publications/DBLP_journals/aim/GebserS16.pdf)
+
+#### July 2nd, 9th, 16th: Nicola on responsibility and blame
+  * [Chockler, Halpern - 2004 - Responsibility and Blame: A Structural Model Approach](https://arxiv.org/abs/cs/0312038)
+
+#### starting June 4th: Sebastian on Manfred Spitzer's "Digitale Demenz"
+  * [Spitzer - 2012 - Digitale Demenz](https://www.buch7.de/store/product_details/1022453946)
+  * [Appel, Schreiner - 2014 - Digitale Demenz? Mythen und wissenschaftliche Befundlage zur Auswirkung von Internetnutzung](https://econtent.hogrefe.com/doi/full/10.1026/0033-3042/a000186)
+  * [Spitzer - 2015 - Über vermeintliche neue Erkenntnisse zu den Risiken und Nebenwirkungen digitaler Informationstechnik](https://econtent.hogrefe.com/doi/full/10.1026/0033-3042/a000251)
+
+#### May 21st, 28th : Nicola on thermodynamics
   * Straumann - 1986 - Thermodynamik
 
-### April 16th - May 14th :
+#### April 16th - May 14th :
   * [Hughes - 1989 - Why functional programming matters](https://academic.oup.com/comjnl/article/32/2/98/543535)  - see also
     * the [Keynote by John Hughes and Mary Sheeran at Lambda Days 2017](https://www.youtube.com/watch?v=1qBHf8DrWR8)
     * Haskell implementation of Hughes' examples (incomplete): [hughes.lhs](1904/hughes.lhs)
 
-## Archive
 ### Winter term 2018/2019
 #### 19. and 26.02.2019 : Jessica on DNA computing
   * [Amos, Paun, Rozenberg, Salomaa - 2002 - Topics in the theory of DNA computing](https://core.ac.uk/download/pdf/82716986.pdf)
