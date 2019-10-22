@@ -7,11 +7,11 @@ de la méthode" we aim for a thorough understanding of the texts we read.
 ## Participants
 ### Present
 Nikolas Bertrand, Sebastian Böhne, Nicola Botta, Nuria Brede, Georg Duchrau, Christoph Glinzer, 
-Jan Heuer, Cezar Ionescu, Tim Richter, Juliane Scherlitzki, Jessica Trebst, Luise Werner, 
+Jan Heuer, Cezar Ionescu, David Linkiewicz, Tim Richter, Juliane Scherlitzki, Jessica Trebst,  
 Max Wiedenhöft
 ### Past 
 Marc Beilcke, Frederick Brumm, Margrit Dittmann, Ingram Jaccard, Henrik Jürges, Manuel Keilmann, 
-Thomas Kern, Christoph Kreitz, Eva Richter, Matthias Seidel, Carla Schreiber, Axel Wiepke
+Thomas Kern, Christoph Kreitz, Eva Richter, Matthias Seidel, Carla Schreiber, Luise Werner, Axel Wiepke
 
 Guests are always welcome!
 
