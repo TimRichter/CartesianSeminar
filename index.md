@@ -76,6 +76,7 @@ with sidesteps to
 * Gentzen - 1935 - Untersuchungen über das logische Schliessen [I](https://link.springer.com/content/pdf/10.1007/BF01201353.pdf) und
   [II](https://link.springer.com/content/pdf/10.1007/BF01201363.pdf)
 * [Wadler - 2015 - Propositions as types](https://dl.acm.org/citation.cfm?id=2699407) - see also [Video](https://www.youtube.com/watch?v=IOiZatlZtGU)
+
 ### Summer term 2018
 #### June 2018 - Georg on "Ernst Mach: The Science of Mechanics"
 * Mach - 1919 - The Science of Mechanics
