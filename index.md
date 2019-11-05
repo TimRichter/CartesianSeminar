@@ -24,7 +24,7 @@ Guests are always welcome!
   * [Spitzer - 2012 - Digitale Demenz](https://www.buch7.de/store/product_details/1022453946)
   * [Appel, Schreiner - 2014 - Digitale Demenz? Mythen und wissenschaftliche Befundlage zur Auswirkung von Internetnutzung](https://econtent.hogrefe.com/doi/full/10.1026/0033-3042/a000186)
   * [Spitzer - 2015 - Über vermeintliche neue Erkenntnisse zu den Risiken und Nebenwirkungen digitaler Informationstechnik](https://econtent.hogrefe.com/doi/full/10.1026/0033-3042/a000251)
-  * [Appel, Schreiner - Leben in einer digitalen Welt: Wissenschaftliche Befundlage und problematische Fehlschlüsse - Stellungnahme zur erwiderung von Spitzer](http://www.mcm.uni-wuerzburg.de/fileadmin/06110300/user_upload/Publikationen/Appel_-_Schreiner_2015_Stellungnahme_zu_Spitzers_Replik.pdf)
+  * [Appel, Schreiner - Leben in einer digitalen Welt: Wissenschaftliche Befundlage und problematische Fehlschlüsse - Stellungnahme zur Erwiderung von Spitzer](http://www.mcm.uni-wuerzburg.de/fileadmin/06110300/user_upload/Publikationen/Appel_-_Schreiner_2015_Stellungnahme_zu_Spitzers_Replik.pdf)
 
 ## Archive
 ### Summer term 2019
