@@ -90,7 +90,7 @@ with sidesteps to
   * see [latex copy Introduction and parts of Chpt 2 by Bernd Paysan](http://bernd-paysan.de/mach.pdf)
     
 #### March 2018 
-* Richard v. Mises: "Wahrscheinlichkeit, Statistik und Wahrheit"
+* Richard von Mises: Wahrscheinlichkeit, Statistik und Wahrheit
 * Richard von Mises: Probability, Statistics, and Truth
 * see also: Interpretations of Probability (SEP)
 
@@ -98,8 +98,8 @@ with sidesteps to
 #### proposals for summer term 2018
 
 * Nicola: 
-  * Richard von Mises - 1928 - "Wahrscheinlichkeit, Statistik und Wahrheit"
-  * Thomas Kuhn: "Black Body Theory and the Quantum Discontinuity 1894-1912" (Chicago & London, 1978)
+  * Richard von Mises - 1928 - Wahrscheinlichkeit, Statistik und Wahrheit
+  * Thomas Kuhn: Black Body Theory and the Quantum Discontinuity 1894-1912 (Chicago & London, 1978)
 * Tim:
   * McBride - Turing-Completeness Totally Free
     
