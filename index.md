@@ -20,6 +20,10 @@ Guests are always welcome!
 
 
 ## Current reading (winter term 2019)
+
+### starting November 19th: Dynamical Systems
+* [Kuznetsov - Elements of Applied Bifurcation Theory](http://wwwf.imperial.ac.uk/~dturaev/kuznetsov.pdf) - we read the introductory chapter 1
+
 ### starting October 8th: Sebastian on Manfred Spitzer's "Digitale Demenz" - continuation
 * [Spitzer - 2012 - Digitale Demenz](https://www.buch7.de/store/product_details/1022453946)
 * [Appel, Schreiner - 2014 - Digitale Demenz? Mythen und wissenschaftliche Befundlage zur Auswirkung von Internetnutzung](https://econtent.hogrefe.com/doi/full/10.1026/0033-3042/a000186)
@@ -111,7 +115,7 @@ with sidesteps to
 
 ### Summer term 2017
 * [Ross - Game Theory (SEP)](https://plato.stanford.edu/entries/game-theory/)
-  * see also: [2bridges](1705/2bridges)
+  * see also: [2bridges.txt](1705/2bridges.txt)
 
 ### Winter term 2016/17
 * presented by Axel: The Turing Test (SEP)
