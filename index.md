@@ -21,12 +21,15 @@ Guests are always welcome!
 
 ## Current reading (winter term 2019)
 
-### starting January 21st: Christoph on Random Walks
+### starting January 21st: Christoph on Random Walks and Electric Networks
+Selection from
 * [Doyle, Snell - 1984(2000) - Random Walks and Electric Networks](https://arxiv.org/abs/math/0001057)
 
 
 ### January 7th and 14th: Nico on Graphical Languages
+We read the first half of
 * [Coecke - 2016 - From quantum foundations via natural language meaning to a theory of everything](https://arxiv.org/abs/1602.07618)
+and selected material from
 * [Coecke, Kissinger - 2017 - Picturing Quantum Processes](https://www.cambridge.org/core/books/picturing-quantum-processes/1119568B3101F3A685BE832FEEC53E52#)
 
 ### starting November 19th: Dynamical Systems
