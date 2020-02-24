@@ -21,7 +21,10 @@ Guests are always welcome!
 
 ## Current reading (winter term 2019)
 
-### starting January 21st: Christoph on Random Walks and Electric Networks
+### starting February 25th: on Lawvere's ETCS
+* [Leinster - 2012 - Rethinking Set Theory](https://arxiv.org/abs/1212.6543)
+
+### January 21st to February 10th: Christoph on Random Walks and Electric Networks
 Selection from
 * [Doyle, Snell - 1984(2000) - Random Walks and Electric Networks](https://arxiv.org/abs/math/0001057)
 
