@@ -25,6 +25,12 @@ Due to the Corona lockdown the seminar will be held online on
 a collaborative whiteboard on [limnu.com](https://limnu.com). For
 the actual board link, please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 
+You won't need a limnu login to participate, but please take the time
+to familiarise yourself with the navigation and drawing tools before
+joining the session. We'll use "notes" boxes a lot, "pins" to jump to
+board locations, and of course audio and sometimes video. Knowing keyboard
+shortcuts helps. Using a headset improves audio quality for all participants.
+
 The first session for this term will start on April 21st at 10:00 am.
 Depending on participants' preferences, we'll choose one of the following
 texts:
