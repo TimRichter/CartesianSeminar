@@ -19,32 +19,48 @@ Guests are always welcome!
   Building 4, Room 2.01
 
 
-## Current reading (winter term 2019)
+## Current reading (summer term 2020)
 
-### starting February 25th: on Lawvere's ETCS
+Due to the Corona lockdown the seminar will be held online on 
+a collaborative whiteboard on [limnu.com](https://limnu.com). For
+the actual board link, please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
+
+The first session for this term will start on April 21st at 10:00 am.
+Depending on participants' preferences, we'll choose one of the following
+texts:
+
+### Proposals for April 21st and following sessions
+* [Dijkstra - 1975 - Guarded commands, non-determinacy and formal derivation of programs (EWD 472)](http://www.cs.utexas.edu/users/EWD/ewd04xx/EWD472.PDF) 
+* [Bird - 1986 - An introduction to the theory of lists](https://www.cs.ox.ac.uk/files/3378/PRG56.pdf), see also
+   this [lecture video](http://podcasts.ox.ac.uk/introduction-theory-lists).
+* [Chow - 2008 - A beginner's guide to forcing](https://arxiv.org/pdf/0712.1320)
+
+## Archive
+### Winter term 2019/2020
+#### starting February 25th: on Lawvere's ETCS
 * [Leinster - 2012 - Rethinking Set Theory](https://arxiv.org/abs/1212.6543)
 
-### January 21st to February 10th: Christoph on Random Walks and Electric Networks
+#### January 21st to February 10th: Christoph on Random Walks and Electric Networks
 Selection from
 * [Doyle, Snell - 1984(2000) - Random Walks and Electric Networks](https://arxiv.org/abs/math/0001057)
 
 
-### January 7th and 14th: Nico on Graphical Languages
+#### January 7th and 14th: Nico on Graphical Languages
 We read the first half of
 * [Coecke - 2016 - From quantum foundations via natural language meaning to a theory of everything](https://arxiv.org/abs/1602.07618)
 and selected material from
 * [Coecke, Kissinger - 2017 - Picturing Quantum Processes](https://www.cambridge.org/core/books/picturing-quantum-processes/1119568B3101F3A685BE832FEEC53E52#)
 
-### starting November 19th: Dynamical Systems
+#### starting November 19th: Dynamical Systems
 * [Kuznetsov - Elements of Applied Bifurcation Theory](http://wwwf.imperial.ac.uk/~dturaev/kuznetsov.pdf) - we read the introductory chapter 1
 
-### starting October 8th: Sebastian on Manfred Spitzer's "Digitale Demenz" - continuation
+#### starting October 8th: Sebastian on Manfred Spitzer's "Digitale Demenz" - continuation
 * [Spitzer - 2012 - Digitale Demenz](https://www.buch7.de/store/product_details/1022453946)
 * [Appel, Schreiner - 2014 - Digitale Demenz? Mythen und wissenschaftliche Befundlage zur Auswirkung von Internetnutzung](https://econtent.hogrefe.com/doi/full/10.1026/0033-3042/a000186)
 * [Spitzer - 2015 - Über vermeintliche neue Erkenntnisse zu den Risiken und Nebenwirkungen digitaler Informationstechnik](https://econtent.hogrefe.com/doi/full/10.1026/0033-3042/a000251)
 * [Appel, Schreiner - Leben in einer digitalen Welt: Wissenschaftliche Befundlage und problematische Fehlschlüsse - Stellungnahme zur Erwiderung von Spitzer](http://www.mcm.uni-wuerzburg.de/fileadmin/06110300/user_upload/Publikationen/Appel_-_Schreiner_2015_Stellungnahme_zu_Spitzers_Replik.pdf)
 
-## Archive
+
 ### Summer term 2019
 
 #### September 17th, 24th, October 1st: Blockchain technology
