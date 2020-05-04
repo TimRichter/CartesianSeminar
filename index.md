@@ -6,9 +6,9 @@ de la méthode" we aim for a thorough understanding of the texts we read.
 
 ## Participants
 ### Present
-Nikolas Bertrand, Sebastian Böhne, Nicola Botta, Nuria Brede, Georg Duchrau, Christoph Glinzer, Jan Heuer, Cezar Ionescu, David Linkiewicz, Tim Richter, Max Wiedenhöft
+Nikolas Bertrand, Sebastian Böhne, Nicola Botta, Nuria Brede, Georg Duchrau, Christoph Glinzer, Hanna Gloyna, Jan Heuer, Cezar Ionescu, Lucas Kerschke, Marc Fabian Lindner, Tim Richter, Marius Wawerek, Max Wiedenhöft
 ### Past 
-Marc Beilcke, Frederick Brumm, Margrit Dittmann, Ingram Jaccard, Henrik Jürges, Manuel Keilmann, Thomas Kern, Christoph Kreitz, Eva Richter, Juliane Scherlitzki, Carla Schreiber, Matthias Seidel, Jessica Trebst, Luise Werner, Axel Wiepke
+Marc Beilcke, Frederick Brumm, Margrit Dittmann, Ingram Jaccard, Henrik Jürges, Manuel Keilmann, Thomas Kern, Christoph Kreitz, David Linkiewicz, Eva Richter, Juliane Scherlitzki, Carla Schreiber, Matthias Seidel, Jessica Trebst, Luise Werner, Axel Wiepke
 
 Guests are always welcome!
 
@@ -21,25 +21,15 @@ Guests are always welcome!
 
 ## Current reading (summer term 2020)
 
-Due to the Corona lockdown the seminar will be held online on 
-a collaborative whiteboard on [limnu.com](https://limnu.com). For
-the actual board link, please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
+Due to the Corona lockdown we meet online. We do the reading and writing 
+on a collaborative whiteboard on [limnu.com](https://limnu.com)
+while talking via mumble. For the actual links and help with the setup,
+please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 
-You won't need a limnu login to participate, but please take the time
-to familiarise yourself with the navigation and drawing tools before
-joining the session. We'll use "notes" boxes a lot, "pins" to jump to
-board locations, and of course audio and sometimes video. Knowing keyboard
-shortcuts helps. Using a headset improves audio quality for all participants.
 
-The first session for this term will start on April 21st at 10:00 am.
-Depending on participants' preferences, we'll choose one of the following
-texts:
-
-### Proposals for April 21st and following sessions
-* [Dijkstra - 1975 - Guarded commands, non-determinacy and formal derivation of programs (EWD 472)](http://www.cs.utexas.edu/users/EWD/ewd04xx/EWD472.PDF) 
+### starting April 21st
 * [Bird - 1986 - An introduction to the theory of lists](https://www.cs.ox.ac.uk/files/3378/PRG56.pdf), see also
    this [lecture video](http://podcasts.ox.ac.uk/introduction-theory-lists).
-* [Chow - 2008 - A beginner's guide to forcing](https://arxiv.org/pdf/0712.1320)
 
 ## Archive
 ### Winter term 2019/2020
