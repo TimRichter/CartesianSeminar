@@ -23,7 +23,7 @@ Guests are always welcome!
 
 Due to the Corona lockdown we meet online. We do the reading and writing 
 on a collaborative whiteboard on [limnu.com](https://limnu.com)
-while talking via mumble. For the actual links and help with the setup,
+while talking via [mumble](https://www.mumble.info). For the actual links and help with the setup,
 please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 
 
