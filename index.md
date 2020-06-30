@@ -26,17 +26,18 @@ on a collaborative whiteboard on [limnu.com](https://limnu.com)
 while talking via [mumble](https://www.mumble.info). For the actual links and help with the setup,
 please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 
+### June 30th and July 7th: Hanna on Probabilistic Algorithms
+* Rabin - 1976 - Probabilistic Algorithms, in [J.F.Traub (ed) - Algorithms and Complexity - New directions and recent results](http://posner.library.cmu.edu/Collections/traub62/box00016/fld00008/bdl0043/doc0001/doc_16b8f43b1.pdf),
+see also this [github repo](https://github.com/hGlo/NearestPair)
+
 ### June 16th and June 23rd: Marius on Tolman
 * [Edward Tolman - 1948 - Cognitive maps in rats and men](http://psychclassics.yorku.ca/Tolman/Maps/maps.htm)
 
-
-## Archive
-### Summer term 2020
-#### starting April 21st
+### starting April 21st
 * [Bird - 1986 - An introduction to the theory of lists](https://www.cs.ox.ac.uk/files/3378/PRG56.pdf),
    see also this [lecture video](http://podcasts.ox.ac.uk/introduction-theory-lists) and this [github repo](https://github.com/TimRichter/BirdLists.git).
 
-
+## Archive
 ### Winter term 2019/2020
 #### starting February 25th: on Lawvere's ETCS
 * [Leinster - 2012 - Rethinking Set Theory](https://arxiv.org/abs/1212.6543)
