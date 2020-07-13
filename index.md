@@ -31,7 +31,7 @@ please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 
 ### June 30th and July 10th: Hanna on Probabilistic Algorithms
 * Rabin - 1976 - Probabilistic Algorithms, in [J.F.Traub (ed) - Algorithms and Complexity - New directions and recent results](http://posner.library.cmu.edu/Collections/traub62/box00016/fld00008/bdl0043/doc0001/doc_16b8f43b1.pdf),
-see also this [github repo](https://github.com/hGlo/NearestPair)
+see also this [github repo](https://github.com/hGl0/NearestPair)
 
 ### June 16th and June 23rd: Marius on Tolman
 * [Edward Tolman - 1948 - Cognitive maps in rats and men](http://psychclassics.yorku.ca/Tolman/Maps/maps.htm)
