@@ -26,7 +26,10 @@ on a collaborative whiteboard on [limnu.com](https://limnu.com)
 while talking via [mumble](https://www.mumble.info). For the actual links and help with the setup,
 please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 
-### June 30th and July 7th: Hanna on Probabilistic Algorithms
+### July 14th and 21st: Fabian on Shellcodes
+* [Barral, Ferradi, Géraud, Jaloyan, Naccache - 2016 - ARMv8 Shellcodes from 'A' to 'Z'](https://arxiv.org/pdf/1608.03415)
+
+### June 30th and July 10th: Hanna on Probabilistic Algorithms
 * Rabin - 1976 - Probabilistic Algorithms, in [J.F.Traub (ed) - Algorithms and Complexity - New directions and recent results](http://posner.library.cmu.edu/Collections/traub62/box00016/fld00008/bdl0043/doc0001/doc_16b8f43b1.pdf),
 see also this [github repo](https://github.com/hGlo/NearestPair)
 
