@@ -6,9 +6,9 @@ de la méthode" we aim for a thorough understanding of the texts we read.
 
 ## Participants
 ### Present
-Nikolas Bertrand, Sebastian Böhne, Nicola Botta, Nuria Brede, Georg Duchrau, Christoph Glinzer, Hanna Gloyna, Jan Heuer, Cezar Ionescu, Lucas Kerschke, Marc Fabian Lindner, Tim Richter, Marius Wawerek, Max Wiedenhöft
+Sebastian Böhne, Nicola Botta, Nuria Brede, Georg Duchrau, Christoph Glinzer, Hanna Gloyna, Jan Heuer, Cezar Ionescu, Lucas Kerschke, Marc Fabian Lindner, Tim Richter, Marius Wawerek, Max Wiedenhöft
 ### Past 
-Marc Beilcke, Frederick Brumm, Margrit Dittmann, Ingram Jaccard, Henrik Jürges, Manuel Keilmann, Thomas Kern, Christoph Kreitz, David Linkiewicz, Eva Richter, Juliane Scherlitzki, Carla Schreiber, Matthias Seidel, Jessica Trebst, Luise Werner, Axel Wiepke
+Marc Beilcke, Nikolas Bertrand, Frederick Brumm, Margrit Dittmann, Ingram Jaccard, Henrik Jürges, Manuel Keilmann, Thomas Kern, Christoph Kreitz, David Linkiewicz, Eva Richter, Juliane Scherlitzki, Carla Schreiber, Matthias Seidel, Jessica Trebst, Luise Werner, Axel Wiepke
 
 Guests are always welcome!
 
@@ -19,28 +19,30 @@ Guests are always welcome!
   Building 4, Room 2.01
 
 
-## Current reading (summer term 2020)
+## Current reading (winter term 2020/2021)
 
-Due to the Corona lockdown we meet online. We do the reading and writing 
-on a collaborative whiteboard on [limnu.com](https://limnu.com)
-while talking via [mumble](https://www.mumble.info). For the actual links and help with the setup,
+Due to the Corona lockdown we meet online. For the actual links and help with the setup,
 please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 
-### July 14th and 21st: Fabian on Shellcodes
+### starting September 22nd
+* Graham Hutton - 1997 - Conceps of Concurrency
+
+## Archive
+### Summer term 2020
+#### July 14th and 21st: Fabian on Shellcodes
 * [Barral, Ferradi, Géraud, Jaloyan, Naccache - 2016 - ARMv8 Shellcodes from 'A' to 'Z'](https://arxiv.org/pdf/1608.03415)
 
-### June 30th and July 10th: Hanna on Probabilistic Algorithms
+#### June 30th and July 10th: Hanna on Probabilistic Algorithms
 * Rabin - 1976 - Probabilistic Algorithms, in [J.F.Traub (ed) - Algorithms and Complexity - New directions and recent results](http://posner.library.cmu.edu/Collections/traub62/box00016/fld00008/bdl0043/doc0001/doc_16b8f43b1.pdf),
 see also this [github repo](https://github.com/hGl0/NearestPair)
 
-### June 16th and June 23rd: Marius on Tolman
+#### June 16th and June 23rd: Marius on Tolman
 * [Edward Tolman - 1948 - Cognitive maps in rats and men](http://psychclassics.yorku.ca/Tolman/Maps/maps.htm)
 
-### starting April 21st
+#### starting April 21st
 * [Bird - 1986 - An introduction to the theory of lists](https://www.cs.ox.ac.uk/files/3378/PRG56.pdf),
    see also this [lecture video](http://podcasts.ox.ac.uk/introduction-theory-lists) and this [github repo](https://github.com/TimRichter/BirdLists.git).
 
-## Archive
 ### Winter term 2019/2020
 #### starting February 25th: on Lawvere's ETCS
 * [Leinster - 2012 - Rethinking Set Theory](https://arxiv.org/abs/1212.6543)
