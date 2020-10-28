@@ -21,10 +21,14 @@ Guests are always welcome!
 
 ## Current reading (winter term 2020/2021)
 
-Due to the Corona lockdown we meet online. For the actual links and help with the setup,
+Due to the Coronavirus pandemic we meet online. For the actual links and help with the setup,
 please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 
-### starting September 22nd
+### starting November 3rd
+* Ionescu, Jansson : Domain specific languages of mathematics,
+  see the [github repository](https://github.com/DSLsofMath/DSLsofMath.git), in particular the snapshot of the lecture notes [DSLsofMathNotes_2019-03-16.pdf](https://github.com/DSLsofMath/DSLsofMath/blob/master/L/snapshots/DSLsofMathNotes_2019-03-16.pdf)
+
+### September 22nd - October 27th
 * Graham Hutton - 1997 - Conceps of Concurrency
 
 ## Archive
