@@ -25,8 +25,9 @@ Due to the Coronavirus pandemic we meet online. For the actual links and help wi
 please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 
 ### starting November 3rd
-* Ionescu, Jansson : Domain specific languages of mathematics,
-  see the [github repository](https://github.com/DSLsofMath/DSLsofMath.git), in particular the snapshot of the lecture notes [DSLsofMathNotes_2019-03-16.pdf](https://github.com/DSLsofMath/DSLsofMath/blob/master/L/snapshots/DSLsofMathNotes_2019-03-16.pdf)
+* Ionescu, Jansson : Domain specific languages of mathematics
+  (checkout the [github repository](https://github.com/DSLsofMath/DSLsofMath.git), make sure you have installed latex and lsh2tex,
+  and do a "make" in subdirectory "L". This should produce "DSLsofMathBook.pdf".)
 
 ### September 22nd - October 27th
 * Graham Hutton - 1997 - Conceps of Concurrency
