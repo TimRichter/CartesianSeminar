@@ -26,7 +26,7 @@ please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 
 ### starting November 3rd
 * Ionescu, Jansson : Domain specific languages of mathematics
-  (checkout the [github repository](https://github.com/DSLsofMath/DSLsofMath.git), make sure you have installed latex and lsh2tex,
+  (checkout the [github repository](https://github.com/DSLsofMath/DSLsofMath.git), make sure you have installed latex and lhs2TeX,
   and do a "make" in subdirectory "L". This should produce "DSLsofMathBook.pdf".)
 
 ### September 22nd - October 27th
