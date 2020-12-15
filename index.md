@@ -7,11 +7,10 @@ de la méthode" we aim for a thorough understanding of the texts we read.
 ## Participants
 ### Present
 Sebastian Böhne, Nicola Botta, Nuria Brede, Georg Duchrau, Christoph Glinzer, Hanna Gloyna, 
-Kira Goerke, Jan Heuer, Cezar Ionescu, Niklas Kämmer, Lucas Kerschke, David Simon Kuska, 
-Marc Fabian Lindner, Tim Münzner, Leo Repp, Tim Richter, 
-Juliane Scherlitzki, Alejandro Costa Suarez, Marius Wawerek, Max Wiedenhöft, Jonas Winter, David Zimmek
+Jan Heuer, Cezar Ionescu, Niklas Kämmer, Lucas Kerschke, David Simon Kuska, 
+Tim Münzner, Tim Richter, Juliane Scherlitzki, Marius Wawerek, Max Wiedenhöft, Jonas Winter, David Zimmek
 ### Past 
-Marc Beilcke, Nikolas Bertrand, Frederick Brumm, Margrit Dittmann, Ingram Jaccard, Henrik Jürges, Manuel Keilmann, Thomas Kern, Christoph Kreitz, David Linkiewicz, Eva Richter, Carla Schreiber, Matthias Seidel, Jessica Trebst, Luise Werner, Axel Wiepke
+Marc Beilcke, Nikolas Bertrand, Frederick Brumm, Margrit Dittmann, Ingram Jaccard, Henrik Jürges, Manuel Keilmann, Thomas Kern, Christoph Kreitz, Marc Fabian Lindner, David Linkiewicz, Eva Richter, Carla Schreiber, Matthias Seidel, Jessica Trebst, Luise Werner, Axel Wiepke
 
 Guests are always welcome!
 
@@ -26,6 +25,12 @@ Guests are always welcome!
 
 Due to the Coronavirus pandemic we meet online. For the actual links and help with the setup,
 please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
+
+### December 15th and January 5th: Niklas on Basics of Supervised Machine Learning (Perceptron, Gradient Descent)
+* [Kurenkov - 2020 - A Brief History of Neural Nets and Deep Learning - Part 1](https://www.skynettoday.com/overviews/neural-net-history)
+
+### December 1st and December 8th: David on Cellular Automata
+* [Berto, Tagliabue - 2017 - Cellular Automata (Stanford Encyclopedia of Philosophy)](https://plato.stanford.edu/entries/cellular-automata/)
 
 ### starting November 3rd
 * Bernardy, Ionescu, Jansson : Domain specific languages of mathematics
