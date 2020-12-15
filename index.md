@@ -26,18 +26,18 @@ Guests are always welcome!
 Due to the Coronavirus pandemic we meet online. For the actual links and help with the setup,
 please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 
-### December 15th and January 5th: Niklas on Basics of Supervised Machine Learning (Perceptron, Gradient Descent)
+#### December 15th and January 5th: Niklas on Basics of Supervised Machine Learning (Perceptron, Gradient Descent)
 * [Kurenkov - 2020 - A Brief History of Neural Nets and Deep Learning - Part 1](https://www.skynettoday.com/overviews/neural-net-history)
 
-### December 1st and December 8th: David on Cellular Automata
+#### December 1st and December 8th: David on Cellular Automata
 * [Berto, Tagliabue - 2017 - Cellular Automata (Stanford Encyclopedia of Philosophy)](https://plato.stanford.edu/entries/cellular-automata/)
 
-### starting November 3rd
+#### starting November 3rd
 * Bernardy, Ionescu, Jansson : Domain specific languages of mathematics
   (checkout the [github repository](https://github.com/DSLsofMath/DSLsofMath.git), make sure you have installed latex and lhs2TeX,
   and do a "make" in subdirectory "L". This should produce "DSLsofMathBook.pdf".)
 
-### September 22nd - October 27th
+#### September 22nd - October 27th
 * Graham Hutton - 1997 - Conceps of Concurrency
 
 ## Archive
