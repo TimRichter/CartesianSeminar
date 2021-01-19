@@ -26,6 +26,9 @@ Guests are always welcome!
 Due to the Coronavirus pandemic we meet online. For the actual links and help with the setup,
 please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 
+#### January 12th and 19th: Tim Münzner on Computer Vision and Convolutional Neural Networks
+* [Kurenkov - 2020 - A Brief History of Neural Nets and Deep Learning - Part 2](https://www.skynettoday.com/overviews/neural-net-history)
+
 #### December 15th and January 5th: Niklas on Basics of Supervised Machine Learning (Perceptron, Gradient Descent)
 * [Kurenkov - 2020 - A Brief History of Neural Nets and Deep Learning - Part 1](https://www.skynettoday.com/overviews/neural-net-history)
 
