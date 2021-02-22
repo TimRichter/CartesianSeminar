@@ -26,6 +26,16 @@ Guests are always welcome!
 Due to the Coronavirus pandemic we meet online. For the actual links and help with the setup,
 please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 
+#### February 23rd and March 2nd: Jonas on the Iterated Prisoner's Dilemma
+* [Press, Dyson - 2012 - Iterated Prisoner's Dilemma contains strategies that dominate any evolutionary opponent](https://www.pnas.org/content/pnas/109/26/10409.full.pdf)
+
+#### February 9th and 16th: Max on Evolutionary Game Theory
+* Chapter 7 "Evolutionary Game Theory" of [Easley, Kleinberg : Networks, Crowds, and Markets](https://www.cs.cornell.edu/home/kleinber/networks-book/) 
+
+
+#### January 26th and February 2nd: Jonas on Clustering
+* [Kleinberg - 2002 - An Impossibility Theorem for Clustering.pdf](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.62.3877&rep=rep1&type=pdf)
+
 #### January 12th and 19th: Tim Münzner on Computer Vision and Convolutional Neural Networks
 * [Kurenkov - 2020 - A Brief History of Neural Nets and Deep Learning - Part 2](https://www.skynettoday.com/overviews/neural-net-history)
 
