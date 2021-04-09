@@ -21,11 +21,17 @@ Guests are always welcome!
   Building 4, Room 2.01
 
 
-## Current reading (winter term 2020/2021)
+## Current reading (summer term 2021)
 
 Due to the Coronavirus pandemic we meet online. For the actual links and help with the setup,
 please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 
+#### starting April 13th
+* [Granovetter - 1978 - Threshold models of collective behaviour](https://www.jstor.org/stable/pdf/2778111.pdf)
+
+## Archive
+
+### Winter term 2020/2021
 #### February 23rd and March 2nd: Jonas on the Iterated Prisoner's Dilemma
 * [Press, Dyson - 2012 - Iterated Prisoner's Dilemma contains strategies that dominate any evolutionary opponent](https://www.pnas.org/content/pnas/109/26/10409.full.pdf)
 
@@ -53,7 +59,6 @@ please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 #### September 22nd - October 27th
 * Graham Hutton - 1997 - Conceps of Concurrency
 
-## Archive
 ### Summer term 2020
 #### July 14th and 21st: Fabian on Shellcodes
 * [Barral, Ferradi, Géraud, Jaloyan, Naccache - 2016 - ARMv8 Shellcodes from 'A' to 'Z'](https://arxiv.org/pdf/1608.03415)
