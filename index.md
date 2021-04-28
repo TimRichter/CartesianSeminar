@@ -6,11 +6,10 @@ de la méthode" we aim for a thorough understanding of the texts we read.
 
 ## Participants
 ### Present
-Sebastian Böhne, Nicola Botta, Nuria Brede, Georg Duchrau, Christoph Glinzer, Hanna Gloyna, 
-Jan Heuer, Cezar Ionescu, Niklas Kämmer, Lucas Kerschke, David Simon Kuska, 
-Tim Münzner, Tim Richter, Juliane Scherlitzki, Marius Wawerek, Max Wiedenhöft, Jonas Winter, David Zimmek
+Alexander Benedict Behrens, Sebastian Böhne, Nicola Botta, Nuria Brede, Georg Duchrau, Christoph Glinzer, Jan Heuer, Cezar Ionescu, Thomas Kern, Lucas Kerschke, Jan Lemcke, Tarek Ramadan, Leo Repp, Tim Richter, Marius Wawerek, Max Wiedenhöft
 ### Past 
-Marc Beilcke, Nikolas Bertrand, Frederick Brumm, Margrit Dittmann, Ingram Jaccard, Henrik Jürges, Manuel Keilmann, Thomas Kern, Christoph Kreitz, Marc Fabian Lindner, David Linkiewicz, Eva Richter, Carla Schreiber, Matthias Seidel, Jessica Trebst, Luise Werner, Axel Wiepke
+Marc Beilcke, Nikolas Bertrand, Frederick Brumm, Margrit Dittmann, Hanna Gloyna, Ingram Jaccard, Henrik Jürges, Niklas Kämmer, Manuel Keilmann, Christoph Kreitz, David Simon Kuska, Marc Fabian Lindner, David Linkiewicz, Tim Münzner, Eva Richter, Juliane Scherlitzki, Carla Schreiber, Matthias Seidel, Jessica Trebst, Luise Werner, Axel Wiepke, Jonas Winter, David Zimmek
+
 
 Guests are always welcome!
 
