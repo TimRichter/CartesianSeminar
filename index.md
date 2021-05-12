@@ -26,7 +26,8 @@ Due to the Coronavirus pandemic we meet online. For the actual links and help wi
 please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 
 #### starting April 13th
-* [Granovetter - 1978 - Threshold models of collective behaviour](https://www.jstor.org/stable/pdf/2778111.pdf)
+* [Granovetter - 1978 - Threshold models of collective behaviour](https://www.jstor.org/stable/pdf/2778111.pdf), see also this [jupyter notebook](https://mybinder.org/v2/gh/TimRichter/CartesianSeminar.git/gh-pages?filepath=2105%2FGranovetter.ipynb)
+
 
 ## Archive
 
