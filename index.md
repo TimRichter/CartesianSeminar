@@ -25,7 +25,10 @@ Guests are always welcome!
 Due to the Coronavirus pandemic we meet online. For the actual links and help with the setup,
 please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 
-#### starting April 13th
+#### starting May 18th
+* [Cabalar, Ferraris - 2007 - Propositional Theories are Strongly Equivalent to Logic Programs](https://arxiv.org/pdf/cs/0701095)
+
+#### April 13th to May 11th
 * [Granovetter - 1978 - Threshold models of collective behaviour](https://www.jstor.org/stable/pdf/2778111.pdf)
 
 ## Archive
