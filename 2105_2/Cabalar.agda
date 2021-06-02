@@ -72,8 +72,9 @@ Th = List F
 infix 15 _∈_
 
 _∈_ : F → Th → Set
-f ∈ []       = Ø                  -- the empty type ( \O )
-f ∈ (g ∷ gs) = (f ≡ g) ⊎ (f ∈ gs) -- disjoint union ( \u+ )
+f ∈ []       = Ø                  -- the empty type ( \O ) ... the empty theory has no elements!
+f ∈ (g ∷ gs) = (f ≡ g) ⊎ (f ∈ gs) -- disjoint union ( \u+ ) ... f is an element of a nonempty theory (g ∷ gs)
+                                  --                            if either f equals g or f is in gs
 
 -- model relation
 
@@ -84,4 +85,23 @@ m ⊧ th = (f : F) → f ∈ th → eval m f ≡ true
 -- models of a theory
 
 Mod : Th → Set
-Mod th = Σ IP ( _⊧ th)
+Mod th = Σ IP ( _⊧ th )
+-- Note that |Mod th| can be considered as the type of proofs of the statement "th has a model" or "there exists a model of th".
+-- This exemplifies the use of Σ-types for existence statements.
+--
+-- One also calls a formula |f| "satisfyable" if the theory | f ∷ [] | has a model. Thus, in this case, |Mod (f ∷ [])| is the type
+-- of proofs of the statement "|f| is satisfyable".
+--
+-- What if we replace Σ above with Π ? Agda uses a different syntax for Π-types, but we can easily define
+
+Π : (A : Set) → (A → Set) → Set
+Π A P = (x : A) → P x
+
+-- Completely analoguous to |Mod| we can now define
+
+IsValid : Th → Set
+IsValid th = Π IP ( _⊧ th )
+-- |IsValid th| is the type of proofs of the statement "every |m : IP| is a model of |th|".
+--
+-- If |th| is a singleton list, i.e. contains exactly one formula |f|, |Π IP ( _⊧ (f ∷ []) )| is
+-- the type of proofs of the statement "|f| is valid" or "|f| is a tautology".
