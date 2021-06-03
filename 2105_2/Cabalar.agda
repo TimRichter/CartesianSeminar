@@ -9,7 +9,8 @@ open import Data.Nat
 open import Data.Bool renaming (Bool to 𝔹; _∧_ to _∧𝔹_ ; _∨_ to _∨𝔹_ ; not to ¬𝔹)
 open import Data.List using (List ; _∷_ ; [])
 open import Data.Empty renaming (⊥ to Ø ; ⊥-elim to Ø-elim )
-open import Data.Sum.Base using ( _⊎_ )
+open import Data.Sum.Base using ( _⊎_ ; inj₁ ; inj₂ )
+open import Data.Product using ( _×_ ; _,_ )
 
 -- Preliminaries: Some concepts of (classical) propositional logic
 ------------------------
@@ -96,9 +97,35 @@ All P th = (f : F) → f ∈ th → P f
 -- model relation
 -- we define the relation 'models' between interpretations and formulas
 
+infix 20 _⊧ev_     -- \models
+_⊧ev_ : IP → F → Set
+m ⊧ev f = eval m f ≡ true
+
 infix 20 _⊧_     -- \models
 _⊧_ : IP → F → Set
-m ⊧ f = eval m f ≡ true
+m ⊧ V x = m x ≡ true
+m ⊧ ⊥ = Ø
+m ⊧ (f ∨ g) = m ⊧ f ⊎ m ⊧ g
+m ⊧ (f ∧ g) = m ⊧ f × m ⊧ g
+m ⊧ (f ⇒ g) =  m ⊧ f → m ⊧ g
+
+∨𝔹lemma1 : (a b : 𝔹) → ( a ≡ true ⊎ b ≡ true ) → a ∨𝔹 b ≡ true
+∨𝔹lemma1 true b (inj₁ x) = refl
+∨𝔹lemma1 false true (inj₂ y) = refl
+∨𝔹lemma1 true true (inj₂ y) = refl
+
+∨𝔹lemma2 : (a b : 𝔹) → a ∨𝔹 b ≡ true → (a ≡ true ⊎ b ≡ true)
+∨𝔹lemma2 false true p = inj₂ refl
+∨𝔹lemma2 true b p = inj₁ refl
+
+
+mod2modev : {m : IP} → {f : F} → m ⊧ f → m ⊧ev f
+mod2modev {m} {V x} m⊧ = m⊧
+mod2modev {m} {f ∨ g} (inj₁ m⊧f) = ∨𝔹lemma1 (eval m f) (eval m g) (inj₁ (mod2modev m⊧f))
+mod2modev {m} {f ∨ g} (inj₂ m⊧g) = ∨𝔹lemma1 (eval m f) (eval m g) (inj₂ (mod2modev m⊧g))
+mod2modev {m} {f ∧ g} m⊧ = {!!}
+mod2modev {m} {f ⇒ g} m⊧ = ∨𝔹lemma1 (¬𝔹(eval m f)) (eval m g) {!!}
+
 
 -- and extend it to (finite) sets of formulas
 
@@ -151,7 +178,7 @@ IsValidTh th = Π IP ( _⊨ th )
 -- (X,Y), we use an agda record type with constructor ► and projections
 -- "Here" and "There".): 
 
-infix 15 _►_  -- \t7
+infix 30 _►_  -- \t7
 
 record IP-HT : Set where
   constructor
@@ -162,15 +189,35 @@ record IP-HT : Set where
     There : IP
 
 -- model relation (just for formulas)
+-- Note how the metalogical junctors "and", "or" and "implies" used
+-- in the paper are modeled by the type constructors "×", "⊎", "⇒" !
 
-{- to be completed...
-
-infix 20 _⊧HT_     -- \models
+infix 20 _⊧-HT_     -- \models
 _⊧-HT_ : IP-HT → F → Set
-(H ► T) ⊧-HT V x = H ⊧ V x
-(H ► T) ⊧-HT ⊥ = Ø
-(H ► T) ⊧-HT (f ∨ g) = {!!}
-(H ► T) ⊧-HT (f ∧ g) = {!!}
-(H ► T) ⊧-HT (f ⇒ g) = {!!}
+H ► T ⊧-HT V x = H ⊧ V x
+H ► T ⊧-HT ⊥ = Ø
+H ► T ⊧-HT (f ∨ g) = (H ► T ⊧-HT f) ⊎ (H ► T ⊧-HT g)
+H ► T ⊧-HT (f ∧ g) = (H ► T ⊧-HT f) × (H ► T ⊧-HT g)
+H ► T ⊧-HT (f ⇒ g) = ((H ► T ⊧-HT f) → (H ► T ⊧-HT g)) × T ⊧ (f ⇒ g)
 
--}
+-- The rule for implication is the only one referring to T.
+-- If we modify ⊧-HT by dropping the (T ⊧ (f ⇒ g)) part of the
+-- implication rule
+
+infix 20 _⊧-HT'_     -- \models
+_⊧-HT'_ : IP-HT → F → Set
+H ► T ⊧-HT' V x = H ⊧ V x
+H ► T ⊧-HT' ⊥ = Ø
+H ► T ⊧-HT' (f ∨ g) = (H ► T ⊧-HT' f) ⊎ (H ► T ⊧-HT' g)
+H ► T ⊧-HT' (f ∧ g) = (H ► T ⊧-HT' f) × (H ► T ⊧-HT' g)
+H ► T ⊧-HT' (f ⇒ g) = (H ► T ⊧-HT' f) → (H ► T ⊧-HT' g)
+
+-- we can prove that 
+
+HtoHT' : {H T : IP} → {f : F} → (H ⊧ f) → (H ► T ⊧-HT' f)
+HtoHT' {H} {T} {V x} H⊧f = H⊧f
+HtoHT' {H} {T} {f ∨ g} H⊧f with (eval H f)
+...                        | true = inj₁ (HtoHT' {f = f} {!!})
+...                        | false = {!!}
+HtoHT' {H} {T} {f ∧ g} H⊧f = {!!}
+HtoHT' {H} {T} {f ⇒ g} H⊧f = {!!}
