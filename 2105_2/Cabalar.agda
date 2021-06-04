@@ -97,9 +97,19 @@ All P th = (f : F) → f ∈ th → P f
 -- model relation
 -- we define the relation 'models' between interpretations and formulas
 
+-- a nice and short definition uses the eval function
+
 infix 20 _⊧ev_     -- \models
 _⊧ev_ : IP → F → Set
 m ⊧ev f = eval m f ≡ true
+
+-- however, |m ⊧ev f| does not contain any information
+-- other than "|f| evaluates to true under interpretation |m|".
+-- But in proofs that proceed by formula structure, one often
+-- needs to know that, e.g. |m ⊧ f ∧ g| holds iff |m ⊧ f| and |m ⊧ g|.
+-- We therefore give another definition and then show that both
+-- are (logically) equivalent, i.e. that we have mappings from
+-- one to the other and back.
 
 infix 20 _⊧_     -- \models
 _⊧_ : IP → F → Set
@@ -109,22 +119,44 @@ m ⊧ (f ∨ g) = m ⊧ f ⊎ m ⊧ g
 m ⊧ (f ∧ g) = m ⊧ f × m ⊧ g
 m ⊧ (f ⇒ g) =  m ⊧ f → m ⊧ g
 
-∨𝔹lemma1 : (a b : 𝔹) → ( a ≡ true ⊎ b ≡ true ) → a ∨𝔹 b ≡ true
-∨𝔹lemma1 true b (inj₁ x) = refl
-∨𝔹lemma1 false true (inj₂ y) = refl
-∨𝔹lemma1 true true (inj₂ y) = refl
+∨𝔹to : (a b : 𝔹) → ( a ≡ true ⊎ b ≡ true ) → a ∨𝔹 b ≡ true
+∨𝔹to true b (inj₁ x) = refl
+∨𝔹to false true (inj₂ y) = refl
+∨𝔹to true true (inj₂ y) = refl
 
-∨𝔹lemma2 : (a b : 𝔹) → a ∨𝔹 b ≡ true → (a ≡ true ⊎ b ≡ true)
-∨𝔹lemma2 false true p = inj₂ refl
-∨𝔹lemma2 true b p = inj₁ refl
+∨𝔹from : (a b : 𝔹) → a ∨𝔹 b ≡ true → (a ≡ true ⊎ b ≡ true)
+∨𝔹from false true p = inj₂ refl
+∨𝔹from true b p = inj₁ refl
+
+∧𝔹to : (a b : 𝔹) → ( a ≡ true × b ≡ true ) → a ∧𝔹 b ≡ true
+∧𝔹to true true _ = refl
+
+∧𝔹from : (a b : 𝔹) → a ∧𝔹 b ≡ true → ( a ≡ true × b ≡ true )
+∧𝔹from true true _ = ( refl , refl )
+
+⇒𝔹to : (a b : 𝔹) → ( a ≡ true → b ≡ true ) → ¬𝔹 a ∨𝔹 b ≡ true
+⇒𝔹to false b f = refl
+⇒𝔹to true b f = f refl
+
+⇒𝔹from : (a b : 𝔹) → ¬𝔹 a ∨𝔹 b ≡ true → ( a ≡ true → b ≡ true )
+⇒𝔹from false false p q = q
+⇒𝔹from true false p q = p
+⇒𝔹from a true _ _ = refl 
+
 
 
 mod2modev : {m : IP} → {f : F} → m ⊧ f → m ⊧ev f
+modev2mod : {m : IP} → {f : F} → m ⊧ev f → m ⊧ f
+
 mod2modev {m} {V x} m⊧ = m⊧
-mod2modev {m} {f ∨ g} (inj₁ m⊧f) = ∨𝔹lemma1 (eval m f) (eval m g) (inj₁ (mod2modev m⊧f))
-mod2modev {m} {f ∨ g} (inj₂ m⊧g) = ∨𝔹lemma1 (eval m f) (eval m g) (inj₂ (mod2modev m⊧g))
-mod2modev {m} {f ∧ g} m⊧ = {!!}
-mod2modev {m} {f ⇒ g} m⊧ = ∨𝔹lemma1 (¬𝔹(eval m f)) (eval m g) {!!}
+mod2modev {m} {f ∨ g} (inj₁ m⊧f) = ∨𝔹to (eval m f) (eval m g) (inj₁ (mod2modev m⊧f))
+mod2modev {m} {f ∨ g} (inj₂ m⊧g) = ∨𝔹to (eval m f) (eval m g) (inj₂ (mod2modev m⊧g))
+mod2modev {m} {f ∧ g} (m⊧f , m⊧g) = ∧𝔹to (eval m f) (eval m g) ( mod2modev m⊧f , mod2modev m⊧g )
+mod2modev {m} {f ⇒ g} m⊧ = ⇒𝔹to (eval m f) (eval m g) λ m⊧evf → mod2modev (m⊧ (modev2mod m⊧evf))
+
+modev2mod {m} {f} m⊧ev = {!!}
+
+
 
 
 -- and extend it to (finite) sets of formulas
