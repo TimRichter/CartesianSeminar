@@ -8,12 +8,20 @@ open import Agda.Builtin.Sigma
 open import Data.Nat
 open import Data.Bool renaming (Bool to 𝔹; _∧_ to _∧𝔹_ ; _∨_ to _∨𝔹_ ; not to ¬𝔹)
 open import Data.List using (List ; _∷_ ; [])
-open import Data.Empty renaming (⊥ to Ø ; ⊥-elim to Ø-elim )
-open import Data.Sum.Base using ( _⊎_ ; inj₁ ; inj₂ )
-open import Data.Product using ( _×_ ; _,_ )
+open import Data.Empty renaming (⊥ to ∅ ; ⊥-elim to ∅-elim )  -- \0
+open import Data.Sum.Base using ( _⊎_ ) renaming ( inj₁ to inl ; inj₂ to inr )
+open import Data.Product using ( _×_ ; _,_ ) renaming (proj₁ to p1 ; proj₂ to p2)
 
 -- Preliminaries: Some concepts of (classical) propositional logic
 ------------------------
+
+-- some properties of ≡
+
+trans : {A : Set} → {x y z : A} → x ≡ y → y ≡ z → x ≡ z
+trans refl refl = refl
+
+symm  : {A : Set} → {x y : A} → x ≡ y → y ≡ x
+symm refl = refl
 
 -- Variables (countably many, indexed by ℕ)
 
@@ -84,7 +92,7 @@ Th = List F
 infix 15 _∈_
 
 _∈_ : F → Th → Set
-f ∈ []       = Ø                  -- \O ... the empty theory has no elements!
+f ∈ []       = ∅                  -- \0 ... the empty theory has no elements!
 f ∈ (g ∷ gs) = (f ≡ g) ⊎ (f ∈ gs) -- \u+ ... f is an element of a nonempty theory (g ∷ gs)
                                   --         if either f equals g or f is in gs
 
@@ -114,19 +122,37 @@ m ⊧ev f = eval m f ≡ true
 infix 20 _⊧_     -- \models
 _⊧_ : IP → F → Set
 m ⊧ V x = m x ≡ true
-m ⊧ ⊥ = Ø
+m ⊧ ⊥ = ∅
 m ⊧ (f ∨ g) = m ⊧ f ⊎ m ⊧ g
 m ⊧ (f ∧ g) = m ⊧ f × m ⊧ g
 m ⊧ (f ⇒ g) =  m ⊧ f → m ⊧ g
 
+-- Lemmata on equality in 𝔹:
+
+dec𝔹 : (a : 𝔹) → (a ≡ true ⊎ a ≡ false)
+dec𝔹 false = inr refl
+dec𝔹 true = inl refl
+
+trueIsNotFalse : true ≡ false → ∅
+trueIsNotFalse ()
+
+-- contraposition (kind of)
+
+contra : (a b : 𝔹) → ((a ≡ true) → (b ≡ true)) → ((b ≡ false) → (a ≡ false))
+contra a b a2b bfalse with (dec𝔹 a)
+... | inr refl = refl
+... | inl refl with b
+...    | false = symm (a2b refl)
+...    | true  = bfalse
+
 ∨𝔹to : (a b : 𝔹) → ( a ≡ true ⊎ b ≡ true ) → a ∨𝔹 b ≡ true
-∨𝔹to true b (inj₁ x) = refl
-∨𝔹to false true (inj₂ y) = refl
-∨𝔹to true true (inj₂ y) = refl
+∨𝔹to true  b    (inl x) = refl
+∨𝔹to false true (inr y) = refl
+∨𝔹to true  true (inr y) = refl
 
 ∨𝔹from : (a b : 𝔹) → a ∨𝔹 b ≡ true → (a ≡ true ⊎ b ≡ true)
-∨𝔹from false true p = inj₂ refl
-∨𝔹from true b p = inj₁ refl
+∨𝔹from false true p = inr refl
+∨𝔹from true  b    p = inl refl
 
 ∧𝔹to : (a b : 𝔹) → ( a ≡ true × b ≡ true ) → a ∧𝔹 b ≡ true
 ∧𝔹to true true _ = refl
@@ -136,28 +162,43 @@ m ⊧ (f ⇒ g) =  m ⊧ f → m ⊧ g
 
 ⇒𝔹to : (a b : 𝔹) → ( a ≡ true → b ≡ true ) → ¬𝔹 a ∨𝔹 b ≡ true
 ⇒𝔹to false b f = refl
-⇒𝔹to true b f = f refl
+⇒𝔹to true  b f = f refl
 
 ⇒𝔹from : (a b : 𝔹) → ¬𝔹 a ∨𝔹 b ≡ true → ( a ≡ true → b ≡ true )
 ⇒𝔹from false false p q = q
-⇒𝔹from true false p q = p
-⇒𝔹from a true _ _ = refl 
+⇒𝔹from true  false p q = p
+⇒𝔹from true  true  _ _ = refl 
+⇒𝔹from false true  _ _ = refl 
 
 
+-- note that the following two functions, implementing the
+-- equivalence between ⊧ and ⊧ev, use mutual indution!
 
 mod2modev : {m : IP} → {f : F} → m ⊧ f → m ⊧ev f
 modev2mod : {m : IP} → {f : F} → m ⊧ev f → m ⊧ f
 
-mod2modev {m} {V x} m⊧ = m⊧
-mod2modev {m} {f ∨ g} (inj₁ m⊧f) = ∨𝔹to (eval m f) (eval m g) (inj₁ (mod2modev m⊧f))
-mod2modev {m} {f ∨ g} (inj₂ m⊧g) = ∨𝔹to (eval m f) (eval m g) (inj₂ (mod2modev m⊧g))
+mod2modev {m} {V x}    m⊧         = m⊧
+mod2modev {m} {f ∨ g} (inl m⊧f)   = ∨𝔹to (eval m f) (eval m g) (inl (mod2modev m⊧f))
+mod2modev {m} {f ∨ g} (inr m⊧g)   = ∨𝔹to (eval m f) (eval m g) (inr (mod2modev m⊧g))
 mod2modev {m} {f ∧ g} (m⊧f , m⊧g) = ∧𝔹to (eval m f) (eval m g) ( mod2modev m⊧f , mod2modev m⊧g )
-mod2modev {m} {f ⇒ g} m⊧ = ⇒𝔹to (eval m f) (eval m g) λ m⊧evf → mod2modev (m⊧ (modev2mod m⊧evf))
+mod2modev {m} {f ⇒ g}  m⊧         = ⇒𝔹to (eval m f) (eval m g) λ m⊧evf → mod2modev (m⊧ (modev2mod m⊧evf))
 
-modev2mod {m} {f} m⊧ev = {!!}
-
-
-
+modev2mod {m} {V x} p   = p
+modev2mod {m} {f ∨ g} p with (∨𝔹from (eval m f) (eval m g) p)
+... | inl m⊧evf = inl (modev2mod m⊧evf)
+... | inr m⊧evg = inr (modev2mod m⊧evg)
+modev2mod {m} {f ∧ g} p =
+  let
+    m⊧evf = p1 (∧𝔹from (eval m f) (eval m g) p)
+    m⊧evg = p2 (∧𝔹from (eval m f) (eval m g) p)
+  in
+   ( modev2mod m⊧evf , modev2mod m⊧evg )
+modev2mod {m} {f ⇒ g} p m⊧f =
+  let
+    m⊧evf = mod2modev m⊧f
+    f = ⇒𝔹from (eval m f) (eval m g) p
+  in
+    modev2mod (f m⊧evf)
 
 -- and extend it to (finite) sets of formulas
 
@@ -227,7 +268,7 @@ record IP-HT : Set where
 infix 20 _⊧-HT_     -- \models
 _⊧-HT_ : IP-HT → F → Set
 H ► T ⊧-HT V x = H ⊧ V x
-H ► T ⊧-HT ⊥ = Ø
+H ► T ⊧-HT ⊥ = ∅
 H ► T ⊧-HT (f ∨ g) = (H ► T ⊧-HT f) ⊎ (H ► T ⊧-HT g)
 H ► T ⊧-HT (f ∧ g) = (H ► T ⊧-HT f) × (H ► T ⊧-HT g)
 H ► T ⊧-HT (f ⇒ g) = ((H ► T ⊧-HT f) → (H ► T ⊧-HT g)) × T ⊧ (f ⇒ g)
@@ -239,7 +280,7 @@ H ► T ⊧-HT (f ⇒ g) = ((H ► T ⊧-HT f) → (H ► T ⊧-HT g)) × T ⊧ 
 infix 20 _⊧-HT'_     -- \models
 _⊧-HT'_ : IP-HT → F → Set
 H ► T ⊧-HT' V x = H ⊧ V x
-H ► T ⊧-HT' ⊥ = Ø
+H ► T ⊧-HT' ⊥ = ∅
 H ► T ⊧-HT' (f ∨ g) = (H ► T ⊧-HT' f) ⊎ (H ► T ⊧-HT' g)
 H ► T ⊧-HT' (f ∧ g) = (H ► T ⊧-HT' f) × (H ► T ⊧-HT' g)
 H ► T ⊧-HT' (f ⇒ g) = (H ► T ⊧-HT' f) → (H ► T ⊧-HT' g)
@@ -249,7 +290,7 @@ H ► T ⊧-HT' (f ⇒ g) = (H ► T ⊧-HT' f) → (H ► T ⊧-HT' g)
 HtoHT' : {H T : IP} → {f : F} → (H ⊧ f) → (H ► T ⊧-HT' f)
 HtoHT' {H} {T} {V x} H⊧f = H⊧f
 HtoHT' {H} {T} {f ∨ g} H⊧f with (eval H f)
-...                        | true = inj₁ (HtoHT' {f = f} {!!})
+...                        | true = inl (HtoHT' {f = f} {!!})
 ...                        | false = {!!}
 HtoHT' {H} {T} {f ∧ g} H⊧f = {!!}
 HtoHT' {H} {T} {f ⇒ g} H⊧f = {!!}
