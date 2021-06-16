@@ -145,62 +145,70 @@ contra a b a2b bfalse with (dec𝔹 a)
 ...    | false = symm (a2b refl)
 ...    | true  = bfalse
 
-∨𝔹to : (a b : 𝔹) → ( a ≡ true ⊎ b ≡ true ) → a ∨𝔹 b ≡ true
-∨𝔹to true  b    (inl x) = refl
-∨𝔹to false true (inr y) = refl
-∨𝔹to true  true (inr y) = refl
+∨𝔹to : {a b : 𝔹} → ( a ≡ true ⊎ b ≡ true ) → a ∨𝔹 b ≡ true
+∨𝔹to {a = true}             (inl x) = refl
+∨𝔹to {a = false} {b = true} (inr y) = refl
+∨𝔹to {a = true}  {b = true} (inr y) = refl
+-- all these cases are needed...!
 
-∨𝔹from : (a b : 𝔹) → a ∨𝔹 b ≡ true → (a ≡ true ⊎ b ≡ true)
-∨𝔹from false true p = inr refl
-∨𝔹from true  b    p = inl refl
+∨𝔹from : {a b : 𝔹} → a ∨𝔹 b ≡ true → (a ≡ true ⊎ b ≡ true)
+∨𝔹from {a = false} {b = true} _ = inr refl
+∨𝔹from {a = true}             _ = inl refl
 
-∧𝔹to : (a b : 𝔹) → ( a ≡ true × b ≡ true ) → a ∧𝔹 b ≡ true
-∧𝔹to true true _ = refl
+∧𝔹to : {a b : 𝔹} → ( a ≡ true × b ≡ true ) → a ∧𝔹 b ≡ true
+∧𝔹to {a = true} {b = true} _ = refl
 
-∧𝔹from : (a b : 𝔹) → a ∧𝔹 b ≡ true → ( a ≡ true × b ≡ true )
-∧𝔹from true true _ = ( refl , refl )
+∧𝔹from : {a b : 𝔹} → a ∧𝔹 b ≡ true → ( a ≡ true × b ≡ true )
+∧𝔹from {a = true} {b = true} _ = ( refl , refl )
 
-⇒𝔹to : (a b : 𝔹) → ( a ≡ true → b ≡ true ) → ¬𝔹 a ∨𝔹 b ≡ true
-⇒𝔹to false b f = refl
-⇒𝔹to true  b f = f refl
+infix 12 _⇒𝔹_
 
-⇒𝔹from : (a b : 𝔹) → ¬𝔹 a ∨𝔹 b ≡ true → ( a ≡ true → b ≡ true )
-⇒𝔹from false false p q = q
-⇒𝔹from true  false p q = p
-⇒𝔹from true  true  _ _ = refl 
-⇒𝔹from false true  _ _ = refl 
+_⇒𝔹_ : 𝔹 → 𝔹 → 𝔹
+a ⇒𝔹 b = ¬𝔹 a ∨𝔹 b
+
+⇒𝔹to : {a b : 𝔹} → ( a ≡ true → b ≡ true ) → a ⇒𝔹 b ≡ true
+⇒𝔹to {a = false} f = refl
+⇒𝔹to {a = true}  f = f refl
+
+⇒𝔹from : {a b : 𝔹} → a ⇒𝔹 b ≡ true → ( a ≡ true → b ≡ true )
+⇒𝔹from {a = false} {b = false} _ q = q
+⇒𝔹from {a = true } {b = false} p _ = p
+⇒𝔹from {a = true } {b = true } _ _ = refl 
+⇒𝔹from {a = false} {b = true } _ _ = refl
+
+-- here's yet another subtle reformulation of | a ⇒𝔹 b ≡ true |
+
+⇒𝔹to' : {a b : 𝔹} → a ≡ false ⊎ b ≡ true → a ⇒𝔹 b ≡ true
+⇒𝔹to' {a = false}              _                = refl 
+⇒𝔹to' {a = true } {b = false} (inr falseIsTrue) = falseIsTrue
+⇒𝔹to' {a = true } {b = true }  _                = refl
+
+⇒𝔹from' : {a b : 𝔹} → a ⇒𝔹 b ≡ true → a ≡ false ⊎ b ≡ true
+⇒𝔹from' {a = false} {b = false} _ = inl refl
+⇒𝔹from' {a = false} {b = true } _ = inr refl  -- there is  choice here... could also take |inl refl|
+⇒𝔹from' {a = true } {b = true } _ = inr refl
 
 
 -- note that the following two functions, implementing the
--- equivalence between ⊧ and ⊧ev, use mutual indution!
+-- equivalence between ⊧ and ⊧ev, use mutual induction!
 
 mod2modev : {m : IP} → {f : F} → m ⊧ f → m ⊧ev f
 modev2mod : {m : IP} → {f : F} → m ⊧ev f → m ⊧ f
 
 mod2modev {m} {V x}    m⊧         = m⊧
-mod2modev {m} {f ∨ g} (inl m⊧f)   = ∨𝔹to (eval m f) (eval m g) (inl (mod2modev m⊧f))
-mod2modev {m} {f ∨ g} (inr m⊧g)   = ∨𝔹to (eval m f) (eval m g) (inr (mod2modev m⊧g))
-mod2modev {m} {f ∧ g} (m⊧f , m⊧g) = ∧𝔹to (eval m f) (eval m g) ( mod2modev m⊧f , mod2modev m⊧g )
-mod2modev {m} {f ⇒ g}  m⊧         = ⇒𝔹to (eval m f) (eval m g) λ m⊧evf → mod2modev (m⊧ (modev2mod m⊧evf))
+mod2modev {m} {f ∨ g} (inl m⊧f)   = ∨𝔹to (inl (mod2modev m⊧f))
+mod2modev {m} {f ∨ g} (inr m⊧g)   = ∨𝔹to (inr (mod2modev m⊧g))
+mod2modev {m} {f ∧ g} (m⊧f , m⊧g) = ∧𝔹to ( mod2modev m⊧f , mod2modev m⊧g )
+mod2modev {m} {f ⇒ g}  m⊧         = ⇒𝔹to λ m⊧evf → mod2modev (m⊧ (modev2mod m⊧evf))
 
 modev2mod {m} {V x} p   = p
-modev2mod {m} {f ∨ g} p with (∨𝔹from (eval m f) (eval m g) p)
+modev2mod {m} {f ∨ g} p with (∨𝔹from p)
 ... | inl m⊧evf = inl (modev2mod m⊧evf)
 ... | inr m⊧evg = inr (modev2mod m⊧evg)
-modev2mod {m} {f ∧ g} p =
-  let
-    m⊧evf = p1 (∧𝔹from (eval m f) (eval m g) p)
-    m⊧evg = p2 (∧𝔹from (eval m f) (eval m g) p)
-  in
-   ( modev2mod m⊧evf , modev2mod m⊧evg )
-modev2mod {m} {f ⇒ g} p m⊧f =
-  let
-    m⊧evf = mod2modev m⊧f
-    f = ⇒𝔹from (eval m f) (eval m g) p
-  in
-    modev2mod (f m⊧evf)
+modev2mod {m} {f ∧ g} p = ( modev2mod (p1 (∧𝔹from p)) , modev2mod (p2 (∧𝔹from p)) )
+modev2mod {m} {f ⇒ g} p m⊧f = modev2mod (⇒𝔹from p (mod2modev m⊧f))
 
--- and extend it to (finite) sets of formulas
+-- extend ⊧ to (finite) sets of formulas
 
 infix 20 _⊨_     -- \|=
 _⊨_ : IP → Th → Set
@@ -285,12 +293,18 @@ H ► T ⊧-HT' (f ∨ g) = (H ► T ⊧-HT' f) ⊎ (H ► T ⊧-HT' g)
 H ► T ⊧-HT' (f ∧ g) = (H ► T ⊧-HT' f) × (H ► T ⊧-HT' g)
 H ► T ⊧-HT' (f ⇒ g) = (H ► T ⊧-HT' f) → (H ► T ⊧-HT' g)
 
--- we can prove that 
+-- we can prove 
 
 HtoHT' : {H T : IP} → {f : F} → (H ⊧ f) → (H ► T ⊧-HT' f)
-HtoHT' {H} {T} {V x} H⊧f = H⊧f
-HtoHT' {H} {T} {f ∨ g} H⊧f with (eval H f)
-...                        | true = inl (HtoHT' {f = f} {!!})
-...                        | false = {!!}
-HtoHT' {H} {T} {f ∧ g} H⊧f = {!!}
-HtoHT' {H} {T} {f ⇒ g} H⊧f = {!!}
+HT'toH : {H T : IP} → {f : F} → (H ► T ⊧-HT' f) → (H ⊧ f)
+HtoHT' {H} {T} {V x} ⊧Vx = ⊧Vx
+HtoHT' {H} {T} {f ∨ g} (inl ⊧f) = inl (HtoHT' ⊧f)
+HtoHT' {H} {T} {f ∨ g} (inr ⊧g) = inr (HtoHT' ⊧g)
+HtoHT' {H} {T} {f ∧ g} (⊧f , ⊧g)  = (HtoHT' ⊧f , HtoHT' ⊧g)
+HtoHT' {H} {T} {f ⇒ g} ⊧ftog = λ ⊧'f → HtoHT' (⊧ftog (HT'toH ⊧'f))
+
+HT'toH {f = V x} HT⊧'Vx = HT⊧'Vx
+HT'toH {f = f ∨ g} (inl ⊧'f) = inl (HT'toH ⊧'f)
+HT'toH {f = f ∨ g} (inr ⊧'g) = inr (HT'toH ⊧'g)
+HT'toH {f = f ∧ g} (⊧'f , ⊧'g ) = (HT'toH ⊧'f , HT'toH ⊧'g)
+HT'toH {f = f ⇒ g} p = λ ⊧f → HT'toH (p (HtoHT' ⊧f))
