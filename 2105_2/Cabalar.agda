@@ -132,13 +132,13 @@ m ⊧ (f ⇒ g) =  m ⊧ f → m ⊧ g
 ∧𝔹to true true _ = refl
 
 ∧𝔹from : (a b : 𝔹) → a ∧𝔹 b ≡ true → ( a ≡ true × b ≡ true )
-∧𝔹from true true _ = ( refl , refl )
+∧𝔹from true true _ = (refl , refl)
 
-⇒𝔹to : (a b : 𝔹) → ( a ≡ true → b ≡ true ) → ¬𝔹 a ∨𝔹 b ≡ true
+⇒𝔹to : (a b : 𝔹) → ( a ≡ true → b ≡ true ) → (¬𝔹 a) ∨𝔹 b ≡ true
 ⇒𝔹to false b f = refl
 ⇒𝔹to true b f = f refl
 
-⇒𝔹from : (a b : 𝔹) → ¬𝔹 a ∨𝔹 b ≡ true → ( a ≡ true → b ≡ true )
+⇒𝔹from : (a b : 𝔹) → (¬𝔹 a) ∨𝔹 b ≡ true → ( a ≡ true → b ≡ true )
 ⇒𝔹from false false p q = q
 ⇒𝔹from true false p q = p
 ⇒𝔹from a true _ _ = refl 
