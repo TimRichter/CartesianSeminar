@@ -25,8 +25,11 @@ Guests are always welcome!
 Due to the Coronavirus pandemic we meet online. For the actual links and help with the setup,
 please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 
+#### starting July 6th
+* [Winkler - 2001(?) - Wie macht man 2 aus 1? Das Paradoxon von Banach-Tarski](https://www.oemg.ac.at/DK/Didaktikhefte/2001%20Band%2033/Winkler2001.pdf)
+
 #### starting May 18th
-* [Cabalar, Ferraris - 2007 - Propositional Theories are Strongly Equivalent to Logic Programs](https://arxiv.org/pdf/cs/0701095), see also the [Notes](2105_2/CS_Cabalar.pdf) and [Agda-Code](2105_2/Cabalar.agda)
+* [Cabalar, Ferraris - 2007 - Propositional Theories are Strongly Equivalent to Logic Programs](https://arxiv.org/pdf/cs/0701095), see also the [Notes](2105_2/CS_Cabalar.pdf), [Jan's formalisation in Agda](https://github.com/janheuer/here-and-there-agda) and [this](2105_2/Cabalar.agda) more preliminary Agda-Code.
 
 #### April 13th to May 11th
 * [Granovetter - 1978 - Threshold models of collective behaviour](https://www.jstor.org/stable/pdf/2778111.pdf), see also this [jupyter notebook](https://mybinder.org/v2/gh/TimRichter/CartesianSeminar.git/gh-pages?filepath=2105%2FGranovetter.ipynb)
@@ -59,7 +62,7 @@ please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
   and do a "make" in subdirectory "L". This should produce "DSLsofMathBook.pdf".)
 
 #### September 22nd - October 27th
-* Graham Hutton - 1997 - Conceps of Concurrency
+* [Graham Hutton - 1997 - Conceps of Concurrency](www.cs.nott.ac.uk/~pszgmh/con.pdf)
 
 ### Summer term 2020
 #### July 14th and 21st: Fabian on Shellcodes
