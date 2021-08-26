@@ -32,7 +32,7 @@ please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 * [Cabalar, Ferraris - 2007 - Propositional Theories are Strongly Equivalent to Logic Programs](https://arxiv.org/pdf/cs/0701095), see also the [Notes](2105_2/CS_Cabalar.pdf), [Jan's formalisation in Agda](https://github.com/janheuer/here-and-there-agda) and [this](2105_2/Cabalar.agda) more preliminary Agda-Code.
 
 #### April 13th to May 11th
-* [Granovetter - 1978 - Threshold models of collective behaviour](https://www.jstor.org/stable/pdf/2778111.pdf), see also this [jupyter notebook](https://mybinder.org/v2/gh/TimRichter/CartesianSeminar.git/gh-pages?filepath=2105%2FGranovetter.ipynb) and the seminar notesof [April 20th](2105/2021-04-20%20Granovetter%20thresholds.pdf) and [April 27th](2105/2021-04-27%20Granovetter%20thresholds.pdf).
+* [Granovetter - 1978 - Threshold models of collective behaviour](https://www.jstor.org/stable/pdf/2778111.pdf), see also this [jupyter notebook](https://mybinder.org/v2/gh/TimRichter/CartesianSeminar.git/gh-pages?filepath=2105%2FGranovetter.ipynb) and the seminar notes of [April 20th](2105/2021-04-20%20Granovetter%20thresholds.pdf) and [April 27th](2105/2021-04-27%20Granovetter%20thresholds.pdf).
 
 ## Archive
 
