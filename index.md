@@ -20,11 +20,17 @@ Guests are always welcome!
   Building 4, Room 2.01
 
 
-## Current reading (summer term 2021)
+## Current reading (winter term 2021/2022)
 
 Due to the Coronavirus pandemic we meet online. For the actual links and help with the setup,
 please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 
+#### starting October 25th
+* [Jeremy Gibbons - 2021 - How to design co-programs](https://www.cambridge.org/core/journals/journal-of-functional-programming/article/how-to-design-coprograms/02B37487DB71F1CFD8B46BBE7823E440)
+
+## Archive
+
+## Sommer term 2021
 #### starting July 6th
 * [Winkler - 2001(?) - Wie macht man 2 aus 1? Das Paradoxon von Banach-Tarski](https://www.oemg.ac.at/DK/Didaktikhefte/2001%20Band%2033/Winkler2001.pdf)
 
@@ -33,8 +39,6 @@ please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 
 #### April 13th to May 11th
 * [Granovetter - 1978 - Threshold models of collective behaviour](https://www.jstor.org/stable/pdf/2778111.pdf), see also this [jupyter notebook](https://mybinder.org/v2/gh/TimRichter/CartesianSeminar.git/gh-pages?filepath=2105%2FGranovetter.ipynb)
-
-## Archive
 
 ### Winter term 2020/2021
 #### February 23rd and March 2nd: Jonas on the Iterated Prisoner's Dilemma
