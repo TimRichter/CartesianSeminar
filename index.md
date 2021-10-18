@@ -29,7 +29,7 @@ please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 
 ## Archive
 
-## Sommer term 2021
+### Sommer term 2021
 #### starting July 6th
 * [Winkler - 2001(?) - Wie macht man 2 aus 1? Das Paradoxon von Banach-Tarski](https://www.oemg.ac.at/DK/Didaktikhefte/2001%20Band%2033/Winkler2001.pdf). See [notes](2107/210706_BanachTarski.pdf).
 
