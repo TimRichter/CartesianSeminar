@@ -16,14 +16,13 @@ Guests are always welcome!
 ## Place and time
   Tuesdays, 10-12 am  
   Institute of Computer Science, University of Potsdam  
-  Campus Griebnitzsee (August-Bebel-Str. 89)  
-  Building 4, Room 2.01
-
-
-## Current reading (winter term 2021/2022)
+  Campus Golm (An der Bahn 2)  
+  Building 70, Room 0.08
 
 Due to the Coronavirus pandemic we meet online. For the actual links and help with the setup,
 please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
+
+## Current reading (winter term 2021/2022)
 
 #### starting October 25th
 * [Jeremy Gibbons - 2021 - How to design co-programs](https://www.cambridge.org/core/journals/journal-of-functional-programming/article/how-to-design-coprograms/02B37487DB71F1CFD8B46BBE7823E440)
