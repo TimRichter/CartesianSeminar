@@ -18,9 +18,11 @@ Guests are always welcome!
   Institute of Computer Science, University of Potsdam  
   Campus Golm (An der Bahn 2)  
   Building 70, Room 0.08
+  [https://www.openstreetmap.org/way/722427544](--> find on OpenStreetMap)
 
-Due to the Coronavirus pandemic we meet online. For the actual links and help with the setup,
-please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
+From October 2021 on, we meet in presence again! However, depending on the pandemie situation, we might switch back to virtual meetings.
+
+For any questions, please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 
 ## Current reading (winter term 2021/2022)
 
