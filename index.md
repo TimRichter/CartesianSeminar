@@ -6,9 +6,10 @@ de la méthode" we aim for a thorough understanding of the texts we read.
 
 ## Participants
 ### Present
-Alexander Benedict Behrens, Sebastian Böhne, Nicola Botta, Nuria Brede, Georg Duchrau, Christoph Glinzer, Jan Heuer, Cezar Ionescu, Thomas Kern, Lucas Kerschke, Jan Lemcke, Tarek Ramadan, Leo Repp, Tim Richter, Marius Wawerek, Max Wiedenhöft
+Denis Andreev, Sebastian Böhne, Nicola Botta, Nuria Brede, Jan Heuer, Cezar Ionescu, Thomas Kern, Lara Kursawe, Jan Lemcke, Philomena Moek, Tarek Ramadan, Tim Richter, Juliane Scherlitzki, Mika Strozyk, Oliver Zernikow
+
 ### Past 
-Marc Beilcke, Nikolas Bertrand, Frederick Brumm, Margrit Dittmann, Hanna Gloyna, Ingram Jaccard, Henrik Jürges, Niklas Kämmer, Manuel Keilmann, Christoph Kreitz, David Simon Kuska, Marc Fabian Lindner, David Linkiewicz, Tim Münzner, Eva Richter, Juliane Scherlitzki, Carla Schreiber, Matthias Seidel, Jessica Trebst, Luise Werner, Axel Wiepke, Jonas Winter, David Zimmek
+Alexander Benedict Behrens, Marc Beilcke, Nikolas Bertrand, Frederick Brumm, Margrit Dittmann, Georg Duchrau, Christoph Glinzer, Hanna Gloyna, Ingram Jaccard, Henrik Jürges, Niklas Kämmer, Manuel Keilmann, Lucas Kerschke, Christoph Kreitz, David Simon Kuska, Marc Fabian Lindner, David Linkiewicz, Tim Münzner, Leo Repp, Eva Richter, Carla Schreiber, Matthias Seidel, Jessica Trebst, Marius Wawerek, Luise Werner, Max Wiedenhöft, Axel Wiepke, Jonas Winter, David Zimmek
 
 
 Guests are always welcome!
@@ -20,14 +21,15 @@ Guests are always welcome!
   Building 70, Room 0.08
   [--> find on OpenStreetMap](https://www.openstreetmap.org/way/722427544)
 
-From October 2021 on, we meet in presence again! However, depending on the pandemie situation, we might switch back to virtual meetings.
-
-For any questions, please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
+Due to the pandemic, we had to switch back to online meetings. For the zoom-link and any questions, please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 
 ## Current reading (winter term 2021/2022)
 
+#### starting December 14th
+* Dmitry Fuchs, Serge Tabachnikov - "Can a Number be Approximately Rational?" - Lecture 1 of ["Mathematical Omnibus: Thirty Lectures on Classic Mathematics"](https://archive.org/details/Dmitry_Fuchs_and_Serge_Tabachnikov__Mathematical_Omnibus_Thirty_Lectures_on_Classic_Mathematics). Here is an [Agda implementation of the "trick"](2112/RationalApprox.agda).
+
 #### starting October 25th
-* [Jeremy Gibbons - 2021 - How to design co-programs](https://www.cambridge.org/core/journals/journal-of-functional-programming/article/how-to-design-coprograms/02B37487DB71F1CFD8B46BBE7823E440)
+* [Jeremy Gibbons - 2021 - How to design co-programs](https://www.cambridge.org/core/journals/journal-of-functional-programming/article/how-to-design-coprograms/02B37487DB71F1CFD8B46BBE7823E440). See [notes](2110/Notes_Gibbons_Co-Programs.pdf) and [code scratchpad](2110/GibbonsCoPrograms.agda).
 
 ## Archive
 
