@@ -25,7 +25,7 @@ Due to the pandemic, we had to switch back to online meetings. For the zoom-link
 
 ## Current reading (winter term 2021/2022)
 
-#### starting Januar 18th
+#### starting January 18th
 * Steward Shapiro - 2005 - [Higher Order Logic](https://www.oxfordhandbooks.com/view/10.1093/oxfordhb/9780195325928.001.0001/oxfordhb-9780195325928-e-25) 
 
 
