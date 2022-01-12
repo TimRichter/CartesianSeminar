@@ -1,0 +1,221 @@
+Potsdamer Cartesisches Seminar, Dezember 2021 
+Tim Richter
+
+Übersicht zur Vorlesung "Can a Number be Approximately Rational"
+(Vorlesung 1 aus Fuchs, Tabachnikov: "Mathematical Omnibus")
+
+* Sections:
+** 1.1 Prologue
+Dialog zwischen Bob und Alice. Bob behauptet, mit Hilfe eines
+Taschenrechners für Zahlen, die "in real life problems" auftauchen,
+entscheiden zu können, ob sie rational oder irrational sind.
+Alice ist nicht einverstanden.
+Als Beispiele werden |sqrt 2| (mit Dezimalentwicklung 1.414213562)
+und 25/17 (mit Dezimalentwicklung 1.470588235) angeführt.
+** 1.2 Who is right?
+Präzisierung: 
+*** Natürlich kann man aus den ersten paar (9, 90, 10^9,...)
+Dezimalstellen einer reellen Zahl α nicht entscheiden, ob
+α rational oder irrational ist.
+*** Aber dennoch sind die beiden Dezimalzahlen aus 1.1 sehr verschieden:
+die zweite ist eine sehr gute Approximation von 25/17 (Fehler etwa 3*10⁻¹⁰).
+Die erste hingegen lässt sich nicht so gut durch einen Bruch mit
+kleinem Nenner approximieren: Die beste rationale Näherung mit höchstens
+zweistelligem Nenner ist 99/70, dort ist der Fehler etwa 7*10⁻⁵. Einen
+Fehler von 3*10⁻¹⁰ wie bei der ersten Zahl erreicht man erst mit
+47321/33461 (also mit einem fünfstelligen Nenner).
+** 1.3 A trick (supporting Bob's opinion...)
+Weitere Präzisierung: Wir werden einen Algorithmus angeben
+*** der auf Eingabe zweier 9-stelliger Dezimalzahlen, von denen eine die
+(abgebrochene) Dezimalentwicklung einer rationalen Zahl mit Nenner < 1000,
+die andere aber zufällig ist, entscheidet, welche welche ist, und die
+rationale Zahl rekonstruiert; und 
+*** der ausserdem mit einem einfachen Taschenrechner per Hand ausgeführt
+werden kann.
+
+Unsere Agda-Implementierung ist etwas anders: sie ist vom Typ
+ 
+  guess: Float → Maybe ℚ
+
+nimmt also nur eine Dezimalzahl als Input, und liefert eine rationale Zahl
+(mit Nenner < 1000), die den Input sehr gut approximiert, falls es eine
+solche gibt.
+Der Algorithmus ist *nicht* als Suche implementiert!   
+** 1.4 What is a good approximation?
+Seien α ∈ ℝ und p/q ∈ ℚ (irreduzibel...). Wir wollen p/q als
+"gute" Approximation von α bezeichnen, wenn
+
+q * | α - p/q |
+
+klein ist. Allerdings gilt
+*Theorem 1.1*: Für beliebige α ∈ ℝ und ε > 0 gibt es unendlich viele
+p/q ∈ ℚ mit
+  
+q * | α - p/q | < ε
+M.a.W.: Alle Zahlen haben beliebig "gute" (in diesem Sinne) Approximationen,
+wir können also die Zahlen mit Hilfe dieser Approximationen nicht unterscheiden.
+** 1.5 Lattices: Gitter
+Seien O ("origin"), A und B Punkte der Ebene so, dass die
+Vektoren  v = OA und w = OB  nicht kolinear sind (m.a.W. v und
+w linear unabhängig sind). Dann ist die Menge
+
+Λ(v,w) = { p * v + q * w | p , q ∈ ℤ }
+
+ein (ebenes) Gitter.
+
+Proposition 1.1 Sei KLMN ein Parallelogramm mit K,L,M im Gitter Λ.
+Dann ist auch N in Λ.
+
+Bezeichne s den Flächeninhalt des Parallelograms OABC  (OC = v + w).
+
+Proposition 1.2 Sei KLMN eine Parallelogram mit Ecken in Λ.
+(a) area (KLMN) = n s  mit (n ∈ ℤ, n > 0)
+(b) Falls kein anderer Punkt von Λ in KLMN (oder auf dem Rand) liegt,
+    gilt 
+       area (KLMN) = s.
+** 1.6 Beweis Theorem 1.1
+verwendet Schubfachprinzip:
+- es ist klar, dass es unendlich viele Gitterpunkte im
+  "breiten" Streifen |x| ≤ 1/2 gibt.
+- Geg. ε > 0. Wähle n mit 1/2n < ε. Der "breite" Streifen wird
+  in n Streifen der Breite 1/2n geteilt. Nach Schubfachprinzip muss
+  einer der schmalen Streifen unendlich viele Gitterpunkte enthalten.
+- Seien A₀, A₁, A₂,... diese unendlich vielen Punkte, geordnet nach
+  aufsteigender y-Koordinate. Nun sind für jedes i>0 O, A₀, Aᵢ im Gitter,
+  also auch Aᵢ - OA₀. Diese unendlich vielen Punkte liegen alle im
+  Streifen |x| ≤ 1/2n < ε.
+** 1.7 Quadratische Approximationen
+Nennen nun eine rationale Approximation p/q einer reellen Zahl α "gut",
+wenn  
+      q² * |α - p/q|
+klein ist.
+Theorem 1.2 (Hurwitz, Borel)
+(a) Für beliebiges α gibt es ∞ viele Brüche p/q mit 
+      q² * |α - p/q| < 1/√5
+(b) Es gibt eine irrationale Zahl α so dass für beliebiges λ > √5 nur endlich viele
+    rationale Zahlen p/q existieren mit
+      q² * |α - p/q| < 1/λ 
+** 1.8 Continued fractions
+Definition regulärer Kettenbruch.
+
+[a₀; a₁, a₂,...,aₙ₋₁, aₙ]  =  
+a₀ + (1 / a₁ + (1/ a₂ + ...   aₙ₋₁ + (1/ aₙ)...)
+
+Dabei ist a₀ ∈ ℤ und a₁,a₂,... ∈ ℕ \{0}.
+
+*Prop 1.3*: Jede rationale Zahl hat einen (im Wesentlichen eindeutigen) endlichen
+Kettenbruch.
+
+Der Beweis gibt einen Algorithmus an. Dieser kann auch für irrationale Zahlen
+verwendet werden, terminiert dann aber nicht mehr. Er produziert dann einen unendlichen
+Kettenbruch:
+
+α = [a₀; a₁, a₂,...]
+
+Wir können solche unendlichen Kettenbrüche nach n Gliedern "abbrechen" und erhalten so
+rationale Zahlen, die α annähern (rₙ heisst /n-th convergent/ oder n-ter Näherungsbruch): 
+
+rₙ = pₙ/qₙ = [a₀; a₁, a₂,...,aₙ₋₁, aₙ]
+
+*Prop 1.4*: 
+Es gilt:
+(a)  pₙ = aₙ pₙ₋₁ + pₙ₋₂  (n≥2)
+(b)  qₙ = aₙ qₙ₋₁ + qₙ₋₂  (n≥2)
+(c)  pₙ₋₁ qₙ - pₙ qₙ₋₁  = (-1)ⁿ  (n≥1)
+
+Bemerkungen: - Wenn wir 
+    p₋₁ = 1  p₋₂ = 0
+    q₋₁ = 0  q₋₂ = 1
+setzen, gelten die obigen Formeln sogar für n≥0.
+- Beweis ist einfache Induktion, hier nicht gut aufgeschrieben, besser z.B. in Khinchin.
+
+Corollary 1.3  die rₙ konvergieren gegen α. 
+
+** 1.9 The Euclidean Algorithm
+Zuerst für ganze Zahlen N, M: Euklid. Algorithmus produziert
+neben dem ggT auch den Kettenbruch für N/M.
+Verallgemeinert sich auf (positive !) relle Zahlen: 
+Euklidischer Algorithmus für reelle β,γ > 0 produziert
+unendlichen Kettenbruch für β/γ (aber natürlich keinen ggT mehr...).
+
+Es gibt eine Geometrische Interpretation als Konstruktion von Punkten
+in einem Gitter (!):
+Gegeben Punkte A₋₂ A₋₁ (mit x-Koordinaten β und -γ und y-Koordinaten ≥ 0 
+(und so, dass A₋₂ und A₋₁ nicht kolinear sind! Also insbesondere nicht 
+beide y-Koordinaten = 0). Wir konstruieren eine Folge A₀,A₁,A₂,... von
+Punkten des von A₋₂ und A₋₁ erzeugten Gitters so, dass: 
+A₋₂,A₀,A₂,... x-Koordinaten ≥ 0 und A₋₁,A₁,A₃,... x-Koordinaten ≤ 0
+haben und dass ausserdem gilt:
+ 
+*Prop. 1.7*: Es gibt keine Gitterpunkte zwischen den polygonalen Linien
+A₋₂,A₀,A₂,... und A₋₁,A₁,A₃,... und mit y-Koordinaten ≥ denen von A₋₂ und A₋₁.
+** 1.10 Convergents as the best approximations
+Gegeben α > 0 reell. Konstruktion aus 1.9 wird zur Berechnung des Kettenbruchs
+für α/1 angewendet, wir wählen dabei
+A₋₂ =(α,1) A₋₁ = (-1,0). Dann gilt
+
+*Prop. 1.8* : Für n ≥ 0  ist  Aₙ = (qₙα - pₙ , qₙ) , wobei pₙ/qₙ der n-te 
+Näherungsbruch der Kettenbruchentwicklung von α ist. 
+
+Zusammen mit Prop 1.7 haben wir dann:
+*Prop. 1.9* : Wenn für ein ε > 0 nur für endlich viele Näherungsbrüche pₙ/qₙ der
+Kettenbruchentwicklung von α
+  qₙ² | α - pₙ/qₙ | < ε
+gilt, so gibt es überhaupt nur endlich viele rationale Zahlen p/q mit
+  q² | α - p/q | < ε.
+** 1.11 Indicator of quality for convergents
+*Theorem 1.4* Sei α ∈ ℝ, α = [a₀;a₁,a₂,...] und sei pₙ/qₙ der n-te Näherungsbruch.
+Dann ist
+    qₙ² | α - pₙ/qₙ | = 1 / λₙ
+mit 
+    λₙ = aₙ₊₁ + 
+         1 / (aₙ₊₂ + 1 / (aₙ₊₃ + ...)...) + 
+         1 / (aₙ + 1 / (aₙ₋₁ + 1 / (... a₂ + 1 / a₁)...)
+
+D.h. der n-te Näherungsbruch ist dann besonders gut, wenn aₙ₊₁ sehr gross ist.
+Das ist die Basis des "Tricks" aus Abschnitt 1.3. 
+** 1.12 Proof of the Hurwitz-Borel theorem
+Wegen Prop. 1.9 genügt es zu zeigen, dass 
+(a) für jedes irrationale α = [a₀;a₁,a₂,...] unendlich viele 
+    Näherungsbrüche  pₙ/qₙ existieren mit
+    λₙ > √5  und
+(b) dass ein α existiert, sodass für jedes ρ  > √5 nur endlich viele
+    n existieren mit λₙ > ρ.
+
+Der Beweis teilt die irrationalen Zahlen nach Qualitäten ihrer 
+Kettenbruchentwicklungen in 3 Klassen: 
+(1) solche, bei denen unendlich viele Terme ≥ 3,
+(2) solche, bei denen nur endliche viele Terme ≥ 3, aber
+    unendlich viele ≥ 2 sind,
+(3) solche, bei denen ab einem gewissen Index alle Terme = 1 sind.
+
+In allen Fällen beweist man (a) mit Hilfe von Theorem 1.4, im Fall (3)
+findet man, dass die λₙ von oben gegen √5 konvergieren und folglich
+für diese α auch (b) gilt.
+
+** 1.13 Back to the trick
+Wir bekommen 2 9-stellige Dezimalzahlen als Eingabe, eine davon (nennen wir sie α)
+ist eine Approximation eines Bruchs p/q mit q < 1000, die andere, β, ist zufällig.
+Wir sollen herausfinden welche Zahl welche ist. Es gilt 
+   |α - p/q| < 1/10⁻⁹ = 1/(1000 * 1000²) < 1/(1000 * q²)
+Nach Abschnitt 1.10 existiert dann auch ein Näherungsbruch pₙ/qₙ der
+Kettenbruchentwicklung von α mit qₙ < 1000 und 
+   |α - pₙ/qₙ| < 1/(1000 * qₙ²)
+Nach Theorem 1.4 ist dann aₙ₊₁ > 1000. Die Anfänge der Kettenbruchentwicklung
+der uns gegebenen Zahlen lassen sich leicht berechnen. Dass β einen so guten
+Näherungsbruch hat wie α ist sehr unwahrscheinlich: es gibt weniger als 10⁶ 
+(reduzierte) Brüche p/q mit p < q < 1000, jeder davon wird nur durch eine
+einzige Dezimalzahl mit neun Stellen mit einem Fehler < 1/10⁻⁹ approximiert, die
+Chance, eine solche Dezimalzahl zufällig zu "treffen", ist also < 1/1000.
+
+Wieviele Glieder der Kettenbruchentwicklung müssen wir berechnen? Die Nenner der
+Näherungsbrüche wachsen (wegen der Rekursionsformel aus Prop 1.4 und aₙ ≥ 1 für n > 0)
+mindestens so schnell wie die Fibonacci-Zahlen. Da die 15. Fibonacci-Zahl 987 ist,
+reichen also 15 Glieder der Kettenbruchentwicklungen aus.
+** 1.14 Epilogue
+** 1.15 Exercises
+* Links / Literatur
+** [[https://de.wikipedia.org/wiki/Kettenbruch][WP Kettenbruch]]
+** Oskar Perron: "Die Lehre von den Kettenbrüchen - Bd. 1 Elementare Kettenbrüche". Stuttgart 1954
+** Aleksandr Yakovlevich Khinchin: "Continued fractions", The University of Chicago Press, 1964
+

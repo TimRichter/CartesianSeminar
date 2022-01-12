@@ -22,7 +22,7 @@ open import Data.Maybe.Categorical
 ContFrac : Set
 ContFrac = List ℕ
 
--- Float constants 0 an 1:
+-- Float constants 0 and 1:
 
 0F 1F : Float
 0F = fromℕ 0
@@ -37,14 +37,14 @@ ContFrac = List ℕ
 -- of the recursion some "rest" (α - ⌊α⌋) is equal to 0 (in
 -- the sense of ≡F?).
 
-fromFloat : (n : ℕ) → (α : Float) → Maybe ContFrac
-fromFloat zero α = just []
-fromFloat (suc n) α with ⌊ α ⌋
+cfFromFloat : (n : ℕ) → (α : Float) → Maybe ContFrac
+cfFromFloat zero α = just []
+cfFromFloat (suc n) α with ⌊ α ⌋
 ...| nothing = nothing
 ...| just (negsuc _) = nothing
 ...| just (pos a) with (α - fromℕ a  ≡F? 0F)
 ...  | true = just (a ∷ [])
-...  | false with (fromFloat n (1F ÷ (α - (fromℕ a))))
+...  | false with (cfFromFloat n (1F ÷ (α - (fromℕ a))))
 ...    | nothing = nothing 
 ...    | just rest = just (a ∷ rest)
 
@@ -129,7 +129,7 @@ f ⊚ g = λ x → g x >>= f
 -- tests, see below.
 
 guess : Float → Maybe ℚ
-guess = (mapMb toℚ) ∘ ((isSmallRatio 15 1000) ⊚ (fromFloat 15))
+guess = (mapMb toℚ) ∘ ((isSmallRatio 15 1000) ⊚ (cfFromFloat 15))
 
 -- Tests:
 
@@ -167,4 +167,12 @@ invpi : Float
 invpi = 0.318309886
 -- "best" rational convergents of 1/π
 invpiconv : Maybe (List ℚ)
-invpiconv = mapMb convergents (fromFloat 15 invpi)
+invpiconv = mapMb convergents (cfFromFloat 15 invpi)
+
+-- compute continued fraction expansions of
+-- square roots of natural numbers:
+
+cfSqrt : ℕ → Maybe ContFrac
+cfSqrt = cfFromFloat 40 ∘ sqrt ∘ fromℕ
+
+
