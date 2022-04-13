@@ -27,6 +27,7 @@ In summer term 2022 we finally meet on site again! For questions, please contact
 
 #### starting April 19th
 * Patrik Jansson, Cezar Ionescu, Jean-Philippe Bernardy - Domain-Specific Languages of Mathematics - see [git repository](https://github.com/DSLsofMath/DSLsofMath)
+We read Chapter 3 "Types in Mathematics".
 
 ## Archive
 
