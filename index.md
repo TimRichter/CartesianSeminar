@@ -21,9 +21,7 @@ Guests are always welcome!
   Building 70, Room 0.09
   [--> find on OpenStreetMap](https://www.openstreetmap.org/way/722427544)
 
-In summer term 2022 we meet in presence again!
-
-For any questions, please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
+In summer term 2022 we finally meet on site again! For questions, please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 
 ## Current reading (summer term 2022)
 
