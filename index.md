@@ -26,8 +26,8 @@ In summer term 2022 we finally meet on site again! For questions, please contact
 ## Current reading (summer term 2022)
 
 #### starting April 19th
-* Patrik Jansson, Cezar Ionescu, Jean-Philippe Bernardy - Domain-Specific Languages of Mathematics - see [git repository](https://github.com/DSLsofMath/DSLsofMath)
-We read Chapter 3 "Types in Mathematics".
+* Chapter 3 "Types in Mathematics" of the book ["Domain-Specific Languages of Mathematics"](http://www.collegepublications.co.uk/computing/?00024) by Patrik Jansson, Cezar Ionescu and Jean-Philippe Bernardy. Here is the book's [git repository](https://github.com/DSLsofMath/DSLsofMath).
+
 
 ## Archive
 
