@@ -18,16 +18,24 @@ Guests are always welcome!
   Tuesdays, 10-12 am  
   Institute of Computer Science, University of Potsdam  
   Campus Golm (An der Bahn 2)  
-  Building 70, Room 0.08
+  Building 70, Room 0.09
   [--> find on OpenStreetMap](https://www.openstreetmap.org/way/722427544)
 
-Due to the pandemic, we had to switch back to online meetings. For the zoom-link and any questions, please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
+In summer term 2022 we meet in presence again!
 
-## Current reading (winter term 2021/2022)
+For any questions, please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
+
+## Current reading (summer term 2022)
+
+#### starting April 19th
+* Patrik Jansson, Cezar Ionescu, Jean-Philippe Bernardy - Domain-Specific Languages of Mathematics - see [git repository](https://github.com/DSLsofMath/DSLsofMath)
+
+## Archive
+
+### Winter term 2021/2022
 
 #### starting January 18th
 * Steward Shapiro - 2005 - [Higher Order Logic](https://www.oxfordhandbooks.com/view/10.1093/oxfordhb/9780195325928.001.0001/oxfordhb-9780195325928-e-25) 
-
 
 #### starting December 14th
 * Dmitry Fuchs, Serge Tabachnikov - "Can a Number be Approximately Rational?" - Lecture 1 of ["Mathematical Omnibus: Thirty Lectures on Classic Mathematics"](https://archive.org/details/Dmitry_Fuchs_and_Serge_Tabachnikov__Mathematical_Omnibus_Thirty_Lectures_on_Classic_Mathematics). Here is an [overview](2112/RationalApprox.org) and an [Agda implementation of the "trick"](2112/RationalApprox.agda).
@@ -35,9 +43,8 @@ Due to the pandemic, we had to switch back to online meetings. For the zoom-link
 #### starting October 25th
 * [Jeremy Gibbons - 2021 - How to design co-programs](https://www.cambridge.org/core/journals/journal-of-functional-programming/article/how-to-design-coprograms/02B37487DB71F1CFD8B46BBE7823E440). See [notes](2110/Notes_Gibbons_Co-Programs.pdf) and [code scratchpad](2110/GibbonsCoPrograms.agda).
 
-## Archive
-
 ### Sommer term 2021
+
 #### starting July 6th
 * [Winkler - 2001(?) - Wie macht man 2 aus 1? Das Paradoxon von Banach-Tarski](https://www.oemg.ac.at/DK/Didaktikhefte/2001%20Band%2033/Winkler2001.pdf). See [notes](2107/210706_BanachTarski.pdf).
 
