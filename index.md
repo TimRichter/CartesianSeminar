@@ -6,10 +6,10 @@ de la méthode" we aim for a thorough understanding of the texts we read.
 
 ## Participants
 ### Present
-Denis Andreev, Sebastian Böhne, Nicola Botta, Nuria Brede, Jan Heuer, Cezar Ionescu, Thomas Kern, Lara Kursawe, Jan Lemcke, Philomena Moek, Tarek Ramadan, Tim Richter, Juliane Scherlitzki, Mika Strozyk, Oliver Zernikow
+Sebastian Böhne, Nicola Botta, Nuria Brede, Lucien Fumagalli, Cezar Ionescu, Thomas Kern, Florian Raab, Tim Richter, Juliane Scherlitzki, Mika Strozyk
 
 ### Past 
-Alexander Benedict Behrens, Marc Beilcke, Nikolas Bertrand, Frederick Brumm, Margrit Dittmann, Georg Duchrau, Christoph Glinzer, Hanna Gloyna, Ingram Jaccard, Henrik Jürges, Niklas Kämmer, Manuel Keilmann, Lucas Kerschke, Christoph Kreitz, David Simon Kuska, Marc Fabian Lindner, David Linkiewicz, Tim Münzner, Leo Repp, Eva Richter, Carla Schreiber, Matthias Seidel, Jessica Trebst, Marius Wawerek, Luise Werner, Max Wiedenhöft, Axel Wiepke, Jonas Winter, David Zimmek
+Denis Andreev, Alexander Benedict Behrens, Marc Beilcke, Nikolas Bertrand, Frederick Brumm, Margrit Dittmann, Georg Duchrau, Christoph Glinzer, Hanna Gloyna, Jan Heuer, Ingram Jaccard, Henrik Jürges, Niklas Kämmer, Manuel Keilmann, Lucas Kerschke, Christoph Kreitz, Lara Kursawe, David Simon Kuska, Jan Lemcke, Marc Fabian Lindner, David Linkiewicz, Philomena Moek, Tim Münzner, Tarek Ramadan, Leo Repp, Eva Richter, Carla Schreiber, Matthias Seidel, Jessica Trebst, Marius Wawerek, Luise Werner, Max Wiedenhöft, Axel Wiepke, Jonas Winter, Oliver Zernikow, David Zimmek
 
 
 Guests are always welcome!
@@ -25,7 +25,10 @@ In summer term 2022 we finally meet on site again! For questions, please contact
 
 ## Current reading (summer term 2022)
 
-#### starting April 19th
+#### starting Mai 25th
+* Philip Wadler - 2015 - [Propositions as types](https://dl.acm.org/citation.cfm?id=2699407)
+
+#### April 19th - Mai 17th
 * Chapter 3 "Types in Mathematics" of the book ["Domain-Specific Languages of Mathematics"](http://www.collegepublications.co.uk/computing/?00024) by Patrik Jansson, Cezar Ionescu and Jean-Philippe Bernardy. Here is the book's [git repository](https://github.com/DSLsofMath/DSLsofMath).
 
 
