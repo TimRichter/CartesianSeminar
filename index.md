@@ -25,7 +25,11 @@ In summer term 2022 we finally meet on site again! For questions, please contact
 
 ## Current reading (summer term 2022)
 
-#### starting Mai 25th
+#### starting June 28th
+* Richard Dedekind - 1888 - [Was sind und was sollen die Zahlen](https://archive.org/details/wassindundwasso00dedegoog)
+
+
+#### Mai 25th - June 21th
 * Philip Wadler - 2015 - [Propositions as types](https://dl.acm.org/citation.cfm?id=2699407)
 
 #### April 19th - Mai 17th
