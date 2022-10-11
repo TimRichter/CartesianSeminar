@@ -21,9 +21,16 @@ Guests are always welcome!
   Building 70, Room 0.09
   [--> find on OpenStreetMap](https://www.openstreetmap.org/way/722427544)
 
-In summer term 2022 we finally meet on site again! For questions, please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
+For any question, please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
 
-## Current reading (summer term 2022)
+## Current reading (summer winter term 2022/2023)
+
+#### starting October 18th
+* Jeremy Gibbons - 1999 - [A pointless derivation of radix sort](https://www.cambridge.org/core/journals/journal-of-functional-programming/article/pointless-derivation-of-radix-sort/398024F932C04F26CD69ACF9E1E6E734)
+
+## Archive
+
+### Summer term 2022
 
 #### starting June 28th
 * Richard Dedekind - 1888 - [Was sind und was sollen die Zahlen](https://archive.org/details/wassindundwasso00dedegoog)
@@ -35,8 +42,6 @@ In summer term 2022 we finally meet on site again! For questions, please contact
 #### April 19th - Mai 17th
 * Chapter 3 "Types in Mathematics" of the book ["Domain-Specific Languages of Mathematics"](http://www.collegepublications.co.uk/computing/?00024) by Patrik Jansson, Cezar Ionescu and Jean-Philippe Bernardy. Here is the book's [git repository](https://github.com/DSLsofMath/DSLsofMath).
 
-
-## Archive
 
 ### Winter term 2021/2022
 
