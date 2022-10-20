@@ -1,0 +1,55 @@
+* Code scratchpad for Cartesian seminar October 2022 
+We read Gibbons "A pointless derivation of radix sort"
+** Session October 18th
+*** pointfree (pointless) calculation:
+defined in the abstract as calculations on the level of function composition
+instead of at the level of function application
+*** Nicola: give an example for a "calculation"
+
+#+begin_src agda2
+module Gibbons where
+
+data ℕ : Set where
+  Zero : ℕ
+  Succ : ℕ → ℕ
+
+{-# BUILTIN NATURAL ℕ #-}
+
+id : ℕ → ℕ
+id n = n
+
+infixr 10 _+_
+infixr 20 _*_
+
+_+_ : ℕ → ℕ → ℕ
+Zero + b = b
+Succ a + b = Succ (a + b)
+
+_*_ : ℕ → ℕ → ℕ   
+Zero * b = Zero
+Succ a * b = b + a * b
+
+-- Note! : function application by juxtaposition
+-- (the argument isn't put in parentheses) 
+double : ℕ → ℕ
+double n = 2 * n
+
+quadruple : ℕ → ℕ
+quadruple n = 4 * n
+
+quadruple' : ℕ → ℕ
+quadruple' n = double (double n)
+
+-- goal: define quadruple "pointfree", i.e. without mentioning the argument,
+--       this would be
+--  quadruple = double ∘ double
+--       where the ∘ denotes function composition.
+--       So let's define this:
+
+infix 10 _∘_
+
+_∘_ : {!!} 
+
+#+end_src agda2
+*** TODO Explain difference between A → (B → C), (A → B) → C, A×B → C !
+*** TODO give the type of function composition !

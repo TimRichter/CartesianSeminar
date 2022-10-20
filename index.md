@@ -6,10 +6,15 @@ de la méthode" we aim for a thorough understanding of the texts we read.
 
 ## Participants
 ### Present
-Sebastian Böhne, Nicola Botta, Nuria Brede, Lucien Fumagalli, Cezar Ionescu, Thomas Kern, Florian Raab, Tim Richter, Juliane Scherlitzki, Mika Strozyk
-
+Sebastian Böhne, Nicola Botta, Nuria Brede, Julian Bruns, Francisco Gallis da Purificacao Costa, Josephine Funken,
+Christoph Glinzer, Jan Heuer, Cezar Ionescu, Aleksandra Khatova, Julius Mittler, Tim Richter
 ### Past 
-Denis Andreev, Alexander Benedict Behrens, Marc Beilcke, Nikolas Bertrand, Frederick Brumm, Margrit Dittmann, Georg Duchrau, Christoph Glinzer, Hanna Gloyna, Jan Heuer, Ingram Jaccard, Henrik Jürges, Niklas Kämmer, Manuel Keilmann, Lucas Kerschke, Christoph Kreitz, Lara Kursawe, David Simon Kuska, Jan Lemcke, Marc Fabian Lindner, David Linkiewicz, Philomena Moek, Tim Münzner, Tarek Ramadan, Leo Repp, Eva Richter, Carla Schreiber, Matthias Seidel, Jessica Trebst, Marius Wawerek, Luise Werner, Max Wiedenhöft, Axel Wiepke, Jonas Winter, Oliver Zernikow, David Zimmek
+Denis Andreev, Alexander Benedict Behrens, Marc Beilcke, Nikolas Bertrand, Frederick Brumm, Margrit Dittmann,
+Georg Duchrau, Lucien Fumagalli, Hanna Gloyna, Jan Heuer, Ingram Jaccard, Henrik Jürges,
+Niklas Kämmer, Manuel Keilmann, Thomas Kern, Lucas Kerschke, Christoph Kreitz, Lara Kursawe, David Simon Kuska,
+Jan Lemcke, Marc Fabian Lindner, David Linkiewicz, Philomena Moek, Tim Münzner, Florian Raab, Tarek Ramadan,
+Leo Repp, Eva Richter, Juliane Scherlitzki, Carla Schreiber, Matthias Seidel, Mika Strozyk, Jessica Trebst,
+Marius Wawerek, Luise Werner, Max Wiedenhöft, Axel Wiepke, Jonas Winter, Oliver Zernikow, David Zimmek
 
 
 Guests are always welcome!
@@ -27,6 +32,7 @@ For any question, please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-pot
 
 #### starting October 18th
 * Jeremy Gibbons - 1999 - [A pointless derivation of radix sort](https://www.cambridge.org/core/journals/journal-of-functional-programming/article/pointless-derivation-of-radix-sort/398024F932C04F26CD69ACF9E1E6E734)
+Here are our notes: [Gibbons.lagda.org](2210/Gibbons.lagda.org)
 
 ## Archive
 
