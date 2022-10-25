@@ -16,7 +16,7 @@ data ℕ : Set where
 {-# BUILTIN NATURAL ℕ #-}
 
 id : ℕ → ℕ
-id n = n
+id n = n   -- no parentheses around function arguments!
 
 infixr 10 _+_
 infixr 20 _*_
@@ -40,6 +40,12 @@ quadruple n = 4 * n
 quadruple' : ℕ → ℕ
 quadruple' n = double (double n)
 
+#+end_src agda2
+*** TODO Explain difference between A → (B → C), (A → B) → C, A×B → C !
+** Session October 25th
+*** complete the example for a pointfree function definition:
+#+begin_src agda2
+
 -- goal: define quadruple "pointfree", i.e. without mentioning the argument,
 --       this would be
 --  quadruple = double ∘ double
@@ -48,8 +54,49 @@ quadruple' n = double (double n)
 
 infix 10 _∘_
 
-_∘_ : {!!} 
+_∘_ : {A B C : Set} → (B → C) → (A → B) → (A → C)
+(g ∘ f) a = g (f a)
 
 #+end_src agda2
-*** TODO Explain difference between A → (B → C), (A → B) → C, A×B → C !
-*** TODO give the type of function composition !
+*** talked about equivalence of types:
+two sets X and Y are equivalent if there is a Bijektion f : X → Y
+f bijective means: f is injective and f is bijective
+*** alternative definition of equivalence: X and Y are equivalence if
+∃ f : X → Y ∃ g : Y → X . g ∘ f = id_X  ∧ f ∘ g = id_Y
+*** we can do this for the example  A × B → C  is equivalent to A → B → C
+#+begin_src agda2
+
+infixr 30 _×_
+infixr 30 _,_
+
+record _×_ (A B : Set) : Set where
+   constructor _,_
+   field
+     fst : A
+     snd : B
+
+-- "Currying", named after Haskell Curry, a mathematician and
+-- philosopher of the 20th century
+
+curry : {A B C : Set} → (A × B → C) → (A → B → C)
+curry h a b = h (a , b)
+
+uncurry : {A B C : Set} → (A → B → C) → (A × B → C)
+uncurry h (a , b) = h a b
+
+infix 25 _==_
+
+data _==_ {A : Set} (a : A) : A → Set where
+  refl : a == a
+
+id1 : {A B C : Set} → (h : A × B → C) →
+      (p : A × B) → (uncurry ∘ curry) h p == h p
+id1 h p = {!!} 
+
+id2 : {A B C : Set} → (h : A → B → C) →
+      (a : A) → (b : B) → (curry ∘ uncurry) h a b == h a b
+id2 h p = {!!}
+
+#+end_src agda2
+TODO (Homework): show uncurry ∘ curry = id  and  curry ∘ uncurry = id 
+
