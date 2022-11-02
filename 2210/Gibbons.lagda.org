@@ -57,11 +57,14 @@ infix 10 _∘_
 _∘_ : {A B C : Set} → (B → C) → (A → B) → (A → C)
 (g ∘ f) a = g (f a)
 
+quadruple'' : ℕ → ℕ
+quadruple'' = double ∘ double
+
 #+end_src agda2
 *** talked about equivalence of types:
 two sets X and Y are equivalent if there is a Bijektion f : X → Y
-f bijective means: f is injective and f is bijective
-*** alternative definition of equivalence: X and Y are equivalence if
+f bijective means: f is injective and f is surjective
+*** alternative definition of equivalence: X and Y are equivalent if
 ∃ f : X → Y ∃ g : Y → X . g ∘ f = id_X  ∧ f ∘ g = id_Y
 *** we can do this for the example  A × B → C  is equivalent to A → B → C
 #+begin_src agda2
@@ -89,14 +92,79 @@ infix 25 _==_
 data _==_ {A : Set} (a : A) : A → Set where
   refl : a == a
 
-id1 : {A B C : Set} → (h : A × B → C) →
-      (p : A × B) → (uncurry ∘ curry) h p == h p
-id1 h p = {!!} 
+-- equational reasoning notation
+{-# BUILTIN EQUALITY _==_ #-}
+
+trans : ∀ {A : Set} {x y z : A} → x == y → y == z → x == z
+trans refl refl = refl
+
+symm : ∀ {A : Set} {x y : A} → x == y → y == x
+symm refl = refl
+
+_QED : ∀ {A : Set} (x : A) → x == x
+x QED = refl
+
+infixr 10 _=⟨_⟩_   -- emacs agda-mode: \langle \rangle
+infixr 10 _=⟨⟩_
+
+_=⟨_⟩_ : ∀ {A : Set} (x : A) {y z : A} →
+         x == y → y == z → x == z
+x =⟨ p ⟩ q = trans p q
+
+_=⟨⟩_ : ∀ {A : Set} (x : A) {y : A} →
+        x == y → x == y
+x =⟨⟩ q = x =⟨ refl ⟩ q
+
+cong : ∀ {A : Set} {B : Set} {x y : A} →
+       (f : A → B) → x == y → f x == f y
+cong f refl = refl
+
+
+id1 : ∀ {A B C : Set} (h : A × B → C) (p : A × B) →
+      (uncurry ∘ curry) h p == h p
+id1 h p = refl 
+
+id1' : {A B C : Set} → (h : A × B → C) →
+      (uncurry ∘ curry) h == h
+id1' h = refl 
 
 id2 : {A B C : Set} → (h : A → B → C) →
       (a : A) → (b : B) → (curry ∘ uncurry) h a b == h a b
-id2 h p = {!!}
+id2 h a b = 
+         (curry ∘ uncurry) h a b
+           =⟨ refl {- Def. of "∘" -} ⟩
+         (curry (uncurry h)) a b
+           =⟨ refl {- Def. of "curry" -} ⟩
+         (uncurry h) (a , b)
+           =⟨ refl {- Def. of "uncurry" -} ⟩
+         h a b
+           QED
 
 #+end_src agda2
-TODO (Homework): show uncurry ∘ curry = id  and  curry ∘ uncurry = id 
+*** DONE (Homework): show uncurry ∘ curry = id  and  curry ∘ uncurry = id 
+** Session November 1st
+*** did homework of last week, see above
+*** read page 1
+*** discussed examples of orderings that fit the description
+**** words in a dictionary:
+the list is the infinite list of functions String → Char
+[pick 1st char, pick 2nd char, ...]
+**** contacts in a smartphone or phonebook 
+the list contains the projection functions to separate fields
+(name, surname, phone number, birthday etc.) of a contact
+- strictly speaking isn't an instance of the given abstraction,
+  because fields are of different types...
+*** on with the agda-implementation
+#+begin_src agda2
 
+data List (A : Set) : Set where
+
+data Bool : Set where
+
+ordered : {A B : Set} → (List (A → B)) → A → A → Bool
+ordered = {!!}
+#+end_src agda2
+*** Homework:
+**** read rest of §1
+**** complete the implementation of List and Bool
+ 
