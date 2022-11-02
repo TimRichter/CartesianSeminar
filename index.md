@@ -7,7 +7,7 @@ de la méthode" we aim for a thorough understanding of the texts we read.
 ## Participants
 ### Present
 Sebastian Böhne, Nicola Botta, Nuria Brede, Julian Bruns, Francisco Gallis da Purificacao Costa, Josephine Funken,
-Christoph Glinzer, Jan Heuer, Cezar Ionescu, Aleksandra Khatova, Julius Mittler, Tim Richter
+Christoph Glinzer, Jan Heuer, Cezar Ionescu, Aleksandra Khatova, Julius Mittler, Vera Sons, Tim Richter
 ### Past 
 Denis Andreev, Alexander Benedict Behrens, Marc Beilcke, Nikolas Bertrand, Frederick Brumm, Margrit Dittmann,
 Georg Duchrau, Lucien Fumagalli, Hanna Gloyna, Jan Heuer, Ingram Jaccard, Henrik Jürges,
