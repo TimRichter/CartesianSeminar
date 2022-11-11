@@ -13,6 +13,8 @@ data ℕ : Set where
   Zero : ℕ
   Succ : ℕ → ℕ
 
+
+
 {-# BUILTIN NATURAL ℕ #-}
 
 id : ℕ → ℕ
@@ -157,14 +159,86 @@ the list contains the projection functions to separate fields
 *** on with the agda-implementation
 #+begin_src agda2
 
+infixr 20 _∷_                   -- input ∷ by typing \::
+
 data List (A : Set) : Set where
+        [] : List A
+        _∷_ : A → List A → List A
+
+length : {A : Set} → List A → ℕ
+length [] = 0
+length ( a ∷ as ) = length as + 1
 
 data Bool : Set where
+  true : Bool
+  false : Bool
+
+infixl 27 _&&_
+infixl 26 _||_
+
+_&&_ _||_ : Bool → Bool → Bool
+
+true  && b = b
+false && _ = false
+
+true  || _ = true
+false || b = b
 
 ordered : {A B : Set} → (List (A → B)) → A → A → Bool
 ordered = {!!}
+
 #+end_src agda2
 *** Homework:
 **** read rest of §1
 **** complete the implementation of List and Bool
- 
+** Session November 8th
+*** discussed data type definitions Bool and List - see above
+*** implemented length as an exercise - see above
+*** discussed specifications vs. implementations
+**** in the case of length the specification can immediately be used as a definition
+**** in the case  e.g. of the square root function  with a specification
+f : Real⁺ → Real
+s.t. ∀ x : Real⁺,  (f x) * (f x) == x
+
+it is more difficult:
++ what exactly is meant by "=="?
++ is the specification complete?
+  -> Since for x /= 0 there are two choices for (f x)
+     the above does not specify the function f uniquely! 
++ is the specification implementable?
++ if it is, how can f x actually be computed?
+
+**** on with the paper
+
+#+begin_src agda2
+
+data Tree (A : Set) : Set where
+  Leaf : A → Tree A
+  Node : List (Tree A)  → Tree A
+
+mkTree : {A B : Set} → List (A → B) → List A → Tree (List A)
+mkTree []       as = Leaf as
+mkTree (d ∷ ds) as = Node {!!}  -- t.b.c....
+
+
+-- trying to dissect the rhs of ptn:  [ filter ((m==).d) xs | m <- rng ]
+--  (m==).d  is
+--   (m ===_) ∘ d  : A → Bool
+{-
+     ((m ===_) ∘ d) a
+        ={Def. of ∘}
+     ((m ===_) (d a))
+        ={Notation}
+     (m === d a)
+-}
+--  where _===_ : B → B → Bool
+
+--filter : {A : Set} → (A → Bool) → List A → List A
+
+#+end_src agda2
+
+
+
+
+
+
