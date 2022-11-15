@@ -184,8 +184,9 @@ false && _ = false
 true  || _ = true
 false || b = b
 
-ordered : {A B : Set} → (List (A → B)) → A → A → Bool
-ordered = {!!}
+-- not implementable without some constraints on B
+-- ordered : {A B : Set} → (List (A → B)) → A → A → Bool
+-- ordered = {!!}
 
 #+end_src agda2
 *** Homework:
@@ -242,3 +243,138 @@ mkTree (d ∷ ds) as = Node {!!}  -- t.b.c....
 
 
 
+** Tim: Code that might be useful
+#+begin_src agda2
+
+foldList : {A B : Set} → B → (A → B → B) → List A → B
+foldList start next [] = start
+foldList start next (a ∷ as) = next a (foldList start next as)
+
+mapList : {A B : Set} → (A → B) → List A → List B
+mapList f = foldList [] (_∷_ ∘ f)
+
+mapList' : {A B : Set} → (A → B) → List A → List B
+mapList' f [] = []
+mapList' f (a ∷ as) = f a ∷ mapList' f as
+
+-- exercise: show (on paper !!) that
+-- ∀ f, as . mapList f as == mapList' f as 
+
+
+infix 19 _∈_
+
+data _∈_ {A : Set} : A → List A → Set where
+  Here  : {a : A} → (bs : List A) → a ∈ a ∷ bs
+  There : {a b : A} → {bs : List A} → a ∈ bs → a ∈ b ∷ bs
+
+∈toℕ : {A : Set} → {a : A} → {as : List A} → a ∈ as → ℕ
+∈toℕ (Here _) = 0
+∈toℕ (There p) = Succ (∈toℕ p)
+
+foldℕ : {A : Set} → A → (A → A) → ℕ → A
+foldℕ start next Zero = start
+foldℕ start next (Succ n) = next (foldℕ start next n)
+
+infix 20 [_⋯_]
+
+{-# TERMINATING #-}
+[_⋯_] : ℕ → ℕ → List ℕ
+[ Zero ⋯ Zero ] = 0 ∷ []
+[ Zero ⋯ Succ m ] = 0 ∷ ([ Succ Zero ⋯ Succ m ])
+[ Succ n ⋯ Zero ] = []
+[ Succ n ⋯ Succ m ] = mapList Succ [ n ⋯ m ]
+
+0⋯ : ℕ → List ℕ
+0⋯ n = [ 0 ⋯ n ]
+
+-- a possible take on the property of a type
+-- being finite and ordered - we could use
+-- this as a replacement for  (Bounded b, Enum b, Eq b).
+-- To be discussed...
+
+record FinOrd (A : Set) : Set where
+  constructor MkFinOrd
+  field
+    card : ℕ
+    allA : List A
+    each∈ : ∀ a → a ∈ allA
+
+open FinOrd {{...}} public 
+
+-- e.g., we construct a proof of FinOrd Bool
+instance
+  finOrdBool : FinOrd Bool
+  finOrdBool = MkFinOrd 2 allBool each∈Bool where
+    allBool = false ∷ true ∷ []
+    each∈Bool : ∀ b → b ∈ allBool
+    each∈Bool true  = There (Here [])
+    each∈Bool false = Here _
+
+-- types with a FinOrd instance can be mapped to ℕ
+
+toℕ : {A : Set} → {{FA : FinOrd A}} → A → ℕ
+toℕ a = ∈toℕ (each∈ a)
+-- Exercise: Why can we not write toℕ = ∈toℕ ∘ each∈ ?
+
+-- now, ℕ has a boolean valued (i.e. decidable) equality
+
+infix 30 _===ℕ_
+
+_===ℕ_ : ℕ → ℕ → Bool
+Zero   ===ℕ Zero   = true
+Zero   ===ℕ Succ m = false
+Succ n ===ℕ Zero   = false
+Succ n ===ℕ Succ m = n ===ℕ m
+
+-- and a boolean "smaller than" relation:
+
+infix 30 _<ℕ_
+
+_<ℕ_ : ℕ → ℕ → Bool
+Zero   <ℕ Zero   = false
+Zero   <ℕ Succ m = true
+Succ n <ℕ Zero   = false
+Succ n <ℕ Succ m = n <ℕ m
+
+-- now, using toℕ, we can define similar relations
+-- for any type that has the FinOrd structure
+
+infix 30 _===_ _<_
+
+_===_ _<_ : {A : Set} → {{FA : FinOrd A}} → A → A → Bool
+a === b = toℕ a ===ℕ toℕ b
+a < b   = toℕ a <ℕ toℕ b
+
+-- now , we can implement a variant of ordered almost exactly
+-- like in the paper:
+
+ordered : {A B : Set} → {{ FB : FinOrd B }} → (List (A → B)) → A → A → Bool
+ordered []       a b = true
+ordered (d ∷ ds) a b = d a < d b || d a === d b  &&  ordered ds a b   
+
+#+end_src agda2
+
+** Session November 15th
+*** discussed ptn by an example on the blackboard
+*** Nicola had tried to typecheck the code of the paper in Haskell
+**** problem : in mkTree, the _==_ operator of the typeClass Eq is used ->
+     so, this typeclass constrained has also to be given, like
+       (Bounded b , Enum b , Eq b) => ...
+*** foldTree
+#+begin_src agda2
+
+flatten : {A : Set} → Tree (List A) → List A
+flatten (Leaf as)     = as
+flatten {A} (Node ts) =
+  let
+    r : List (List A)
+    r = mapList' flatten ts
+  in
+    {!!}
+
+-- flatten (Node [Leaf [1 , 2], Node [], Node [Leaf [2,3]]])   =  
+--      [1,2,2,3]
+
+-- foldTree
+
+#+end_src agda2
