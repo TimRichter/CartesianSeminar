@@ -17,8 +17,8 @@ data ℕ : Set where
 
 {-# BUILTIN NATURAL ℕ #-}
 
-id : ℕ → ℕ
-id n = n   -- no parentheses around function arguments!
+idℕ : ℕ → ℕ
+idℕ n = n   -- no parentheses around function arguments!
 
 infixr 10 _+_
 infixr 20 _*_
@@ -165,6 +165,27 @@ data List (A : Set) : Set where
         [] : List A
         _∷_ : A → List A → List A
 
+-- List syntax (from https://doisinkidney.com/posts/2019-04-20-ListSyntax.html)
+
+module Instance where
+  record ListSyntax (A B : Set) : Set where
+    field [_] : B → List A
+
+  open ListSyntax ⦃ ... ⦄ public
+
+  instance
+    cons : ∀ {A B : Set} ⦃ _ : ListSyntax A B ⦄
+         →  ListSyntax A (A × B)
+    [_] ⦃ cons ⦄ (x , xs) = x ∷ [ xs ]
+
+  instance
+    sing : ∀ {A} → ListSyntax A A
+    [_] ⦃ sing ⦄ = _∷ []
+
+open Instance public
+
+-- end definition of List syntax
+
 length : {A : Set} → List A → ℕ
 length [] = 0
 length ( a ∷ as ) = length as + 1
@@ -212,10 +233,27 @@ it is more difficult:
 **** on with the paper
 
 #+begin_src agda2
+data BinTree (A : Set) : Set where
+  BLeaf : A → BinTree A
+  BNode : BinTree A → BinTree A → BinTree A
+
+foldBinTree : {A B : Set} → (A → B) → (B → B → B) → BinTree A → B
+foldBinTree f g (BLeaf x) = f x
+foldBinTree f g (BNode t₁ t₂) =
+  g (foldBinTree f g t₁) (foldBinTree f g t₂)
 
 data Tree (A : Set) : Set where
   Leaf : A → Tree A
   Node : List (Tree A)  → Tree A
+
+mapL : {A B : Set} → (A → B) → (List A → List B)
+mapL f [] = []
+mapL f (a ∷ as) = f a ∷ mapL f as
+
+{-# TERMINATING #-}
+foldTree : {A B : Set} → (A → B) → (List B → B) → Tree A → B
+foldTree f g (Leaf a)        = f a
+foldTree f g (Node ts)       = g (mapL (foldTree f g) ts)
 
 mkTree : {A B : Set} → List (A → B) → List A → Tree (List A)
 mkTree []       as = Leaf as
@@ -279,7 +317,7 @@ infix 20 [_⋯_]
 
 {-# TERMINATING #-}
 [_⋯_] : ℕ → ℕ → List ℕ
-[ Zero ⋯ Zero ] = 0 ∷ []
+[ Zero ⋯ Zero ] = [ 0 ]
 [ Zero ⋯ Succ m ] = 0 ∷ ([ Succ Zero ⋯ Succ m ])
 [ Succ n ⋯ Zero ] = []
 [ Succ n ⋯ Succ m ] = mapList Succ [ n ⋯ m ]
@@ -363,14 +401,37 @@ ordered (d ∷ ds) a b = d a < d b || d a === d b  &&  ordered ds a b
 *** foldTree
 #+begin_src agda2
 
+id : {A : Set} → A → A
+id x = x
+
+infixr 25 _++_
+_++_ : {A : Set} → List A → List A → List A
+[]       ++ bs = bs
+(a ∷ as) ++ bs = a ∷ (as ++ bs)
+
+concat : {A : Set} → List (List A) → List A
+concat []         = []
+concat (as ∷ ass) = as ++ concat ass
+
 flatten : {A : Set} → Tree (List A) → List A
-flatten (Leaf as)     = as
-flatten {A} (Node ts) =
-  let
-    r : List (List A)
-    r = mapList' flatten ts
-  in
-    {!!}
+flatten = foldTree id concat
+
+infixl 20 _<:_
+_<:_ : {A : Set} → List A → A → List A
+[] <: b       = [ b ]
+(a ∷ as) <: b = a ∷ (as <: b)
+
+data List' (A : Set) : Set where
+  Nil  : List' A
+  Cons : A → List' A → List' A
+  Snoc : List' A → A → List' A
+
+-- this is a perfectly fine inductive type...
+-- but "are" the elements really what one would call lists?
+
+-- Cons a (Snoc Nil b) /= Scon (Cons a Nil) b     !!!  
+
+
 
 -- flatten (Node [Leaf [1 , 2], Node [], Node [Leaf [2,3]]])   =  
 --      [1,2,2,3]
@@ -378,3 +439,26 @@ flatten {A} (Node ts) =
 -- foldTree
 
 #+end_src agda2
+** Session November 22nd
+*** discussed foldTree and folds in general
+*** (code see above) found that foldTree implemented like in the paper
+doesn't satisfy the termination checker. In Haskell, this is
+not a problem since there is no termination checking.
+*** defined BinTree and foldBinTree - no problem with termination there
+*** to implement flatten using foldTree, we needed concat, so we 
+defined this by pattern matching (i.e. recursively)
+*** for concat we needed _++_ . Discussed how to define this by
+recursion on the 1st or 2nd argument: it's more convenient to
+recurse on the 1st argument: the asymmetry goes back to our using _∷_
+as a constructor for lists - if we had used 
+  Snoc : List A -> A -> List A
+instead, it would be easier to define _++_ by recursion on 2nd argument.
+*** Alexandra asked whether we could have both Cons and Snoc as constructors: 
+well, technically "we can do what we want" (i.e. have as many constructors
+as we like ... see List' above). However, the elements of List' don't
+behave like lists, e.g. Cons a []  and  Snoc [] a  are distinct elements,
+not merely "different ways to construct a singleton list containing some a : A",
+as we might want. In an inductive type, every element is constructed in
+a unique way!   
+*** Tim: added List syntax (found that online, see above) and used it in  
+appropriate places
