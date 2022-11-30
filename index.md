@@ -28,7 +28,7 @@ Guests are always welcome!
 
 For any question, please contact Tim Richter [(tim@cs.uni-potsdam.de)](mailto://tim@cs.uni-potsdam.de).
 
-## Current reading (summer winter term 2022/2023)
+## Current reading (winter term 2022/2023)
 
 #### starting October 18th
 * Jeremy Gibbons - 1999 - [A pointless derivation of radix sort](https://www.cambridge.org/core/journals/journal-of-functional-programming/article/pointless-derivation-of-radix-sort/398024F932C04F26CD69ACF9E1E6E734)
