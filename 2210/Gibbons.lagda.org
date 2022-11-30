@@ -462,3 +462,8 @@ as we might want. In an inductive type, every element is constructed in
 a unique way!   
 *** Tim: added List syntax (found that online, see above) and used it in  
 appropriate places
+** Session November 29th
+*** read beginning of section 3
+*** discussed folds in general and some
+special cases: foldList, foldr, foldFalse, foldℕ
+*** see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_221129.jpg][Whiteboard]]

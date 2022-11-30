@@ -6,11 +6,11 @@ de la méthode" we aim for a thorough understanding of the texts we read.
 
 ## Participants
 ### Present
-Sebastian Böhne, Nicola Botta, Nuria Brede, Julian Bruns, Francisco Gallis da Purificacao Costa, Josephine Funken,
-Christoph Glinzer, Jan Heuer, Cezar Ionescu, Aleksandra Khatova, Julius Mittler, Vera Sons, Tim Richter
+Sebastian Böhne, Nicola Botta, Julian Bruns, Francisco Gallis da Purificacao Costa, Josephine Funken,
+Christoph Glinzer, Aleksandra Khatova, Tom Kranz, Tim Richter
 ### Past 
-Denis Andreev, Alexander Benedict Behrens, Marc Beilcke, Nikolas Bertrand, Frederick Brumm, Margrit Dittmann,
-Georg Duchrau, Lucien Fumagalli, Hanna Gloyna, Jan Heuer, Ingram Jaccard, Henrik Jürges,
+Denis Andreev, Alexander Benedict Behrens, Marc Beilcke, Nikolas Bertrand, Nuria Brede, Frederick Brumm, Margrit Dittmann,
+Georg Duchrau, Lucien Fumagalli, Hanna Gloyna, Jan Heuer, Cezar Ionescu, Ingram Jaccard, Henrik Jürges,
 Niklas Kämmer, Manuel Keilmann, Thomas Kern, Lucas Kerschke, Christoph Kreitz, Lara Kursawe, David Simon Kuska,
 Jan Lemcke, Marc Fabian Lindner, David Linkiewicz, Philomena Moek, Tim Münzner, Florian Raab, Tarek Ramadan,
 Leo Repp, Eva Richter, Juliane Scherlitzki, Carla Schreiber, Matthias Seidel, Mika Strozyk, Jessica Trebst,
@@ -23,10 +23,10 @@ Guests are always welcome!
   Tuesdays, 10-12 am  
   Institute of Computer Science, University of Potsdam  
   Campus Golm (An der Bahn 2)  
-  Building 70, Room 0.09
+  Building 70, Room 1.52
   [--> find on OpenStreetMap](https://www.openstreetmap.org/way/722427544)
 
-For any question, please contact [tim@cs.uni-potsdam.de](mailto://tim@cs.uni-potsdam.de).
+For any question, please contact Tim Richter [(tim@cs.uni-potsdam.de)](mailto://tim@cs.uni-potsdam.de).
 
 ## Current reading (summer winter term 2022/2023)
 
