@@ -467,3 +467,9 @@ appropriate places
 *** discussed folds in general and some
 special cases: foldList, foldr, foldFalse, foldℕ
 *** see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_221129.jpg][Whiteboard]]
+** Session December 6th
+*** discussed universal property of foldr
+*** checked for example sum
+*** fusion law for foldr
+*** made an example for neg ∘ sum
+*** see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_20221206_1050.jpg][Whiteboard_CS_20221206_1050.jpg]], [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_20221206_1120.jpg][Whiteboard_CS_20221206_1120.jpg]], [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_20221206_1146.jpg][Whiteboard_CS_20221206_1146.jpg]]
