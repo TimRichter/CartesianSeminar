@@ -472,4 +472,13 @@ special cases: foldList, foldr, foldFalse, foldℕ
 *** checked for example sum
 *** fusion law for foldr
 *** made an example for neg ∘ sum
-*** see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_20221206_1050.jpg][Whiteboard_CS_20221206_1050.jpg]], [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_20221206_1120.jpg][Whiteboard_CS_20221206_1120.jpg]], [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_20221206_1146.jpg][Whiteboard_CS_20221206_1146.jpg]]
+*** see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_20221206_1050.jpg]Whiteboard_CS_20221206_1050.jpg]], [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_20221206_1120.jpg][Whiteboard_CS_20221206_1120.jpg]], [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_20221206_1146.jpg][Whiteboard_CS_20221206_1146.jpg]]
+** Session December 13th
+*** Josefine presented the homework to prove the fusion law from the universal property of foldr
+*** Discussed conditions on g such that the fusion law allows us to define
+f' and e' from arbitrary f and e such that  g ∘ foldr f e = foldr f' e'. 
+This is possible e.g. if g is an is an isomorphism or if g is constant.
+*** Read the rest of chpt. 3: fusion law for foldt
+*** Read first § of chpt.4: Gibbons wants to write mkTree as a foldr. We wrote down
+the types of mkTree and the parameters for foldr.
+*** see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_221213_1.jpg][Whiteboard_CS_221213_1.jpg]] , [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_221213_2.jpg][Whiteboard_CS_221213_2.jpg]] , [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_221213_3.jpg][Whiteboard_CS_221213_3.jpg]]
