@@ -13,12 +13,16 @@ data ℕ : Set where
   Zero : ℕ
   Succ : ℕ → ℕ
 
-
-
 {-# BUILTIN NATURAL ℕ #-}
 
 idℕ : ℕ → ℕ
 idℕ n = n   -- no parentheses around function arguments!
+
+-- the identity function can be defined for any type,
+-- i.e. as a parametric function
+
+id : {A : Set} → A → A
+id x = x
 
 infixr 10 _+_
 infixr 20 _*_
@@ -54,7 +58,7 @@ quadruple' n = double (double n)
 --       where the ∘ denotes function composition.
 --       So let's define this:
 
-infix 10 _∘_
+infixl 10 _∘_
 
 _∘_ : {A B C : Set} → (B → C) → (A → B) → (A → C)
 (g ∘ f) a = g (f a)
@@ -89,7 +93,8 @@ curry h a b = h (a , b)
 uncurry : {A B C : Set} → (A → B → C) → (A × B → C)
 uncurry h (a , b) = h a b
 
-infix 25 _==_
+-- infix 25 _==_
+infix 9 _==_
 
 data _==_ {A : Set} (a : A) : A → Set where
   refl : a == a
@@ -122,13 +127,28 @@ cong : ∀ {A : Set} {B : Set} {x y : A} →
 cong f refl = refl
 
 
+-- Now we have the ingredients to prove that
+-- curry and uncurry are inverse to each other.
+-- We are satisfied with pointwise (extensional)
+-- equalities:
+
 id1 : ∀ {A B C : Set} (h : A × B → C) (p : A × B) →
       (uncurry ∘ curry) h p == h p
 id1 h p = refl 
 
+-- But we can prove the stronger
+
 id1' : {A B C : Set} → (h : A × B → C) →
       (uncurry ∘ curry) h == h
-id1' h = refl 
+id1' h = refl
+
+-- and even
+
+id1'' : {A B C : Set} →
+        _∘_ {A × B → C} {A → B → C} {A × B → C} uncurry curry == id
+id1'' = refl
+
+-- In the other direction, we have
 
 id2 : {A B C : Set} → (h : A → B → C) →
       (a : A) → (b : B) → (curry ∘ uncurry) h a b == h a b
@@ -141,6 +161,14 @@ id2 h a b =
            =⟨ refl {- Def. of "uncurry" -} ⟩
          h a b
            QED
+
+id2' : {A B C : Set} → (h : A → B → C) →
+      (curry ∘ uncurry) h == h
+id2' h = refl
+
+id2'' : {A B C : Set} →
+        _∘_ {A → B → C} {A × B → C} {A → B → C} curry uncurry == id
+id2'' = refl
 
 #+end_src agda2
 *** DONE (Homework): show uncurry ∘ curry = id  and  curry ∘ uncurry = id 
@@ -162,10 +190,11 @@ the list contains the projection functions to separate fields
 infixr 20 _∷_                   -- input ∷ by typing \::
 
 data List (A : Set) : Set where
-        [] : List A
-        _∷_ : A → List A → List A
+     []  : List A
+     _∷_ : A → List A → List A
 
 -- List syntax (from https://doisinkidney.com/posts/2019-04-20-ListSyntax.html)
+-- allows writing e.g. [ x , y , z ] instead of x ∷ y ∷ z ∷ []
 
 module Instance where
   record ListSyntax (A B : Set) : Set where
@@ -186,16 +215,22 @@ open Instance public
 
 -- end definition of List syntax
 
+-- Length of a list:
+
 length : {A : Set} → List A → ℕ
 length [] = 0
 length ( a ∷ as ) = length as + 1
+
+-- Booleans:
 
 data Bool : Set where
   true : Bool
   false : Bool
 
-infixl 27 _&&_
-infixl 26 _||_
+-- with the basic operations
+
+infixl 27 _&&_  -- "and"
+infixl 26 _||_  -- "or"
 
 _&&_ _||_ : Bool → Bool → Bool
 
@@ -246,14 +281,29 @@ data Tree (A : Set) : Set where
   Leaf : A → Tree A
   Node : List (Tree A)  → Tree A
 
+-- Here is the standard "map" for List:
+
 mapL : {A B : Set} → (A → B) → (List A → List B)
 mapL f [] = []
 mapL f (a ∷ as) = f a ∷ mapL f as
+
+-- Remark:
+-- A type constructor |F : Set → Set| is called a "functor"
+-- if a (higher order, parametric in A B...) function
+-- map : {A B : Set} → (A → B) → (F A → F B)
+-- can be implemented (satisfying some laws...).
+-- With mapL, List becomes a functor.
+
+-- The termination checker doesn't see that foldTree
+-- terminates since the recursive call is under a mapL...
+-- We ask it to trust us that it will terminate:
 
 {-# TERMINATING #-}
 foldTree : {A B : Set} → (A → B) → (List B → B) → Tree A → B
 foldTree f g (Leaf a)        = f a
 foldTree f g (Node ts)       = g (mapL (foldTree f g) ts)
+
+{-  we'll take this up later...
 
 mkTree : {A B : Set} → List (A → B) → List A → Tree (List A)
 mkTree []       as = Leaf as
@@ -263,25 +313,23 @@ mkTree (d ∷ ds) as = Node {!!}  -- t.b.c....
 -- trying to dissect the rhs of ptn:  [ filter ((m==).d) xs | m <- rng ]
 --  (m==).d  is
 --   (m ===_) ∘ d  : A → Bool
-{-
-     ((m ===_) ∘ d) a
-        ={Def. of ∘}
-     ((m ===_) (d a))
-        ={Notation}
-     (m === d a)
--}
+
+--     ((m ===_) ∘ d) a
+--        ={Def. of ∘}
+--     ((m ===_) (d a))
+--        ={Notation}
+--     (m === d a)
+
 --  where _===_ : B → B → Bool
 
---filter : {A : Set} → (A → Bool) → List A → List A
+filter : {A : Set} → (A → Bool) → List A → List A
+
+-}
 
 #+end_src agda2
 
 
-
-
-
-
-** Tim: Code that might be useful
+** Tim (Nov 13th): Code that might be useful
 #+begin_src agda2
 
 foldList : {A B : Set} → B → (A → B → B) → List A → B
@@ -291,28 +339,34 @@ foldList start next (a ∷ as) = next a (foldList start next as)
 mapList : {A B : Set} → (A → B) → List A → List B
 mapList f = foldList [] (_∷_ ∘ f)
 
-mapList' : {A B : Set} → (A → B) → List A → List B
-mapList' f [] = []
-mapList' f (a ∷ as) = f a ∷ mapList' f as
-
 -- exercise: show (on paper !!) that
--- ∀ f, as . mapList f as == mapList' f as 
+-- ∀ f ∀ as.  mapList f as == mapL f as
+-- See definition of mapL above.
 
+-- We define a type family to express, for any
+-- type A, any a : A and and as : List A, the
+-- proposition that a is an element of as:
 
 infix 19 _∈_
 
 data _∈_ {A : Set} : A → List A → Set where
-  Here  : {a : A} → (bs : List A) → a ∈ a ∷ bs
+  Here  : {a : A}   → (bs : List A)          → a ∈ a ∷ bs
   There : {a b : A} → {bs : List A} → a ∈ bs → a ∈ b ∷ bs
 
+-- An element (i.e. proof) of a ∈ as gives a position
+-- in as where a occurs (note that we start counting
+-- positions at 1 !!):
 ∈toℕ : {A : Set} → {a : A} → {as : List A} → a ∈ as → ℕ
-∈toℕ (Here _) = 0
+∈toℕ (Here _)  = 1
 ∈toℕ (There p) = Succ (∈toℕ p)
 
+-- Here is the fold of the type ℕ:
 foldℕ : {A : Set} → A → (A → A) → ℕ → A
 foldℕ start next Zero = start
 foldℕ start next (Succ n) = next (foldℕ start next n)
 
+-- We introduce notation for a list of
+-- consecutive natural numbers
 infix 20 [_⋯_]
 
 {-# TERMINATING #-}
@@ -322,13 +376,16 @@ infix 20 [_⋯_]
 [ Succ n ⋯ Zero ] = []
 [ Succ n ⋯ Succ m ] = mapList Succ [ n ⋯ m ]
 
+-- and for the list of numbers from 0 to n
 0⋯ : ℕ → List ℕ
 0⋯ n = [ 0 ⋯ n ]
 
--- a possible take on the property of a type
+-- A possible take on the property of a type
 -- being finite and ordered - we could use
 -- this as a replacement for  (Bounded b, Enum b, Eq b).
 -- To be discussed...
+-- The uniqueness component ensures that allA has no
+-- duplicates...
 
 record FinOrd (A : Set) : Set where
   constructor MkFinOrd
@@ -336,25 +393,39 @@ record FinOrd (A : Set) : Set where
     card : ℕ
     allA : List A
     each∈ : ∀ a → a ∈ allA
+    uniqueness : mapL (λ a → ∈toℕ (each∈ a)) allA == [ 1 ⋯ card ]
 
 open FinOrd {{...}} public 
 
--- e.g., we construct a proof of FinOrd Bool
+-- as an example, we construct a proof of FinOrd Bool
 instance
   finOrdBool : FinOrd Bool
-  finOrdBool = MkFinOrd 2 allBool each∈Bool where
+  finOrdBool = MkFinOrd 2 allBool each∈Bool uniqueBool where
     allBool = false ∷ true ∷ []
     each∈Bool : ∀ b → b ∈ allBool
     each∈Bool true  = There (Here [])
     each∈Bool false = Here _
+    uniqueBool = refl
 
--- types with a FinOrd instance can be mapped to ℕ
+-- Exercise: Can you define another element of FinOrd Bool ?
+
+-- An instance of FinOrd A defines a map from A to ℕ
 
 toℕ : {A : Set} → {{FA : FinOrd A}} → A → ℕ
 toℕ a = ∈toℕ (each∈ a)
--- Exercise: Why can we not write toℕ = ∈toℕ ∘ each∈ ?
 
--- now, ℕ has a boolean valued (i.e. decidable) equality
+-- Exercise: Why can we not write toℕ = ∈toℕ ∘ each∈ ?
+-- Answer: because each∈ is a dependent function and
+--   we defined _∘_ only for nondependent functions. 
+--
+-- Note that with this definition, we can now write the
+-- type of the "uniqueness" component of FinOrd as
+-- mapL toℕ allA = [ 1 ⋯ card ].
+
+-- We want to show that an element of FinOrd A  defines
+-- a (boolean valued, thus decidable) equality and a
+-- boolean valued "smaller than" relation on A.
+-- First, ℕ has a boolean valued equality
 
 infix 30 _===ℕ_
 
@@ -364,7 +435,7 @@ Zero   ===ℕ Succ m = false
 Succ n ===ℕ Zero   = false
 Succ n ===ℕ Succ m = n ===ℕ m
 
--- and a boolean "smaller than" relation:
+-- and a boolean valued "smaller than" relation:
 
 infix 30 _<ℕ_
 
@@ -374,8 +445,8 @@ Zero   <ℕ Succ m = true
 Succ n <ℕ Zero   = false
 Succ n <ℕ Succ m = n <ℕ m
 
--- now, using toℕ, we can define similar relations
--- for any type that has the FinOrd structure
+-- Using toℕ, we can define similar relations
+-- for any type with a given FinOrd structure
 
 infix 30 _===_ _<_
 
@@ -383,12 +454,27 @@ _===_ _<_ : {A : Set} → {{FA : FinOrd A}} → A → A → Bool
 a === b = toℕ a ===ℕ toℕ b
 a < b   = toℕ a <ℕ toℕ b
 
--- now , we can implement a variant of ordered almost exactly
--- like in the paper:
+-- And with this, we can implement a variant of ordered
+-- almost exactly like in the paper:
 
 ordered : {A B : Set} → {{ FB : FinOrd B }} → (List (A → B)) → A → A → Bool
 ordered []       a b = true
 ordered (d ∷ ds) a b = d a < d b || d a === d b  &&  ordered ds a b   
+
+-- In the paper, there is the "range" for any bounded, enumerated type:
+-- rng :: (Bounded a, Enum a) => [a]
+-- rng = [minBound..maxBound]
+--
+-- In our setting, allA plays this role. So we define  
+-- (making the type parameter explicit is a matter of taste...):
+
+rng : (A : Set) → {{FinOrd A}} → List A
+rng A = allA
+
+-- Exercise: for finOrdBool : FinOrd Bool  given above
+-- and the other element of FinOrd Bool you (hopefully)
+-- found in the exercise there, compare the resulting
+-- relations _===_ and _<_ !
 
 #+end_src agda2
 
@@ -400,9 +486,6 @@ ordered (d ∷ ds) a b = d a < d b || d a === d b  &&  ordered ds a b
        (Bounded b , Enum b , Eq b) => ...
 *** foldTree
 #+begin_src agda2
-
-id : {A : Set} → A → A
-id x = x
 
 infixr 25 _++_
 _++_ : {A : Set} → List A → List A → List A
@@ -467,12 +550,269 @@ appropriate places
 *** discussed folds in general and some
 special cases: foldList, foldr, foldFalse, foldℕ
 *** see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_221129.jpg][Whiteboard]]
+*** Tim (Dec 26th): some code
+#+begin_src agda2
+
+-- for foldList and foldℕ see above.
+
+-- We define the type False
+
+data False : Set where
+
+-- and the corresponding fold (ex falso quodlibet)
+
+foldFalse : {A : Set} → False → A
+foldFalse ()    -- this is an "absurd" pattern matching
+
+-- foldr  ... a (better?) fold for lists
+
+foldr : {A B : Set} → (A → B → B) → B → List A → B
+foldr f e []       = e
+foldr f e (a ∷ as) = f a (foldr f e as)
+
+-- the fold for Bool:
+
+foldBool : {A : Set} → A → A → Bool → A
+foldBool casetrue casefalse true  = casetrue
+foldBool casetrue casefalse false = casefalse
+
+-- is more commonly written like this:
+
+if_then_else_ : {A : Set} → Bool → A → A → A
+if b then t else f = foldBool t f b
+
+-- Exercise: compare foldr with foldList !
+
+#+end_src agda2
 ** Session December 6th
 *** discussed universal property of foldr
 *** checked for example sum
 *** fusion law for foldr
 *** made an example for neg ∘ sum
 *** see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_20221206_1050.jpg]Whiteboard_CS_20221206_1050.jpg]], [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_20221206_1120.jpg][Whiteboard_CS_20221206_1120.jpg]], [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_20221206_1146.jpg][Whiteboard_CS_20221206_1146.jpg]]
+*** Tim (Dec 26th): some code
+#+begin_src agda2
+
+-- in the paper we read: ...the universal property for the standard foldr 
+-- on lists states, for strict h , that h = foldr f e precisely if
+-- h [] = e
+-- h (a:as) = f a (h as)
+--
+-- We have to be a little more exact about the equalities here. h = foldr f e
+-- is meant to be an extensional equality of functions. Let's define notation
+-- for this:
+
+infix 9 _=∙=_  -- type \.1  to get ∙  
+
+_=∙=_ : {A B : Set} → (A → B) → (A → B) → Set
+_=∙=_ {A} f g = (a : A) → f a == g a  
+
+-- The equation h [] = e is a simple equation (we have to write it with _==_).
+-- The 2nd equation is meant to hold for any a : A and any as : List A.
+-- So, mathematically, the universal prop. of foldr says:
+-- h =∙= foldr f e   ⇔   1) h [] == e
+--                       2) ∀ a : A . ∀ as : List A . h (a ∷ as) == f a (h as)
+
+-- Let's define types, depending on h, f an e, that express
+-- the two equations: The first one is a simple equality (depending
+-- only on h and e):
+
+FoldrUPCond1 : {A B : Set} → (List A → B) → B → Set
+FoldrUPCond1 h e =   h [] == e 
+
+-- the second depends only on h and f and is a quantified equality:
+
+FoldrUPCond2 : {A B : Set} → (List A → B) → (A → B → B) → Set
+FoldrUPCond2 {A} h f = (a : A) → (as : List A) →
+                       h (a ∷ as) == f a (h as)
+
+-- That h, f and e satisfy the two conditions can now be expressed
+-- by the cartesian product of FoldrUPCond1 h f e and FoldrUPCond2 h f e, and
+-- the universal property says that this type is "logically equivalent"
+-- to the type h =∙= foldr f e. "Logical equivalence" between two types
+-- means just that we have functions in both directions -- we do not
+-- need these functions to be inverses of each other (compare notes
+-- on "equivalence" of October 25th above).
+-- Let's define a type for logical equivalence:
+
+infix 8 _⇔_  -- \iff
+
+record _⇔_ (A B : Set) : Set where
+  constructor Mk⇔
+  field
+    to   : A → B
+    from : B → A
+
+-- We can now state the universal property of foldr as
+
+FoldrUP : {A B : Set} → (h : List A → B) → (f : A → B → B) → (e : B) →
+          h =∙= foldr f e ⇔ (FoldrUPCond1 h e × FoldrUPCond2 h f)
+          
+-- and prove it using the definition of foldr:
+
+FoldrUP h f e = Mk⇔ to from where
+  -- we define a helper function for the
+  -- second component of "to".
+  -- Note that we don't need induction on as!
+  to2 : h =∙= foldr f e → FoldrUPCond2 h f
+  to2 hEfo a as = 
+    h (a ∷ as)
+      =⟨ hEfo (a ∷ as) ⟩
+    foldr f e (a ∷ as)
+      =⟨ refl {- Def. of foldr -}  ⟩
+    f a (foldr f e as)
+      =⟨ cong (f a) (symm (hEfo as)) ⟩
+    f a (h as)
+      QED
+      
+  to : h =∙= foldr f e → FoldrUPCond1 h e × FoldrUPCond2 h f
+  to hEfo = (hEfo [] , to2 hEfo)
+
+  -- for from, we do need induction!
+  from : FoldrUPCond1 h e × FoldrUPCond2 h f  → (h =∙= foldr f e)
+  from (c1 , c2) [] = c1
+  from (c1 , c2) (a ∷ as) = 
+    h (a ∷ as)
+      =⟨ c2 a as ⟩
+    f a (h as)
+      =⟨ cong (f a) (from (c1 , c2) as) ⟩
+    f a (foldr f e as)
+      QED
+
+-- Let's formulate and prove the fusion law for foldr similarly:
+
+FoldrFusionCond1 : {B B' : Set} → (B → B') → B → B' → Set
+FoldrFusionCond1 g e e' =   g e == e'
+
+FoldrFusionCond2 : {A B B' : Set} → (B → B') → (A → B → B) → B → (A → B' → B') → Set
+FoldrFusionCond2 {A} g f e f' =   (a : A) → g ∘ f a ∘ foldr f e =∙= f' a ∘ g ∘ foldr f e
+
+-- the fusion conditions are logically equivalent to the FoldrUP conditions
+-- for the function h = g ∘ foldr f e:
+
+FoldrFusion⇔UP1 : {A B B' : Set} → (g : B → B') → (f : A → B → B) → (e : B) → (e' : B') →
+                  FoldrFusionCond1 g e e' ⇔ FoldrUPCond1 (g ∘ foldr f e) e'
+FoldrFusion⇔UP1 g f e e' = Mk⇔ to from where
+  to : FoldrFusionCond1 g e e' → FoldrUPCond1 (g ∘ foldr f e) e'
+  to fc1 = 
+    (g ∘ foldr f e) []
+      =⟨ refl {- Def. _∘_ -} ⟩
+    g (foldr f e [])
+      =⟨ refl {- Def. foldr -} ⟩
+    g e
+      =⟨ fc1 ⟩
+    e'
+      QED
+  from : FoldrUPCond1 (g ∘ foldr f e) e' → FoldrFusionCond1 g e e'
+  from c1 = 
+    g e
+      =⟨ refl {- Def. foldr -} ⟩
+    g (foldr f e [])
+      =⟨ c1 ⟩
+    e'
+      QED
+
+-- Note that, although both of the types represent quantified (equality) statements,
+-- we again do not need induction!
+
+FoldrFusion⇔UP2 : {A B B' : Set} → (g : B → B') → (f : A → B → B) → (e : B) → (f' : A → B' → B') →
+                  FoldrFusionCond2 g f e f' ⇔ FoldrUPCond2 (g ∘ foldr f e) f'
+FoldrFusion⇔UP2 g f e f' = Mk⇔ to from where
+  to : FoldrFusionCond2 g f e f' → FoldrUPCond2 (g ∘ foldr f e) f'
+  to fc2 a as = 
+    g (foldr f e (a ∷ as))
+      =⟨ refl {- Def. foldr -} ⟩
+    g (f a (foldr f e as))
+      =⟨ fc2 a as ⟩
+    f' a (g (foldr f e as))
+      QED 
+  from : FoldrUPCond2 (g ∘ foldr f e) f' → FoldrFusionCond2 g f e f'
+  from c1 a as = 
+    g (f a (foldr f e as))
+      =⟨ refl {- Def. foldr -}  ⟩
+    g ( foldr f e (a ∷ as))
+      =⟨ c1 a as ⟩
+    f' a (g (foldr f e as))
+      QED
+
+-- We prove that logical equivalence is an equivalence relation
+
+⇔Refl : {A : Set} → A ⇔ A
+⇔Refl = Mk⇔ id id
+
+⇔Symm : {A B : Set} → A ⇔ B → B ⇔ A
+⇔Symm A⇔B = Mk⇔ (A⇔B .from) (A⇔B .to) where
+  open _⇔_
+
+⇔Trans : {A B C : Set} → A ⇔ B → B ⇔ C → A ⇔ C
+⇔Trans A⇔B B⇔C = Mk⇔ ((B⇔C .to) ∘ (A⇔B .to)) ((A⇔B .from) ∘ (B⇔C .from)) where
+  open _⇔_
+
+-- , introduce syntax for "⇔-Reasoning" (similar to the by now
+-- familiar equational reasoning):
+
+_QED⇔ : (A : Set) → A ⇔ A
+A QED⇔ = ⇔Refl
+
+infixr 8 _⇔⟨_⟩_
+
+_⇔⟨_⟩_ : (A : Set) → {B C : Set} → A ⇔ B → B ⇔ C → A ⇔ C
+A ⇔⟨ A⇔B ⟩ B⇔C = ⇔Trans A⇔B B⇔C
+
+-- and, using 
+
+→× : {A A' B B' : Set} → (A → A') × (B → B') → A × B → A' × B'
+→× (f , g) (a , b) = (f a , g b)
+
+-- (i.e. "a pair of functions defines a function of pairs"), we
+-- prove that a pair of logical equivalence implies a logical equivalence
+-- of pairs:
+
+⇔× : {A A' B B' : Set} → (A ⇔ A') × (B ⇔ B') → A × B  ⇔  A' × B'
+⇔× (A⇔A' , B⇔B') = Mk⇔ (→× (A⇔A' .to , B⇔B' .to)) (→× ((A⇔A' .from) , (B⇔B' .from))) where
+  open _⇔_
+
+-- Now we can prove the fusion law for foldr:
+
+FoldrFusion : {A B B' : Set} → (g : B → B') → (f : A → B → B) → (e : B) →
+              (f' : A → B' → B') → (e' : B') →
+              g ∘ foldr f e =∙= foldr f' e'  ⇔ FoldrFusionCond1 g e e' × FoldrFusionCond2 g f e f'
+FoldrFusion {A} g f e f' e' =
+  let
+    h = g ∘ foldr f e
+  in
+    h =∙= foldr f' e'
+      ⇔⟨ FoldrUP h f' e' ⟩
+    FoldrUPCond1 h e' × FoldrUPCond2 h f'
+      ⇔⟨ ⇔× (⇔Symm (FoldrFusion⇔UP1 g f e e') , ⇔Symm (FoldrFusion⇔UP2 g f e f')) ⟩
+    FoldrFusionCond1 g e e' × FoldrFusionCond2 g f e f'
+      QED⇔
+
+-- The stronger condition
+
+FoldrFusionCond2' : {A B B' : Set} → (B → B') → (A → B → B) → (A → B' → B') → Set
+FoldrFusionCond2' {A} g f f' = (a : A) → g ∘ f a =∙= f' a ∘ g
+
+-- of course implies FoldrFusionCond2:
+
+FoldrFusionCond2'→Cond2 :  {A B B' : Set} → (g : B → B') → (f : A → B → B) →
+                           (e : B) → (f' : A → B' → B') →
+                           FoldrFusionCond2' g f f' → FoldrFusionCond2 g f e f'
+FoldrFusionCond2'→Cond2 g f e f' c2' a as = c2' a (foldr f e as) 
+
+-- Thus we can prove:
+
+FoldrFusion' : {A B B' : Set} → (g : B → B') → (f : A → B → B) → (e : B) →
+               (f' : A → B' → B') → (e' : B') →
+               FoldrFusionCond1 g e e' × FoldrFusionCond2' g f f' →
+               g ∘ foldr f e =∙= foldr f' e'
+FoldrFusion' g f e f' e' (fc1 , fc2') =
+  _⇔_.from (FoldrFusion g f e f' e') (fc1 , FoldrFusionCond2'→Cond2 g f e f' fc2')
+
+-- Note that this is not a logical equivalence, but just an implication!
+
+
+#+end_src agda2
 ** Session December 13th
 *** Josefine presented the homework to prove the fusion law from the universal property of foldr
 *** Discussed conditions on g such that the fusion law allows us to define
@@ -482,3 +822,81 @@ This is possible e.g. if g is an is an isomorphism or if g is constant.
 *** Read first § of chpt.4: Gibbons wants to write mkTree as a foldr. We wrote down
 the types of mkTree and the parameters for foldr.
 *** see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_221213_1.jpg][Whiteboard_CS_221213_1.jpg]] , [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_221213_2.jpg][Whiteboard_CS_221213_2.jpg]] , [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_221213_3.jpg][Whiteboard_CS_221213_3.jpg]]
+*** Tim (Jan 2nd): some more code
+#+begin_src agda2
+
+-- I'd like to complete the definition of mkTree using, as in the
+-- code section of Nov 13th above, the class FinOrd instead of the
+-- paper's type class constraints (Enum, Bounded, Eq ...) 
+
+-- First a standard function: Lists can be filtered w.r.t. a boolean predicate:
+
+filter : {A : Set} → (A → Bool) → List A → List A
+filter p [] = []
+filter p (a ∷ as) = if (p a) then a ∷ filter p as else filter p as
+
+-- Note the foldBool in if_then_else_ disguise!
+
+-- Using filter, we can define ptn as:
+
+ptn : {A B : Set} → {{ FinOrd B }} → (A → B) → List A → List (List A)
+ptn {A} {B} d as = mapL (λ m → filter ((m ===_) ∘ d) as) (rng B)
+
+-- (The "list comprehension" notation used in the paper is just syntactic sugar for this.)
+-- Now we can complete the definition of mkTree
+
+mkTree : {A B : Set} → {{ FinOrd B }} → List (A → B) → List A → Tree (List A)
+mkTree []       as = Leaf as
+mkTree (d ∷ ds) as = Node (mapL (mkTree ds) (ptn d as))
+
+-- and give the definition of treesort:
+
+treesort : {A B : Set} → {{ FinOrd B }} → List (A → B) → List A → List A
+treesort ds as = flatten (mkTree ds as)
+
+
+
+-- Fusion law for foldTree
+--
+-- Similar to what was done for foldr, we want to formulate
+-- and prove the universal property and the fusion law for
+-- foldTree  ... t.b.c.
+
+#+end_src agda2
+** Session January 3rd
+*** discussed the Agda implementation of FoldUP
+*** in particular we discussed the many different "equalities"
+in the paper, in Haskell, and in our Agda implementation:
+**** _=_  used in the paper (and in mathematics):
+***** heavily overloaded !!
+***** in Zermelo-Fraenkel set theory (where everything is a set !)
+it has a precise meaning: two sets are equal iff they have the
+same elements!
+***** the symbol is used in programming languages (including Haskell and Agda)
+as an assignment operator (not as a relation at all!)
+**** _==_
+***** in Haskell has type
+_==_ :: (Eq b) => b -> b -> bool
+where Eq is a Haskell type class
+***** in our Agda implementation it has type
+_==_ : {A : Set} → A → A → Set
+and is called "propositional equality" or "identity type"
+(compare script and literature given there).
+**** _===ℕ_ : ℕ → ℕ → Bool
+as used above is (as any Agda function) total and thus
+gives a decidable equality relation on ℕ.
+-- Exercise: prove that ∀ n m : ℕ.  n == m  ⇔  (n ===ℕ m) == true   !
+**** _===_ : {A : Set} → {{FinOrd A}} → A → A → Bool 
+as defined above defines a boolean valued equality for any
+FinOrd-instance of type A
+-- Exercise (might be tricky...): prove
+   {A : Set} → {{FinOrd A}} → (a b : A) → a == b  ⇔  (a === b) == true
+**** _=∙=_  Notation we use above for extensional (i.e. pointwise) equality
+of functions.
+-- Exercises: 
+   - prove   {A B : Set} → (f g : A → B) → f == g → f =∙= g   !
+   - what about 
+             {A B : Set} → (f g : A → B) → f =∙= g → f == g   ?
+*** see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230103.jpg][Whiteboard_CS_230103.jpg]] 
+
+             
