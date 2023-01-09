@@ -912,11 +912,13 @@ of functions.
 
 -- Fusion law for foldTree
 --
--- Similar to what was done for foldr, we want to formulate
+-- Similar to what was done above for foldr, we want to formulate
 -- and prove the universal property and the fusion law for
 -- foldTree
 
--- We defined foldTree mutually with foldTreeMap:
+-- After running into some difficulties with a definition that
+-- needed the {-# TERMINATION #-}-pragma to be accepted, we 
+-- defined foldTree mutually with foldTreeMap:
 -- mutual
 --   foldTree : {A B : Set} → (A → B) → (List B → B) → Tree A → B
 --   foldTree f g (Leaf a)        = f a
@@ -930,20 +932,17 @@ of functions.
 --   h = foldt f g    <->   h . Leaf = f   and   h . Node = g . map h
 --
 -- These equalities are all to be interpreted as extensional equalities
--- of functions (of types Tree A → B , A → B, and List (Tree A) → B , respectively
+-- of functions (of types Tree A → B , A → B, and List (Tree A) → B , respectively.
+-- So, to prove the universal property for foldTree, for any h, f, g of appropriate
+-- types, we have to provide an element of the type
+--    h =∙= foldTree f g  ⇔  (h ∘ Leaf =∙= f)  ×  (h ∘ Node =∙= g ∘ mapL h)
+--
+-- In the case of foldr above, we introduced type families for the components on
+-- the right. We could do this here as well (something like FoldTreeUPCond1 h f ... a.s.o.).
+-- But it would make the code longer and less readable, so we won't do this here.
 
--- Again, we define type families for the conditions
-
-FoldTreeUPCond1 : {A B : Set} → (Tree A → B) → (A → B) → Set
-FoldTreeUPCond1 h f = h ∘ Leaf =∙= f
-
-FoldTreeUPCond2 : {A B : Set} → (Tree A → B) → (List B → B) → Set
-FoldTreeUPCond2 h g = h ∘ Node =∙= g ∘ mapL h
-
-FoldTreeUPCond : {A B : Set} → (Tree A → B) → (A → B) → (List B → B) → Set
-FoldTreeUPCond h f g = (h ∘ Leaf =∙= f)  ×  (h ∘ Node =∙= g ∘ mapL h) -- FoldTreeUPCond1 h f × FoldTreeUPCond2 h g
-
--- to prove foldTreeUP, we need that mapL preserves _=∙=_ !
+-- However, we need some preliminaries:
+-- 1) mapL preserves _=∙=_ !
 
 mapLPres=∙= : {A B : Set} → (f g : A → B) → f =∙= g → mapL f =∙= mapL g
 mapLPres=∙= f g fEEg [] = refl
@@ -959,7 +958,7 @@ mapLPres=∙= f g fEEg (a ∷ as) =
   mapL g (a ∷ as)
     QED
 
--- We will also need that =∙= is an equivalence relation
+-- 2) =∙= is an equivalence relation
 
 ==→=∙= : ∀ {A B : Set} {f g : A → B} → f == g → f =∙= g
 ==→=∙= refl a = refl
@@ -983,8 +982,8 @@ infixr 8 _=∙=⟨_⟩_
 _=∙=⟨_⟩_ : {A B : Set} → (f : A → B) → {g h : A → B} → f =∙= g → g =∙= h → f =∙= h
 f =∙=⟨ fEEg ⟩ gEEh = =∙=Trans fEEg gEEh
 
--- Moreover, we need to prove that for any function g, precomposition with
--- g as well as postcomposition with g preserve =∙= :
+-- 3) for any function g, precomposition with
+--    g as well as postcomposition with g preserve =∙= :
 
 pre∘Pres=∙= : {A B C : Set} → (g : A → B) → {f h : B → C} →
                f =∙= h → f ∘ g =∙= h ∘ g
@@ -995,9 +994,9 @@ post∘Pres=∙= : {A B C : Set} → (g : B → C) → {f h : A → B} →
 post∘Pres=∙= g {f} {h} fEh a = cong g (fEh a)
 
 
--- The final preliminary before proving the universal property is the following
--- lemma, which follows easily from mapPres=∙= and the property that
--- foldTreeMap f g =∙= mapL (foldTree f g) we proved earlier.
+-- 4) The final preliminary before proving the universal property is the following
+--    lemma, which follows easily from mapPres=∙= and the property that
+--    foldTreeMap f g =∙= mapL (foldTree f g) we proved earlier.
 
 foldTreeUPLemma : {A B : Set} → (h : Tree A → B) → (f : A → B) → (g : List B → B) →
                   h =∙= foldTree f g   →  mapL h =∙= foldTreeMap f g
@@ -1009,10 +1008,13 @@ foldTreeUPLemma h f g hEfTfg =
     foldTreeMap f g
       QED=∙=
 
+-- Now we can formulate and prove the universal property of foldTree
+
 foldTreeUP : {A B : Set} → (h : Tree A → B) → (f : A → B) → (g : List B → B) →
-             h =∙= foldTree f g    ⇔   FoldTreeUPCond h f g
+             h =∙= foldTree f g  ⇔
+             (h ∘ Leaf =∙= f)  ×  (h ∘ Node =∙= g ∘ mapL h)
 foldTreeUP h f g = Mk⇔ to from where
-  to2 : h =∙= foldTree f g → FoldTreeUPCond2 h g
+  to2 : h =∙= foldTree f g → h ∘ Node =∙= g ∘ mapL h
   to2 hEfTfg =
     h ∘ Node
       =∙=⟨ pre∘Pres=∙= Node hEfTfg ⟩
@@ -1022,13 +1024,15 @@ foldTreeUP h f g = Mk⇔ to from where
       =∙=⟨ post∘Pres=∙= g (=∙=Symm (foldTreeUPLemma h f g hEfTfg)) ⟩
     g ∘ mapL h
       QED=∙=
-  to : h =∙= foldTree f g → FoldTreeUPCond h f g
+  to : h =∙= foldTree f g →
+       (h ∘ Leaf =∙= f)  ×  (h ∘ Node =∙= g ∘ mapL h)
   to hEfTfg = ((λ a → hEfTfg (Leaf a)) , to2 hEfTfg)
 
-  -- as we defined foldTree mutually with foldTreeMap, we are bound to
-  -- also define from (which proves a property of foldTree) mutually with fromMap:
+  -- as we defined foldTree mutually with foldTreeMap, we are bound to also
+  -- define from (which proves a property of foldTree) mutually with fromMap:
   mutual
-    from : FoldTreeUPCond h f g → h =∙= foldTree f g
+    from : (h ∘ Leaf =∙= f)  ×  (h ∘ Node =∙= g ∘ mapL h) →
+           h =∙= foldTree f g
     from (c1 , c2) (Leaf a)   = c1 a
     from (c1 , c2) (Node tas) = 
       h (Node tas)
@@ -1038,7 +1042,8 @@ foldTreeUP h f g = Mk⇔ to from where
       g (foldTreeMap f g tas)
         QED
         
-    fromMap : FoldTreeUPCond h f g → mapL h =∙= foldTreeMap f g
+    fromMap : (h ∘ Leaf =∙= f)  ×  (h ∘ Node =∙= g ∘ mapL h) →
+              mapL h =∙= foldTreeMap f g
     fromMap (c1 , c2) [] = refl
     fromMap (c1 , c2) (t ∷ ts) = 
        h t ∷ mapL h ts
