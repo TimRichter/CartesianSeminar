@@ -932,14 +932,14 @@ of functions.
 --   h = foldt f g    <->   h . Leaf = f   and   h . Node = g . map h
 --
 -- These equalities are all to be interpreted as extensional equalities
--- of functions (of types Tree A → B , A → B, and List (Tree A) → B , respectively.
--- So, to prove the universal property for foldTree, for any h, f, g of appropriate
--- types, we have to provide an element of the type
+-- of functions (of types Tree A → B , A → B, and List (Tree A) → B , respectively).
+-- So, to prove the universal property, for any h, f, g of appropriate
+-- types we have to provide an element of the type
 --    h =∙= foldTree f g  ⇔  (h ∘ Leaf =∙= f)  ×  (h ∘ Node =∙= g ∘ mapL h)
 --
 -- In the case of foldr above, we introduced type families for the components on
 -- the right. We could do this here as well (something like FoldTreeUPCond1 h f ... a.s.o.).
--- But it would make the code longer and less readable, so we won't do this here.
+-- But it would make the code longer and less readable, so we won't do it.
 
 -- However, we need some preliminaries:
 -- 1) mapL preserves _=∙=_ !
@@ -963,6 +963,9 @@ mapLPres=∙= f g fEEg (a ∷ as) =
 ==→=∙= : ∀ {A B : Set} {f g : A → B} → f == g → f =∙= g
 ==→=∙= refl a = refl
 
+refl∙ : ∀ {A B : Set} {f : A → B} → f =∙= f
+refl∙ = ==→=∙= refl
+
 =∙=Trans : ∀ {A B : Set} {f g h : A → B} → f =∙= g → g =∙= h → f =∙= h
 =∙=Trans fEg gEh a = trans (fEg a) (gEh a)
 
@@ -975,7 +978,7 @@ mapLPres=∙= f g fEEg (a ∷ as) =
 infix 9 _QED=∙=
 
 _QED=∙= : {A B : Set} → (f : A → B) → f =∙= f
-f QED=∙= = ==→=∙= refl
+f QED=∙= = refl∙
 
 infixr 8 _=∙=⟨_⟩_
 
@@ -994,9 +997,9 @@ post∘Pres=∙= : {A B C : Set} → (g : B → C) → {f h : A → B} →
 post∘Pres=∙= g {f} {h} fEh a = cong g (fEh a)
 
 
--- 4) The final preliminary before proving the universal property is the following
---    lemma, which follows easily from mapPres=∙= and the property that
---    foldTreeMap f g =∙= mapL (foldTree f g) we proved earlier.
+-- 4) Our final preliminary is the following lemma, which follows easily
+--    from mapPres=∙= and that foldTreeMap f g =∙= mapL (foldTree f g), a
+--    fact we proved above.
 
 foldTreeUPLemma : {A B : Set} → (h : Tree A → B) → (f : A → B) → (g : List B → B) →
                   h =∙= foldTree f g   →  mapL h =∙= foldTreeMap f g
@@ -1034,7 +1037,7 @@ foldTreeUP h f g = Mk⇔ to from where
     from : (h ∘ Leaf =∙= f)  ×  (h ∘ Node =∙= g ∘ mapL h) →
            h =∙= foldTree f g
     from (c1 , c2) (Leaf a)   = c1 a
-    from (c1 , c2) (Node tas) = 
+    from (c1 , c2) (Node tas) =
       h (Node tas)
         =⟨ c2 tas ⟩
       g (mapL h tas)
@@ -1052,5 +1055,68 @@ foldTreeUP h f g = Mk⇔ to from where
          =⟨ cong (foldTree f g t ∷_) (fromMap (c1 , c2) ts) ⟩
        foldTree f g t ∷ foldTreeMap f g ts
          QED
-    
+
+-- Fusion law for foldTree
+-- Gibbons doesn't formulate this as an equivalence but only states
+-- that (for h f g f' g' of appropriate types) we have
+--
+--     (h ∘ f =∙= f') × (h ∘ g =∙= g' ∘ mapL h) →
+--     h ∘ foldTree f g =∙= foldTree f' g'
+--
+
+-- Again, we need preliminaries:
+
+{- do not really need this as its proof is trivial ... but why?
+-- Associativity of ∘
+
+∘Assoc : {A B C D : Set} → (f : C → D) → (g : B → C) → (h : A → B) →
+         f ∘ g ∘ h =∙= f ∘ (g ∘ h)
+∘Assoc f g h = refl∙  -- why does this work?
+-}
+
+-- mapL preserves function composition
+
+mapPres∘ : {A B C : Set} → (f : B → C) → (g : A → B) →
+            mapL f ∘ mapL g =∙= mapL (f ∘ g)
+mapPres∘ f g [] = refl
+mapPres∘ f g (a ∷ as) = 
+  (mapL f ∘ mapL g) (a ∷ as)
+    =⟨ refl {- Def. _∘_ -} ⟩
+  mapL f (mapL g (a ∷ as))
+    =⟨ refl {- Def. mapL -} ⟩
+  mapL f (g a ∷ mapL g as)
+    =⟨ refl {- Def. mapL again and Def _∘_ -}⟩
+  (f ∘ g) a ∷ (mapL f ∘ mapL g) as
+    =⟨ cong ((f ∘ g) a ∷_) (mapPres∘ f g as) ⟩
+  (f ∘ g) a ∷ mapL (f ∘ g) as
+    QED
+
+
+foldTreeFusion : {A B B' : Set} → (h : B → B') →
+                 (f  : A → B ) → (g  : List B  → B ) →
+                 (f' : A → B') → (g' : List B' → B') →
+                 (h ∘ f =∙= f') × (h ∘ g =∙= g' ∘ mapL h) →
+                  h ∘ foldTree f g =∙= foldTree f' g'
+foldTreeFusion h f g f' g' (hfEf' , hgEg'mh) =
+  -- idea is simple: we use (the from direction) of foldTreeUP in a special case
+  _⇔_.from (foldTreeUP (h ∘ foldTree f g) f' g') (c1 , c2) where
+    c1 : h ∘ foldTree f g ∘ Leaf =∙= f'
+    c1 = 
+      h ∘ foldTree f g ∘ Leaf
+        =∙=⟨ post∘Pres=∙= h refl∙ ⟩
+      h ∘ f
+        =∙=⟨ hfEf' ⟩
+      f'
+        QED=∙=
+    c2 : h ∘ foldTree f g ∘ Node =∙= g' ∘ mapL (h ∘ foldTree f g)
+    c2 = 
+      h ∘ foldTree f g ∘ Node
+        =∙=⟨ post∘Pres=∙= h (post∘Pres=∙= g (foldTreeMap←foldTree f g)) ⟩
+      h ∘ g ∘ mapL (foldTree f g)
+        =∙=⟨ pre∘Pres=∙= (mapL (foldTree f g)) hgEg'mh ⟩
+      g' ∘ mapL h ∘ mapL (foldTree f g)
+        =∙=⟨ post∘Pres=∙= g' (mapPres∘ h (foldTree f g)) ⟩
+      g' ∘ mapL (h ∘ foldTree f g)
+        QED=∙=
+
 #+end_src agda2
