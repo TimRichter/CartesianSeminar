@@ -348,7 +348,6 @@ filter : {A : Set} → (A → Bool) → List A → List A
 
 #+end_src agda2
 
-
 ** Tim (Nov 13th): Code that might be useful
 #+begin_src agda2
 
@@ -906,7 +905,7 @@ of functions.
    - prove   {A B : Set} → (f g : A → B) → f == g → f =∙= g   !
    - what about 
              {A B : Set} → (f g : A → B) → f =∙= g → f == g   ?
-*** see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230103.jpg][Whiteboard_CS_230103.jpg]] 
+*** see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230103.jpg]Whiteboard_CS_230103.jpg]] 
 ** Tim (Jan 8th)  
 #+begin_src agda2
 
@@ -1118,5 +1117,68 @@ foldTreeFusion h f g f' g' (hfEf' , hgEg'mh) =
         =∙=⟨ post∘Pres=∙= g' (mapPres∘ h (foldTree f g)) ⟩
       g' ∘ mapL (h ∘ foldTree f g)
         QED=∙=
+
+#+end_src agda2
+** Session January 10th
+*** we discussed §4, in particular 
+**** why Gibbons introduces comp
+**** treesort = comp flatten . mkTree , Alexandra wrote down
+a derivation, see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230110_1.jpg][Whiteboard_CS_230110_1.jpg]]
+**** also compare Nicola's type analysis in [[https://timrichter.github.io/CartesianSeminar/2210/radix.dvi.pdf][radix.dvi.pdf]] 
+**** discussed pre- and post-composition using a diagram for _∘_
+see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230110_2.jpg][Whiteboard_CS_230110_2.jpg]]
+**** using fusion for foldr, we derived that in order to write
+treesort as foldr et ft, we need to set
+  et = comp flatten Leaf
+(see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230110_3.jpg][Whiteboard_CS_230110_3.jpg]])
+**** Homework : look into the derivation of ft !
+*** Code
+#+begin_src agda2
+
+-- mkTree "is" a foldr:
+
+--   We had previously defined mkTree as follows:
+--
+--   mkTree : {A B : Set} → {{ FinOrd B }} → List (A → B) → List A → Tree (List A)
+--   mkTree []       as = Leaf as
+--   mkTree (d ∷ ds) as = Node (mapL (mkTree ds) (ptn d as))
+
+--   Let's first define the "fm". As ptn needs the instance
+--   argument {{FinOrd B}}, fm needs this as well 
+
+fm : {A B : Set} → {{ FinOrd B }} → (A → B) → (List A → Tree(List A)) →
+            List A → Tree(List A)
+fm d g = Node ∘ mapL g ∘ ptn d  -- <- note that this is a funcion of type List A → Tree(List A)  !! 
+
+mkTreeIsFoldr : {A B : Set} → {{finB : FinOrd B }} →
+                mkTree {A} {B} =∙= foldr (fm {A} {B} {{finB}}) Leaf
+mkTreeIsFoldr [] = refl
+mkTreeIsFoldr (d ∷ ds) = 
+  (λ as → Node (mapL (mkTree ds) (ptn d as)))
+    =⟨ refl {- η-Rule -} ⟩
+  (Node ∘ (mapL (mkTree ds)) ∘ (ptn d))
+    =⟨ refl {- Def. fm -} ⟩
+  fm d (mkTree ds)
+    =⟨ cong (fm d) (mkTreeIsFoldr ds) ⟩
+  fm d (foldr fm Leaf ds)
+    QED
+
+--   Two remarks
+--   1. we had to use induction (over the first argument of type List(A → B)
+--      to prove mkTreeIsFold. Thus we cannot hope to be able to prove the stronger
+--         mkTree == foldr fm Leaf.
+--   2. For any ds, we thus proved
+--         mkTree ds == foldr fm Leaf ds
+--      both sides are functions (of type List A → Tree(List A)),
+--      and we proved that these not merely behave the same on any input,
+--      but really are the same as λ-Terms (or as algorithms) !
+
+-- Towards writing treesort as a foldr
+--   we first define comp as a synonym for  _∘_
+
+comp : {A B C : Set} → (B → C) → (A → B) → (A → C)
+comp = _∘_
+
+--   t.b.c.
 
 #+end_src agda2
