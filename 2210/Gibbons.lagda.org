@@ -221,7 +221,7 @@ open Instance public
 
 length : {A : Set} → List A → ℕ
 length [] = 0
-length ( a ∷ as ) = length as + 1
+length ( a ∷ as ) = 1 + length as
 
 -- Booleans:
 
@@ -373,11 +373,16 @@ data _∈_ {A : Set} : A → List A → Set where
   There : {a b : A} → {bs : List A} → a ∈ bs → a ∈ b ∷ bs
 
 -- An element (i.e. proof) of a ∈ as gives a position
--- in as where a occurs (note that we start counting
--- positions at 1 !!):
+-- in as where a occurs (we start positions at 0 !!):
 ∈toℕ : {A : Set} → {a : A} → {as : List A} → a ∈ as → ℕ
-∈toℕ (Here _)  = 1
+∈toℕ (Here _)  = 0
 ∈toℕ (There p) = Succ (∈toℕ p)
+
+-- We prove a property we need later (Appendix B)
+∈MapL : {A B : Set} → (f : A → B) → {a : A} → {as : List A} →
+        a ∈ as → f a ∈ mapL f as
+∈MapL f (Here bs) = Here (mapL f bs)
+∈MapL f (There a∈bs) = There (∈MapL f a∈bs)
 
 -- Here is the fold of the type ℕ:
 foldℕ : {A : Set} → A → (A → A) → ℕ → A
@@ -390,10 +395,9 @@ infix 20 [_⋯_]
 
 {-# TERMINATING #-}
 [_⋯_] : ℕ → ℕ → List ℕ
-[ Zero ⋯ Zero ] = [ 0 ]
-[ Zero ⋯ Succ m ] = 0 ∷ ([ Succ Zero ⋯ Succ m ])
+[ Zero ⋯ m ] = 0 ∷ [ (Succ Zero) ⋯ m ]
 [ Succ n ⋯ Zero ] = []
-[ Succ n ⋯ Succ m ] = mapList Succ [ n ⋯ m ]
+[ Succ n ⋯ Succ m ] = mapL Succ [ n ⋯ m ]
 
 -- and for the list of numbers from 0 to n
 0⋯ : ℕ → List ℕ
@@ -412,7 +416,8 @@ record FinOrd (A : Set) : Set where
     card : ℕ
     allA : List A
     each∈ : ∀ a → a ∈ allA
-    uniqueness : mapL (λ a → ∈toℕ (each∈ a)) allA == [ 1 ⋯ card ]
+    -- uniqueness : mapL (λ a → ∈toℕ (each∈ a)) allA == [ 1 ⋯ card ]
+    uniqueness : length allA == card -- this is enough, thanks Nuria!
 
 open FinOrd {{...}} public 
 
@@ -1179,6 +1184,127 @@ mkTreeIsFoldr (d ∷ ds) =
 comp : {A B C : Set} → (B → C) → (A → B) → (A → C)
 comp = _∘_
 
---   t.b.c.
+--  Now, treesort, which was defined as
+--
+--   treesort : {A B : Set} → {{ FinOrd B }} → List (A → B) → List A → List A
+--   treesort ds as = flatten (mkTree ds as)
+--
+--  can be shown to be extensionally equal to  comp flatten ∘ mktree :
+
+treesortWithComp : {A B : Set} → {{ finB : FinOrd B }} →
+                   treesort {A} {B} {{finB}} =∙= comp flatten ∘ mkTree {A} {B}
+treesortWithComp = refl∙
+
+-- Note that, in fact, we can even prove the stronger
+
+strongerTreesortWithComp : {A B : Set} → {{ finB : FinOrd B }} →
+                           treesort {A} {B} {{finB}} == comp flatten ∘ mkTree {A} {B}
+strongerTreesortWithComp = refl
+
+-- i.e. both sides reduce to the same λ expression. Crucial in this is the η-rule :
+
+strongerTreesortWithComp' : {A B : Set} → {{ finB : FinOrd B }} →
+                           treesort {A} {B} {{finB}} == comp flatten ∘ mkTree {A} {B}
+strongerTreesortWithComp' =  -- let's expand the steps
+   treesort
+     =⟨ refl {- η expansion -} ⟩
+   (λ ds → treesort ds)
+     =⟨ refl {- Def. treesort -} ⟩
+   (λ ds → flatten ∘ mkTree ds)
+     =⟨ refl {- Def. comp -} ⟩
+   (λ ds → comp flatten (mkTree ds))
+     =⟨ refl {- Def. _∘_ -} ⟩
+   (λ ds → (comp flatten ∘ mkTree) ds)
+     =⟨ refl {- η reduction -} ⟩
+   (comp flatten ∘ mkTree)
+     QED
+
+
+#+end_src agda2
+** Code from the appendices (Tim 13.01.23)
+*** Appendix B
+
+#+begin_src agda2
+-- We deviate a little from the paper by defining, instead of their "Digit",
+-- the type family Fin
+
+data Fin : ℕ → Set where
+  FZero : {n : ℕ} → Fin (Succ n)
+  FSucc : {n : ℕ} → Fin n → Fin (Succ n)
+
+-- thus, Fin Zero is the empty type, and Fin (Succ n) has
+-- elements  FZero {n}  and  FSucc {n} i  where i : Fin n,
+-- so Fin (Succ n) has exactly one nore element than Fin n.
+
+-- We prove that Fin n is finite by constructing an element of
+-- FinOrd (Fin n)
+
+-- record FinOrd (A : Set) : Set where
+--   constructor MkFinOrd
+--   field
+--     card : ℕ
+--     allA : List A
+--     each∈ : ∀ a → a ∈ allA
+--     uniqueness : mapL (λ a → ∈toℕ (each∈ a)) allA == [ 1 ⋯ card ]
+
+-- "observational" proof of list equality: two nonempty lists are equal
+-- iff their heads and their tails are equal
+{-
+list==Obs : {A : Set} → {a b : A} → {as bs : List A} →
+            a == b → as == bs → (a ∷ as) == (b ∷ bs)
+list==Obs refl refl = refl
+
+mapLComp : {A B C : Set} → (f : B → C) → (g : A → B) →
+           mapL (f ∘ g) =∙= mapL f ∘ mapL g
+mapLComp f g []       = refl
+mapLComp f g (a ∷ as) = cong (f (g a) ∷_) (mapLComp f g as)
+-}
+mapLPresLength : {A B : Set} → (f : A → B) → (as : List A) →
+                 length (mapL f as) == length as
+mapLPresLength f [] = refl
+mapLPresLength f (a ∷ as) = cong Succ (mapLPresLength f as)
+
+
+finFinOrd : (n : ℕ) → FinOrd (Fin n)
+finFinOrd n = MkFinOrd n (allFin n) (each∈Fin n) (uniqueFin n) where
+  allFin : ∀ n → List (Fin n)
+  allFin Zero     = []
+  allFin (Succ n) = FZero ∷ (mapL FSucc (allFin n))
+  each∈Fin : ∀ n i → i ∈ allFin n
+  each∈Fin (Succ n) FZero     = Here _
+  each∈Fin (Succ n) (FSucc i) = There (∈MapL FSucc (each∈Fin n i))
+  uniqueFin : ∀ n → length (allFin n) == n
+  uniqueFin Zero = refl
+  uniqueFin (Succ n) = 
+    Succ (length (mapL FSucc (allFin n)))
+      =⟨ cong Succ (mapLPresLength FSucc (allFin n)) ⟩
+    Succ (length (allFin n))
+      =⟨ cong Succ (uniqueFin n) ⟩
+    Succ n
+      QED
+
+{-  TODO
+
+record Σ (A : Set) (P : A → Set) : Set where
+   constructor _**_
+   field
+     pr₁ : A
+     pr₂ : P pr₁
+
+
+
+divModFam : ℕ → (m : ℕ) → Set 
+divModFam x m = Σ ℕ (λ d → Σ (Fin m) λ r → x == d * m + toℕ {{finFinOrd m}} r)
+
+divMod : (n : ℕ) → (m : ℕ) → {m' : ℕ} → {m == Succ m'} →
+         divModFam n m
+divMod n m = {!!}
+
+
+_div_ : ℕ → (n : ℕ) → {m : ℕ} → {n == Succ m} → ℕ
+
+_mod_ : ℕ → (n : ℕ) → {m : ℕ} → {n == Succ m} → Fin n
+d mod Succ m = {!!}
+-}
 
 #+end_src agda2
