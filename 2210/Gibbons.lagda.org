@@ -1245,20 +1245,18 @@ data Fin : ℕ → Set where
 --     card : ℕ
 --     allA : List A
 --     each∈ : ∀ a → a ∈ allA
---     uniqueness : mapL (λ a → ∈toℕ (each∈ a)) allA == [ 1 ⋯ card ]
+--     uniqueness : length allA == card
 
--- "observational" proof of list equality: two nonempty lists are equal
--- iff their heads and their tails are equal
-{-
-list==Obs : {A : Set} → {a b : A} → {as bs : List A} →
-            a == b → as == bs → (a ∷ as) == (b ∷ bs)
-list==Obs refl refl = refl
+
+-- mapL preserves composition (not actually needed here...)
 
 mapLComp : {A B C : Set} → (f : B → C) → (g : A → B) →
            mapL (f ∘ g) =∙= mapL f ∘ mapL g
 mapLComp f g []       = refl
 mapLComp f g (a ∷ as) = cong (f (g a) ∷_) (mapLComp f g as)
--}
+
+-- mapL also preserves length
+
 mapLPresLength : {A B : Set} → (f : A → B) → (as : List A) →
                  length (mapL f as) == length as
 mapLPresLength f [] = refl
@@ -1283,28 +1281,47 @@ finFinOrd n = MkFinOrd n (allFin n) (each∈Fin n) (uniqueFin n) where
     Succ n
       QED
 
-{-  TODO
+--  TODO
 
 record Σ (A : Set) (P : A → Set) : Set where
    constructor _**_
    field
      pr₁ : A
      pr₂ : P pr₁
+open Σ 
+
+-- there is a largest (or "last") element in any Fin (Succ m)
+
+finLast : (m : ℕ) → Fin (Succ m)
+finLast Zero     = FZero
+finLast (Succ m) = FSucc (finLast m)
+
+-- for elements of Fin (Succ n)  (which correspond to 0, 1, ... , n)
+-- we define their "complements" (n, n-1 , ... 0)
+
+finCompl : {m : ℕ} → Fin (Succ m) → Fin (Succ m)
+finCompl {m} FZero = finLast m
+finCompl {Succ m} (FSucc x) = FSucc (finCompl x)
 
 
 
 divModFam : ℕ → (m : ℕ) → Set 
 divModFam x m = Σ ℕ (λ d → Σ (Fin m) λ r → x == d * m + toℕ {{finFinOrd m}} r)
 
-divMod : (n : ℕ) → (m : ℕ) → {m' : ℕ} → {m == Succ m'} →
-         divModFam n m
-divMod n m = {!!}
+divMod : (x : ℕ) → (m : ℕ) → {m' : ℕ} → {m == Succ m'} →
+         divModFam x m
+divMod Zero     (Succ m) = 0 ** (FZero ** refl)
+divMod (Succ x) (Succ m) with divMod x (Succ m) {m} {refl}
+... | d' ** (pr₃ ** pr₄) = {!!}
 
 
 _div_ : ℕ → (n : ℕ) → {m : ℕ} → {n == Succ m} → ℕ
+x div Succ m = pr₁ (divMod x (Succ m) {m} {refl}) where
+  open Σ
 
 _mod_ : ℕ → (n : ℕ) → {m : ℕ} → {n == Succ m} → Fin n
-d mod Succ m = {!!}
--}
+x mod Succ m = pr₁ (pr₂ (divMod x (Succ m) {m} {refl})) where
+  open Σ
+
 
 #+end_src agda2
