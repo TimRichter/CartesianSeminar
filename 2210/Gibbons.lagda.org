@@ -1128,7 +1128,7 @@ foldTreeFusion h f g f' g' (hfEf' , hgEg'mh) =
 *** we discussed §4, in particular 
 **** why Gibbons introduces comp
 **** treesort = comp flatten . mkTree , Alexandra wrote down
-a derivation, see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230110_1.jpg][Whiteboard_CS_230110_1.jpg]]
+a derivation, see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230110_1.jpg]Whiteboard_CS_230110_1.jpg]]
 **** also compare Nicola's type analysis in [[https://timrichter.github.io/CartesianSeminar/2210/radix.dvi.pdf][radix.dvi.pdf]] 
 **** discussed pre- and post-composition using a diagram for _∘_
 see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230110_2.jpg][Whiteboard_CS_230110_2.jpg]]
@@ -1221,7 +1221,20 @@ strongerTreesortWithComp' =  -- let's expand the steps
 
 
 #+end_src agda2
-** Code from the appendices (Tim 13.01.23)
+** Session January 17th
+*** did the derivation of ft (Marcus on whiteboard)
+*** discussed associativity of function composition
+*** again discussed _==_ vs _=∙=_
+*** see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230117_1.jpg][Whiteboard_CS_230117_1.jpg]], [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230117_2.jpg][Whiteboard_CS_230117_2.jpg]], [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230117_3.jpg][Whiteboard_CS_230117_3.jpg]]  
+** Code from the appendices (Tim 13.01.23 and 19.01.23)
+*** Appendix A
+
+#+begin_src agda2
+mapTreesortPtnLemma : {A B : Set} → {{ finB : FinOrd B }} → (d : A → B) → (ds : List (A → B)) →
+                      mapL (treesort ds) ∘ ptn d =∙= ptn d ∘ treesort ds
+mapTreesortPtnLemma d ds as = {!!}
+
+#+end_src agda2
 *** Appendix B
 
 #+begin_src agda2
@@ -1234,7 +1247,7 @@ data Fin : ℕ → Set where
 
 -- thus, Fin Zero is the empty type, and Fin (Succ n) has
 -- elements  FZero {n}  and  FSucc {n} i  where i : Fin n,
--- so Fin (Succ n) has exactly one nore element than Fin n.
+-- so Fin (Succ n) has exactly one more element than Fin n.
 
 -- We prove that Fin n is finite by constructing an element of
 -- FinOrd (Fin n)
@@ -1259,6 +1272,7 @@ mapLComp : {A B C : Set} → (f : B → C) → (g : A → B) →
 mapLComp f g []       = refl
 mapLComp f g (a ∷ as) = cong (f (g a) ∷_) (mapLComp f g as)
 -}
+
 mapLPresLength : {A B : Set} → (f : A → B) → (as : List A) →
                  length (mapL f as) == length as
 mapLPresLength f [] = refl
