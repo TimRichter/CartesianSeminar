@@ -1,4 +1,4 @@
-* Code scratchpad for Cartesian seminar October 2022 
+* Code scratchpad for Cartesian seminar October 2022
 We read Gibbons "A pointless derivation of radix sort"
 ** Session October 18th
 *** pointfree (pointless) calculation:
@@ -31,12 +31,12 @@ _+_ : ℕ → ℕ → ℕ
 Zero + b = b
 Succ a + b = Succ (a + b)
 
-_*_ : ℕ → ℕ → ℕ   
+_*_ : ℕ → ℕ → ℕ
 Zero * b = Zero
 Succ a * b = b + a * b
 
 -- Note! : function application by juxtaposition
--- (the argument isn't put in parentheses) 
+-- (the argument isn't put in parentheses)
 double : ℕ → ℕ
 double n = 2 * n
 
@@ -136,7 +136,7 @@ cong f refl = refl
 
 id1 : ∀ {A B C : Set} (h : A × B → C) (p : A × B) →
       (uncurry ∘ curry) h p == h p
-id1 h p = refl 
+id1 h p = refl
 
 -- But we can prove the stronger
 
@@ -154,7 +154,7 @@ id1'' = refl
 
 id2 : {A B C : Set} → (h : A → B → C) →
       (a : A) → (b : B) → (curry ∘ uncurry) h a b == h a b
-id2 h a b = 
+id2 h a b =
          (curry ∘ uncurry) h a b
            =⟨ refl {- Def. of "∘" -} ⟩
          (curry (uncurry h)) a b
@@ -173,7 +173,7 @@ id2'' : {A B C : Set} →
 id2'' = refl
 
 #+end_src agda2
-*** DONE (Homework): show uncurry ∘ curry = id  and  curry ∘ uncurry = id 
+*** DONE (Homework): show uncurry ∘ curry = id  and  curry ∘ uncurry = id
 ** Session November 1st
 *** did homework of last week, see above
 *** read page 1
@@ -181,7 +181,7 @@ id2'' = refl
 **** words in a dictionary:
 the list is the infinite list of functions String → Char
 [pick 1st char, pick 2nd char, ...]
-**** contacts in a smartphone or phonebook 
+**** contacts in a smartphone or phonebook
 the list contains the projection functions to separate fields
 (name, surname, phone number, birthday etc.) of a contact
 - strictly speaking isn't an instance of the given abstraction,
@@ -263,7 +263,7 @@ it is more difficult:
 + what exactly is meant by "=="?
 + is the specification complete?
   -> Since for x /= 0 there are two choices for (f x)
-     the above does not specify the function f uniquely! 
+     the above does not specify the function f uniquely!
 + is the specification implementable?
 + if it is, how can f x actually be computed?
 
@@ -313,7 +313,7 @@ mutual
 
   foldTreeMap : {A B : Set} → (A → B) → (List B → B) → List (Tree A) → List B
   foldTreeMap f g [] = []
-  foldTreeMap f g (t ∷ ts) = foldTree f g t ∷ foldTreeMap f g ts 
+  foldTreeMap f g (t ∷ ts) = foldTree f g t ∷ foldTreeMap f g ts
 
 -- We can now prove that foldTreeMap deserves its name:
 -- foldTreeMap f g is (extensionlly equal to ... see below) mapL (foldTree f g)
@@ -419,7 +419,7 @@ record FinOrd (A : Set) : Set where
     -- uniqueness : mapL (λ a → ∈toℕ (each∈ a)) allA == [ 1 ⋯ card ]
     uniqueness : length allA == card -- this is enough, thanks Nuria!
 
-open FinOrd {{...}} public 
+open FinOrd {{...}} public
 
 -- as an example, we construct a proof of FinOrd Bool
 instance
@@ -440,7 +440,7 @@ toℕ a = ∈toℕ (each∈ a)
 
 -- Exercise: Why can we not write toℕ = ∈toℕ ∘ each∈ ?
 -- Answer: because each∈ is a dependent function and
---   we defined _∘_ only for nondependent functions. 
+--   we defined _∘_ only for nondependent functions.
 --
 -- Note that with this definition, we can now write the
 -- type of the "uniqueness" component of FinOrd as
@@ -483,13 +483,13 @@ a < b   = toℕ a <ℕ toℕ b
 
 ordered : {A B : Set} → {{ FB : FinOrd B }} → (List (A → B)) → A → A → Bool
 ordered []       a b = true
-ordered (d ∷ ds) a b = d a < d b || d a === d b  &&  ordered ds a b   
+ordered (d ∷ ds) a b = d a < d b || d a === d b  &&  ordered ds a b
 
 -- In the paper, there is the "range" for any bounded, enumerated type:
 -- rng :: (Bounded a, Enum a) => [a]
 -- rng = [minBound..maxBound]
 --
--- In our setting, allA plays this role. So we define  
+-- In our setting, allA plays this role. So we define
 -- (making the type parameter explicit is a matter of taste...):
 
 rng : (A : Set) → {{FinOrd A}} → List A
@@ -536,7 +536,7 @@ data List' (A : Set) : Set where
 -- this is a perfectly fine inductive type...
 -- but "are" the elements really what one would call lists?
 
--- Cons a (Snoc Nil b) /= Scon (Cons a Nil) b     !!!  
+-- Cons a (Snoc Nil b) /= Scon (Cons a Nil) b     !!!
 
 
 #+end_src agda2
@@ -546,22 +546,22 @@ data List' (A : Set) : Set where
 doesn't satisfy the termination checker. In Haskell, this is
 not a problem since there is no termination checking.
 *** defined BinTree and foldBinTree - no problem with termination there
-*** to implement flatten using foldTree, we needed concat, so we 
+*** to implement flatten using foldTree, we needed concat, so we
 defined this by pattern matching (i.e. recursively)
 *** for concat we needed _++_ . Discussed how to define this by
 recursion on the 1st or 2nd argument: it's more convenient to
 recurse on the 1st argument: the asymmetry goes back to our using _∷_
-as a constructor for lists - if we had used 
+as a constructor for lists - if we had used
   Snoc : List A -> A -> List A
 instead, it would be easier to define _++_ by recursion on 2nd argument.
-*** Alexandra asked whether we could have both Cons and Snoc as constructors: 
+*** Alexandra asked whether we could have both Cons and Snoc as constructors:
 well, technically "we can do what we want" (i.e. have as many constructors
 as we like ... see List' above). However, the elements of List' don't
 behave like lists, e.g. Cons a []  and  Snoc [] a  are distinct elements,
 not merely "different ways to construct a singleton list containing some a : A",
 as we might want. In an inductive type, every element is constructed in
-a unique way!   
-*** Tim: added List syntax (found that online, see above) and used it in  
+a unique way!
+*** Tim: added List syntax (found that online, see above) and used it in
 appropriate places
 ** Session November 29th
 *** read beginning of section 3
@@ -611,7 +611,7 @@ if b then t else f = foldBool t f b
 *** Tim (Dec 26th): some code
 #+begin_src agda2
 
--- in the paper we read: ...the universal property for the standard foldr 
+-- in the paper we read: ...the universal property for the standard foldr
 -- on lists states, for strict h , that h = foldr f e precisely if
 -- h [] = e
 -- h (a:as) = f a (h as)
@@ -620,10 +620,10 @@ if b then t else f = foldBool t f b
 -- is meant to be an extensional equality of functions. Let's define notation
 -- for this:
 
-infix 9 _=∙=_  -- type \.1  to get ∙  
+infix 9 _=∙=_  -- type \.1  to get ∙
 
 _=∙=_ : {A B : Set} → (A → B) → (A → B) → Set
-_=∙=_ {A} f g = (a : A) → f a == g a  
+_=∙=_ {A} f g = (a : A) → f a == g a
 
 -- The equation h [] = e is a simple equation (we have to write it with _==_).
 -- The 2nd equation is meant to hold for any a : A and any as : List A.
@@ -636,7 +636,7 @@ _=∙=_ {A} f g = (a : A) → f a == g a
 -- only on h and e):
 
 FoldrUPCond1 : {A B : Set} → (List A → B) → B → Set
-FoldrUPCond1 h e =   h [] == e 
+FoldrUPCond1 h e =   h [] == e
 
 -- the second depends only on h and f and is a quantified equality:
 
@@ -665,7 +665,7 @@ record _⇔_ (A B : Set) : Set where
 
 FoldrUP : {A B : Set} → (h : List A → B) → (f : A → B → B) → (e : B) →
           h =∙= foldr f e ⇔ (FoldrUPCond1 h e × FoldrUPCond2 h f)
-          
+
 -- and prove it using the definition of foldr:
 
 FoldrUP h f e = Mk⇔ to from where
@@ -673,7 +673,7 @@ FoldrUP h f e = Mk⇔ to from where
   -- second component of "to".
   -- Note that we don't need induction on as!
   to2 : h =∙= foldr f e → FoldrUPCond2 h f
-  to2 hEfo a as = 
+  to2 hEfo a as =
     h (a ∷ as)
       =⟨ hEfo (a ∷ as) ⟩
     foldr f e (a ∷ as)
@@ -682,14 +682,14 @@ FoldrUP h f e = Mk⇔ to from where
       =⟨ cong (f a) (symm (hEfo as)) ⟩
     f a (h as)
       QED
-      
+
   to : h =∙= foldr f e → FoldrUPCond1 h e × FoldrUPCond2 h f
   to hEfo = (hEfo [] , to2 hEfo)
 
   -- for from, we do need induction!
   from : FoldrUPCond1 h e × FoldrUPCond2 h f  → (h =∙= foldr f e)
   from (c1 , c2) [] = c1
-  from (c1 , c2) (a ∷ as) = 
+  from (c1 , c2) (a ∷ as) =
     h (a ∷ as)
       =⟨ c2 a as ⟩
     f a (h as)
@@ -712,7 +712,7 @@ FoldrFusion⇔UP1 : {A B B' : Set} → (g : B → B') → (f : A → B → B) �
                   FoldrFusionCond1 g e e' ⇔ FoldrUPCond1 (g ∘ foldr f e) e'
 FoldrFusion⇔UP1 g f e e' = Mk⇔ to from where
   to : FoldrFusionCond1 g e e' → FoldrUPCond1 (g ∘ foldr f e) e'
-  to fc1 = 
+  to fc1 =
     (g ∘ foldr f e) []
       =⟨ refl {- Def. _∘_ -} ⟩
     g (foldr f e [])
@@ -722,7 +722,7 @@ FoldrFusion⇔UP1 g f e e' = Mk⇔ to from where
     e'
       QED
   from : FoldrUPCond1 (g ∘ foldr f e) e' → FoldrFusionCond1 g e e'
-  from c1 = 
+  from c1 =
     g e
       =⟨ refl {- Def. foldr -} ⟩
     g (foldr f e [])
@@ -737,15 +737,15 @@ FoldrFusion⇔UP2 : {A B B' : Set} → (g : B → B') → (f : A → B → B) �
                   FoldrFusionCond2 g f e f' ⇔ FoldrUPCond2 (g ∘ foldr f e) f'
 FoldrFusion⇔UP2 g f e f' = Mk⇔ to from where
   to : FoldrFusionCond2 g f e f' → FoldrUPCond2 (g ∘ foldr f e) f'
-  to fc2 a as = 
+  to fc2 a as =
     g (foldr f e (a ∷ as))
       =⟨ refl {- Def. foldr -} ⟩
     g (f a (foldr f e as))
       =⟨ fc2 a as ⟩
     f' a (g (foldr f e as))
-      QED 
+      QED
   from : FoldrUPCond2 (g ∘ foldr f e) f' → FoldrFusionCond2 g f e f'
-  from c1 a as = 
+  from c1 a as =
     g (f a (foldr f e as))
       =⟨ refl {- Def. foldr -}  ⟩
     g ( foldr f e (a ∷ as))
@@ -779,7 +779,7 @@ infixr 8 _⇔⟨_⟩_
 _⇔⟨_⟩_ : (A : Set) → {B C : Set} → A ⇔ B → B ⇔ C → A ⇔ C
 A ⇔⟨ A⇔B ⟩ B⇔C = ⇔Trans A⇔B B⇔C
 
--- and, using 
+-- and, using
 
 →× : {A A' B B' : Set} → (A → A') × (B → B') → A × B → A' × B'
 →× (f , g) (a , b) = (f a , g b)
@@ -818,7 +818,7 @@ FoldrFusionCond2' {A} g f f' = (a : A) → g ∘ f a =∙= f' a ∘ g
 FoldrFusionCond2'→Cond2 :  {A B B' : Set} → (g : B → B') → (f : A → B → B) →
                            (e : B) → (f' : A → B' → B') →
                            FoldrFusionCond2' g f f' → FoldrFusionCond2 g f e f'
-FoldrFusionCond2'→Cond2 g f e f' c2' a as = c2' a (foldr f e as) 
+FoldrFusionCond2'→Cond2 g f e f' c2' a as = c2' a (foldr f e as)
 
 -- Thus we can prove:
 
@@ -836,7 +836,7 @@ FoldrFusion' g f e f' e' (fc1 , fc2') =
 ** Session December 13th
 *** Josefine presented the homework to prove the fusion law from the universal property of foldr
 *** Discussed conditions on g such that the fusion law allows us to define
-f' and e' from arbitrary f and e such that  g ∘ foldr f e = foldr f' e'. 
+f' and e' from arbitrary f and e such that  g ∘ foldr f e = foldr f' e'.
 This is possible e.g. if g is an is an isomorphism or if g is constant.
 *** Read the rest of chpt. 3: fusion law for foldt
 *** Read first § of chpt.4: Gibbons wants to write mkTree as a foldr. We wrote down
@@ -847,7 +847,7 @@ the types of mkTree and the parameters for foldr.
 
 -- I'd like to complete the definition of mkTree using, as in the
 -- code section of Nov 13th above, the class FinOrd instead of the
--- paper's type class constraints (Enum, Bounded, Eq ...) 
+-- paper's type class constraints (Enum, Bounded, Eq ...)
 
 -- First a standard function: Lists can be filtered w.r.t. a boolean predicate:
 
@@ -899,19 +899,19 @@ and is called "propositional equality" or "identity type"
 as used above is (as any Agda function) total and thus
 gives a decidable equality relation on ℕ.
 -- Exercise: prove that ∀ n m : ℕ.  n == m  ⇔  (n ===ℕ m) == true   !
-**** _===_ : {A : Set} → {{FinOrd A}} → A → A → Bool 
+**** _===_ : {A : Set} → {{FinOrd A}} → A → A → Bool
 as defined above defines a boolean valued equality for any
 FinOrd-instance of type A
 -- Exercise (might be tricky...): prove
    {A : Set} → {{FinOrd A}} → (a b : A) → a == b  ⇔  (a === b) == true
 **** _=∙=_  Notation we use above for extensional (i.e. pointwise) equality
 of functions.
--- Exercises: 
+-- Exercises:
    - prove   {A B : Set} → (f g : A → B) → f == g → f =∙= g   !
-   - what about 
+   - what about
              {A B : Set} → (f g : A → B) → f =∙= g → f == g   ?
-*** see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230103.jpg]Whiteboard_CS_230103.jpg]] 
-** Tim (Jan 8th)  
+*** see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230103.jpg]Whiteboard_CS_230103.jpg]]
+** Tim (Jan 8th)
 #+begin_src agda2
 
 -- Fusion law for foldTree
@@ -921,16 +921,16 @@ of functions.
 -- foldTree
 
 -- After running into some difficulties with a definition that
--- needed the {-# TERMINATION #-}-pragma to be accepted, we 
+-- needed the {-# TERMINATION #-}-pragma to be accepted, we
 -- defined foldTree mutually with foldTreeMap:
 -- mutual
 --   foldTree : {A B : Set} → (A → B) → (List B → B) → Tree A → B
 --   foldTree f g (Leaf a)        = f a
 --   foldTree f g (Node ts)       = g (foldTreeMap f g ts)
--- 
+--
 --   foldTreeMap : {A B : Set} → (A → B) → (List B → B) → List (Tree A) → List B
 --   foldTreeMap f g [] = []
---   foldTreeMap f g (t ∷ ts) = foldTree f g t ∷ foldTreeMap f g ts 
+--   foldTreeMap f g (t ∷ ts) = foldTree f g t ∷ foldTreeMap f g ts
 
 -- The paper (p. 3f) states the UP as
 --   h = foldt f g    <->   h . Leaf = f   and   h . Node = g . map h
@@ -974,7 +974,7 @@ refl∙ = ==→=∙= refl
 =∙=Trans fEg gEh a = trans (fEg a) (gEh a)
 
 =∙=Symm : ∀ {A B : Set} {f g : A → B} → f =∙= g → g =∙= f
-=∙=Symm fEg a = symm (fEg a)  
+=∙=Symm fEg a = symm (fEg a)
 
 -- As the whole paper is about the "pointfree" style (discarding idle variables),
 -- it is surely appropriate to define equational reasoning for =∙=
@@ -1007,7 +1007,7 @@ post∘Pres=∙= g {f} {h} fEh a = cong g (fEh a)
 
 foldTreeUPLemma : {A B : Set} → (h : Tree A → B) → (f : A → B) → (g : List B → B) →
                   h =∙= foldTree f g   →  mapL h =∙= foldTreeMap f g
-foldTreeUPLemma h f g hEfTfg = 
+foldTreeUPLemma h f g hEfTfg =
     mapL h
       =∙=⟨ mapLPres=∙= _ _ hEfTfg ⟩
     mapL (foldTree f g)
@@ -1048,11 +1048,11 @@ foldTreeUP h f g = Mk⇔ to from where
         =⟨ cong g (fromMap (c1 , c2) tas) ⟩
       g (foldTreeMap f g tas)
         QED
-        
+
     fromMap : (h ∘ Leaf =∙= f)  ×  (h ∘ Node =∙= g ∘ mapL h) →
               mapL h =∙= foldTreeMap f g
     fromMap (c1 , c2) [] = refl
-    fromMap (c1 , c2) (t ∷ ts) = 
+    fromMap (c1 , c2) (t ∷ ts) =
        h t ∷ mapL h ts
          =⟨ cong (_∷ mapL h ts) (from (c1 , c2) t) ⟩
        foldTree f g t ∷ mapL h ts
@@ -1083,7 +1083,7 @@ foldTreeUP h f g = Mk⇔ to from where
 mapPres∘ : {A B C : Set} → (f : B → C) → (g : A → B) →
             mapL f ∘ mapL g =∙= mapL (f ∘ g)
 mapPres∘ f g [] = refl
-mapPres∘ f g (a ∷ as) = 
+mapPres∘ f g (a ∷ as) =
   (mapL f ∘ mapL g) (a ∷ as)
     =⟨ refl {- Def. _∘_ -} ⟩
   mapL f (mapL g (a ∷ as))
@@ -1105,7 +1105,7 @@ foldTreeFusion h f g f' g' (hfEf' , hgEg'mh) =
   -- idea is simple: we use (the from direction) of foldTreeUP in a special case
   _⇔_.from (foldTreeUP (h ∘ foldTree f g) f' g') (c1 , c2) where
     c1 : h ∘ foldTree f g ∘ Leaf =∙= f'
-    c1 = 
+    c1 =
       h ∘ foldTree f g ∘ Leaf
         =∙=⟨ post∘Pres=∙= h refl∙ ⟩
       h ∘ f
@@ -1113,7 +1113,7 @@ foldTreeFusion h f g f' g' (hfEf' , hgEg'mh) =
       f'
         QED=∙=
     c2 : h ∘ foldTree f g ∘ Node =∙= g' ∘ mapL (h ∘ foldTree f g)
-    c2 = 
+    c2 =
       h ∘ foldTree f g ∘ Node
         =∙=⟨ post∘Pres=∙= h (post∘Pres=∙= g (foldTreeMap←foldTree f g)) ⟩
       h ∘ g ∘ mapL (foldTree f g)
@@ -1125,7 +1125,7 @@ foldTreeFusion h f g f' g' (hfEf' , hgEg'mh) =
 
 #+end_src agda2
 ** Session January 10th
-*** we discussed §4, in particular 
+*** we discussed §4, in particular
 **** why Gibbons introduces comp
 **** treesort = comp flatten . mkTree , Alexandra wrote down
 a derivation, see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230110_1.jpg]Whiteboard_CS_230110_1.jpg]]
@@ -1149,16 +1149,16 @@ treesort as foldr et ft, we need to set
 --   mkTree (d ∷ ds) as = Node (mapL (mkTree ds) (ptn d as))
 
 --   Let's first define the "fm". As ptn needs the instance
---   argument {{FinOrd B}}, fm needs this as well 
+--   argument {{FinOrd B}}, fm needs this as well
 
 fm : {A B : Set} → {{ FinOrd B }} → (A → B) → (List A → Tree(List A)) →
             List A → Tree(List A)
-fm d g = Node ∘ mapL g ∘ ptn d  -- <- note that this is a funcion of type List A → Tree(List A)  !! 
+fm d g = Node ∘ mapL g ∘ ptn d  -- <- note that this is a funcion of type List A → Tree(List A)  !!
 
 mkTreeIsFoldr : {A B : Set} → {{finB : FinOrd B }} →
                 mkTree {A} {B} =∙= foldr (fm {A} {B} {{finB}}) Leaf
 mkTreeIsFoldr [] = refl
-mkTreeIsFoldr (d ∷ ds) = 
+mkTreeIsFoldr (d ∷ ds) =
   (λ as → Node (mapL (mkTree ds) (ptn d as)))
     =⟨ refl {- η-Rule -} ⟩
   (Node ∘ (mapL (mkTree ds)) ∘ (ptn d))
@@ -1226,6 +1226,29 @@ strongerTreesortWithComp' =  -- let's expand the steps
 *** discussed associativity of function composition
 *** again discussed _==_ vs _=∙=_
 *** see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230117_1.jpg][Whiteboard_CS_230117_1.jpg]], [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230117_2.jpg][Whiteboard_CS_230117_2.jpg]], [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230117_3.jpg][Whiteboard_CS_230117_3.jpg]]  
+** Session January 24th
+*** began reading §5
+*** there is an open claim in the derivation of radixsort from treesort in §4, namely
+  mapL (treesort ds) . ptn d = ptn d . treesort ds          (1)
+*** we discussed this and Gibbons' remark that it expresses "stability" of ptn d
+*** we generalised (treesort ds) to an arbitrary "sort" function: it should hold
+  mapL sort . ptn d = ptn d . sort                          (1')
+*** in essence, the property says that ptn d, when putting elements of its input list
+into "bucket lists", it does not change the order of the elements: two elements landing
+in the same "bucket" will appear there in the same order they appeared in the input list
+*** Gibbons claims that equation (1) above follows from
+  filter p . flatten = flatten . mapt (filter p)            (2)
+and
+  mapt (filter p) . mktree ds = mktree ds . filter p        (3)
+*** we made a detailed type analysis of (1) resp. (1') and (2) and gave an example for
+a typical (ptn d) where d is "map an integer to its next-to-last decimal digit"
+(see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230124_1.jpg][Whiteboard_CS_230124_1.jpg]] ) and made a type analysis of (3)
+(see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230124_2.jpg][Whiteboard_CS_230124_2.jpg]] ).
+*** for (3) we need the map for trees (mapt), which wasn't defined yet. So we
+gave a definition (see  [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230124_3.jpg][Whiteboard_CS_230124_3.jpg]] ). We also discussed that
+this definition will not be accepted by the agda termination checker.
+Exercise: define mapt in Agda (without using {-# TERMINATION #-} !)
+
 ** Code from the appendices (Tim 13.01.23 and 19.01.23)
 *** Appendix A
 
@@ -1284,7 +1307,7 @@ finFinOrd n = MkFinOrd n (allFin n) (each∈Fin n) (uniqueFin n) where
   each∈Fin (Succ n) (FSucc i) = There (∈MapL FSucc (each∈Fin n i))
   uniqueFin : ∀ n → length (allFin n) == n
   uniqueFin Zero = refl
-  uniqueFin (Succ n) = 
+  uniqueFin (Succ n) =
     Succ (length (mapL FSucc (allFin n)))
       =⟨ cong Succ (mapLPresLength FSucc (allFin n)) ⟩
     Succ (length (allFin n))
@@ -1299,7 +1322,7 @@ record Σ (A : Set) (P : A → Set) : Set where
    field
      pr₁ : A
      pr₂ : P pr₁
-open Σ 
+open Σ
 
 -- there is a largest (or "last") element in any Fin (Succ m)
 
@@ -1316,7 +1339,7 @@ finCompl {Succ m} (FSucc x) = FSucc (finCompl x)
 
 
 
-divModFam : ℕ → (m : ℕ) → Set 
+divModFam : ℕ → (m : ℕ) → Set
 divModFam x m = Σ ℕ (λ d → Σ (Fin m) λ r → x == d * m + toℕ {{finFinOrd m}} r)
 
 divMod : (x : ℕ) → (m : ℕ) → {m' : ℕ} → {m == Succ m'} →
