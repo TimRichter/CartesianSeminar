@@ -315,6 +315,20 @@ mutual
   foldTreeMap f g [] = []
   foldTreeMap f g (t ∷ ts) = foldTree f g t ∷ foldTreeMap f g ts
 
+-- Vorschlag Sebastian 31.01.
+{-
+foldTreeMap' : {A B : Set} → (A → B) → (List B → B) →
+               ((Tree A) → B) → List (Tree A) → List B
+foldTreeMap' f g _ [] = []
+foldTreeMap' f g h (t ∷ ts) = h t ∷ foldTreeMap' f g h ts
+
+
+foldTree' : {A B : Set} → (A → B) → (List B → B) → Tree A → B
+foldTree' f g (Leaf a)        = f a
+foldTree' f g (Node ts)       = g (foldTreeMap' f g (foldTree' f g) ts)
+
+-- still problematic for the termination checker
+-}
 -- We can now prove that foldTreeMap deserves its name:
 -- foldTreeMap f g is (extensionlly equal to ... see below) mapL (foldTree f g)
 
@@ -607,7 +621,7 @@ if b then t else f = foldBool t f b
 *** checked for example sum
 *** fusion law for foldr
 *** made an example for neg ∘ sum
-*** see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_20221206_1050.jpg]Whiteboard_CS_20221206_1050.jpg]], [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_20221206_1120.jpg][Whiteboard_CS_20221206_1120.jpg]], [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_20221206_1146.jpg][Whiteboard_CS_20221206_1146.jpg]]
+*** see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_20221206_1050.jpg][Whiteboard_CS_20221206_1050.jpg]], [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_20221206_1120.jpg][Whiteboard_CS_20221206_1120.jpg]], [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_20221206_1146.jpg][Whiteboard_CS_20221206_1146.jpg]]
 *** Tim (Dec 26th): some code
 #+begin_src agda2
 
@@ -797,6 +811,7 @@ A ⇔⟨ A⇔B ⟩ B⇔C = ⇔Trans A⇔B B⇔C
 FoldrFusion : {A B B' : Set} → (g : B → B') → (f : A → B → B) → (e : B) →
               (f' : A → B' → B') → (e' : B') →
               g ∘ foldr f e =∙= foldr f' e'  ⇔ FoldrFusionCond1 g e e' × FoldrFusionCond2 g f e f'
+
 FoldrFusion {A} g f e f' e' =
   let
     h = g ∘ foldr f e
@@ -910,7 +925,7 @@ of functions.
    - prove   {A B : Set} → (f g : A → B) → f == g → f =∙= g   !
    - what about
              {A B : Set} → (f g : A → B) → f =∙= g → f == g   ?
-*** see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230103.jpg]Whiteboard_CS_230103.jpg]]
+*** see [[[[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230103.jpg][Whiteboard_CS_230103.jpg]]
 ** Tim (Jan 8th)
 #+begin_src agda2
 
@@ -1128,7 +1143,7 @@ foldTreeFusion h f g f' g' (hfEf' , hgEg'mh) =
 *** we discussed §4, in particular
 **** why Gibbons introduces comp
 **** treesort = comp flatten . mkTree , Alexandra wrote down
-a derivation, see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230110_1.jpg]Whiteboard_CS_230110_1.jpg]]
+a derivation, see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230110_1.jpg][Whiteboard_CS_230110_1.jpg]]
 **** also compare Nicola's type analysis in [[https://timrichter.github.io/CartesianSeminar/2210/radix.dvi.pdf][radix.dvi.pdf]] 
 **** discussed pre- and post-composition using a diagram for _∘_
 see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230110_2.jpg][Whiteboard_CS_230110_2.jpg]]
@@ -1248,7 +1263,26 @@ a typical (ptn d) where d is "map an integer to its next-to-last decimal digit"
 gave a definition (see  [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230124_3.jpg][Whiteboard_CS_230124_3.jpg]] ). We also discussed that
 this definition will not be accepted by the agda termination checker.
 Exercise: define mapt in Agda (without using {-# TERMINATION #-} !)
-
+** Session January 31th
+*** discussed definition of mapt : finer pattern matching (also on the
+list argument of Node) would not solve the problem - mutual definition
+(along the lines of foldTree) would (see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230131_1.jpg][Whiteboard_CS_230131_1.jpg]] )
+*** but we can use the universal property of foldTree: the equations we would
+have liked to give as a definition of mapt are
+  mapt f ∘ Leaf =∙= Leaf ∘ f
+  mapt f ∘ Node =∙= Node ∘ mapL (mapt f)
+foldTreeUP shows that these conditions are equivalent to mapt f =∙= foldTree (Leaf ∘ f) Node
+So it is ok to define mapt by this equation
+*** We furthermore discussed the structure of the rest of the paper:
+**** We have to prove  the "stability condition" for ptn we discussed earlier
+  (1) ∀ d, ds .    mapL (treesort ds) ∘ ptn d = ptn d ∘ treesort ds
+  This follows from the following equations
+  (2) ∀ p .   filter p ∘ flatten = flatten ∘ mapt (filter p)
+  (3) ∀ p, ds . mapt (filter p) ∘ mkTree ds = mkTree ds ∘ filter p
+  So it remains to show (2)+(3) => (1) , (2) and (3).
+**** We begin with (3): idea ist to use fusion, but the equation is not
+in the right form for this. Will again use comp to get rid of the ds argument
+and make fusion applicable. (see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230131_2.jpg][Whiteboard_CS_230131_2.jpg]] )
 ** Code from the appendices (Tim 13.01.23 and 19.01.23)
 *** Appendix A
 
