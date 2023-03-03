@@ -1405,3 +1405,22 @@ x mod Succ m = pr₁ (pr₂ (divMod x (Succ m) {m} {refl})) where
 
 
 #+end_src agda2
+** Consultation Feb 28th
+*** foldr foldList fold in general : order of arguments  ?
+**** matter of taste how to order the constructors
+**** but there are other functions called folds, like e.g.
+     foldl in Haskell.
+#+begin_src agda2
+
+foldl : {A B : Set} → (B → A → B) → B → List A → B
+foldl f z (a ∷ as) = foldl f (f z a) as
+foldl f z [] = z
+
+#+end_src agda2
+
+This is something different!
+*** discussed difference "logical" vs "type" reading
+*** different equalities
+see list January 3rd
+equality is getting harder here!
+look at the types!
