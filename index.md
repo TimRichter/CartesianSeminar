@@ -30,10 +30,10 @@ For any question, please contact Tim Richter [(tim@cs.uni-potsdam.de)](mailto://
 
 ## Current reading (winter term 2022/2023)
 
-### starting February 14th
+#### starting February 14th
 * Coquand, Huet - 1986 - [The calculus of constructions](https://hal.inria.fr/inria-00076024/document)
 
-#### starting October 18th
+#### October 18th - February 7th
 * Jeremy Gibbons - 1999 - [A pointless derivation of radix sort](https://www.cambridge.org/core/journals/journal-of-functional-programming/article/pointless-derivation-of-radix-sort/398024F932C04F26CD69ACF9E1E6E734)
 Here are our notes: [Gibbons.lagda.org](2210/Gibbons.lagda.org)
 
