@@ -1284,7 +1284,9 @@ So it is ok to define mapt by this equation
 in the right form for this. Will again use comp to get rid of the ds argument
 and make fusion applicable. (see [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230131_2.jpg][Whiteboard_CS_230131_2.jpg]] )
 ** Session February 7th
-
+*** discussed the equation
+filter p ∘ flatten = flatten ∘ mapTree (filter p)
+of page 6. See [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230207_1.jpg][Whiteboard_CS_230207_1.jpg]]  and  [[https://timrichter.github.io/CartesianSeminar/2210/Whiteboard_CS_230207_2.jpg][Whiteboard_CS_230207_2.jpg]]
 ** Code from the appendices (Tim 13.01.23 and 19.01.23)
 *** Appendix A
 
@@ -1295,13 +1297,15 @@ mapTreesortPtnLemma : {A B : Set} → {{ finB : FinOrd B }} → (d : A → B) �
                       mapL (treesort ds) ∘ ptn d =∙= ptn d ∘ treesort ds
 mapTreesortPtnLemma d ds as = {!!}
 
--- we define mapTree 
+-- we define mapTree via foldTree
 
+mapTree : {A B : Set} → (A → B) → Tree A → Tree B
+mapTree f = foldTree (Leaf ∘ f) Node
 
--- it should follow from (2)
+-- it should follow from (2) that
 
 filterFlattenLemma : {A : Set} → (p : A → Bool) → filter p ∘ flatten =∙= flatten ∘ mapTree (filter p)
-filterFlattenLemma = ?
+filterFlattenLemma = {!!}
 
 #+end_src agda2
 *** Appendix B
@@ -1406,7 +1410,7 @@ x mod Succ m = pr₁ (pr₂ (divMod x (Succ m) {m} {refl})) where
 
 #+end_src agda2
 ** Consultation Feb 28th
-*** foldr foldList fold in general : order of arguments  ?
+*** foldr / foldList / fold in general : order of arguments  ?
 **** matter of taste how to order the constructors
 **** but there are other functions called folds, like e.g.
      foldl in Haskell.
