@@ -6,7 +6,7 @@ de la méthode" we aim for a thorough understanding of the texts we read.
 
 ## Participants
 ### Present
-Sebastian Böhne, Nicola Botta, Julian Bruns, Francisco Gallis da Purificacao Costa, Josephine Funken,
+Sebastian Böhne, Nicola Botta, Julian Bruns, Marcus Funke, Josephine Funken,
 Christoph Glinzer, Aleksandra Khatova, Tom Kranz, Tim Richter
 ### Past 
 Denis Andreev, Alexander Benedict Behrens, Marc Beilcke, Nikolas Bertrand, Nuria Brede, Frederick Brumm, Margrit Dittmann,
@@ -29,6 +29,9 @@ Guests are always welcome!
 For any question, please contact Tim Richter [(tim@cs.uni-potsdam.de)](mailto://tim@cs.uni-potsdam.de).
 
 ## Current reading (winter term 2022/2023)
+
+### starting February 14th
+* Coquand, Huet - 1986 - [The calculus of constructions](https://hal.inria.fr/inria-00076024/document)
 
 #### starting October 18th
 * Jeremy Gibbons - 1999 - [A pointless derivation of radix sort](https://www.cambridge.org/core/journals/journal-of-functional-programming/article/pointless-derivation-of-radix-sort/398024F932C04F26CD69ACF9E1E6E734)
