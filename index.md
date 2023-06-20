@@ -30,92 +30,98 @@ For any question, please contact Tim Richter [(tim@cs.uni-potsdam.de)](mailto://
 
 ## Current reading (summer term 2023)
 
-#### starting April 18th
-* Wikipedia : [Bertrand paradox (probability)](https://en.wikipedia.org/wiki/Bertrand_paradox_(probability))
+#### starting June 20
+* Schönfinkel - 1924 - [Über die Bausteine der mathematischen Logik](https://link.springer.com/content/pdf/10.1007/BF01448013.pdf)
+
+#### June 6 and June 13
+*  Khuller, Mitchell - 1990 - [On a triangle counting problem](https://www.sciencedirect.com/science/article/pii/002001909090217L)
+
+#### April 18th - Mai 30
+* starting from Wikipedia : [Bertrand paradox (probability)](https://en.wikipedia.org/wiki/Bertrand_paradox_(probability)) discussed some elementary probablilty theory
 
 ## Archive
 
 ### Winter term 2022/2023
 
-#### starting February 14th
+#### starting February 14
 * Coquand, Huet - 1986 - [The calculus of constructions](https://hal.inria.fr/inria-00076024/document)
 
-#### October 18th - February 7th
+#### October 18 - February 7
 * Jeremy Gibbons - 1999 - [A pointless derivation of radix sort](https://www.cambridge.org/core/journals/journal-of-functional-programming/article/pointless-derivation-of-radix-sort/398024F932C04F26CD69ACF9E1E6E734)
 Here are our notes: [Gibbons.lagda.org](2210/Gibbons.lagda.org)
 
 ### Summer term 2022
 
-#### starting June 28th
+#### starting June 28
 * Richard Dedekind - 1888 - [Was sind und was sollen die Zahlen](https://archive.org/details/wassindundwasso00dedegoog)
 
 
-#### Mai 25th - June 21th
+#### Mai 25 - June 21
 * Philip Wadler - 2015 - [Propositions as types](https://dl.acm.org/citation.cfm?id=2699407)
 
-#### April 19th - Mai 17th
+#### April 19 - Mai 17
 * Chapter 3 "Types in Mathematics" of the book ["Domain-Specific Languages of Mathematics"](http://www.collegepublications.co.uk/computing/?00024) by Patrik Jansson, Cezar Ionescu and Jean-Philippe Bernardy. Here is the book's [git repository](https://github.com/DSLsofMath/DSLsofMath).
 
 
 ### Winter term 2021/2022
 
-#### starting January 18th
+#### starting January 18
 * Steward Shapiro - 2005 - [Higher Order Logic](https://www.oxfordhandbooks.com/view/10.1093/oxfordhb/9780195325928.001.0001/oxfordhb-9780195325928-e-25) 
 
-#### starting December 14th
+#### starting December 14
 * Dmitry Fuchs, Serge Tabachnikov - "Can a Number be Approximately Rational?" - Lecture 1 of ["Mathematical Omnibus: Thirty Lectures on Classic Mathematics"](https://archive.org/details/Dmitry_Fuchs_and_Serge_Tabachnikov__Mathematical_Omnibus_Thirty_Lectures_on_Classic_Mathematics). Here is an [overview](2112/RationalApprox.org) and an [Agda implementation of the "trick"](2112/RationalApprox.agda).
 
-#### starting October 25th
+#### starting October 25
 * [Jeremy Gibbons - 2021 - How to design co-programs](https://www.cambridge.org/core/journals/journal-of-functional-programming/article/how-to-design-coprograms/02B37487DB71F1CFD8B46BBE7823E440). See [notes](2110/Notes_Gibbons_Co-Programs.pdf) and [code scratchpad](2110/GibbonsCoPrograms.agda).
 
 ### Sommer term 2021
 
-#### starting July 6th
+#### starting July 6
 * [Winkler - 2001(?) - Wie macht man 2 aus 1? Das Paradoxon von Banach-Tarski](https://www.oemg.ac.at/DK/Didaktikhefte/2001%20Band%2033/Winkler2001.pdf). See [notes](2107/210706_BanachTarski.pdf).
 
-#### starting May 18th
+#### starting May 18
 * [Cabalar, Ferraris - 2007 - Propositional Theories are Strongly Equivalent to Logic Programs](https://arxiv.org/pdf/cs/0701095), see also the [Notes](2105_2/CS_Cabalar.pdf), [Jan's formalisation in Agda](https://github.com/janheuer/here-and-there-agda) and [this](2105_2/Cabalar.agda) more preliminary Agda-Code.
 
-#### April 13th to May 11th
+#### April 13 to May 11
 * [Granovetter - 1978 - Threshold models of collective behaviour](https://www.jstor.org/stable/pdf/2778111.pdf), see also this [jupyter notebook](https://mybinder.org/v2/gh/TimRichter/CartesianSeminar.git/gh-pages?filepath=2105%2FGranovetter.ipynb) and the seminar notes of [April 20th](2105/2021-04-20%20Granovetter%20thresholds.pdf) and [April 27th](2105/2021-04-27%20Granovetter%20thresholds.pdf).
 
 ### Winter term 2020/2021
-#### February 23rd and March 2nd: Jonas on the Iterated Prisoner's Dilemma
+#### February 23 and March 2: Jonas on the Iterated Prisoner's Dilemma
 * [Press, Dyson - 2012 - Iterated Prisoner's Dilemma contains strategies that dominate any evolutionary opponent](https://www.pnas.org/content/pnas/109/26/10409.full.pdf)
 
-#### February 9th and 16th: Max on Evolutionary Game Theory
+#### February 9 and 16: Max on Evolutionary Game Theory
 * Chapter 7 "Evolutionary Game Theory" of [Easley, Kleinberg : Networks, Crowds, and Markets](https://www.cs.cornell.edu/home/kleinber/networks-book/) 
 
 
-#### January 26th and February 2nd: Jonas on Clustering
+#### January 26 and February 2: Jonas on Clustering
 * [Kleinberg - 2002 - An Impossibility Theorem for Clustering.pdf](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.62.3877&rep=rep1&type=pdf)
 
-#### January 12th and 19th: Tim Münzner on Computer Vision and Convolutional Neural Networks
+#### January 12 and 19: Tim Münzner on Computer Vision and Convolutional Neural Networks
 * [Kurenkov - 2020 - A Brief History of Neural Nets and Deep Learning - Part 2](https://www.skynettoday.com/overviews/neural-net-history)
 
-#### December 15th and January 5th: Niklas on Basics of Supervised Machine Learning (Perceptron, Gradient Descent)
+#### December 15 and January 5: Niklas on Basics of Supervised Machine Learning (Perceptron, Gradient Descent)
 * [Kurenkov - 2020 - A Brief History of Neural Nets and Deep Learning - Part 1](https://www.skynettoday.com/overviews/neural-net-history)
 
-#### December 1st and December 8th: David on Cellular Automata
+#### December 1 and December 8: David on Cellular Automata
 * [Berto, Tagliabue - 2017 - Cellular Automata (Stanford Encyclopedia of Philosophy)](https://plato.stanford.edu/entries/cellular-automata/)
 
-#### starting November 3rd
+#### starting November 3
 * Bernardy, Ionescu, Jansson : Domain specific languages of mathematics
   (checkout the [github repository](https://github.com/DSLsofMath/DSLsofMath.git), make sure you have installed latex and lhs2TeX,
   and do a "make" in subdirectory "L". This should produce "DSLsofMathBook.pdf".)
 
-#### September 22nd - October 27th
+#### September 22 - October 27
 * [Graham Hutton - 1997 - Conceps of Concurrency](www.cs.nott.ac.uk/~pszgmh/con.pdf)
 
 ### Summer term 2020
-#### July 14th and 21st: Fabian on Shellcodes
+#### July 14 and 21: Fabian on Shellcodes
 * [Barral, Ferradi, Géraud, Jaloyan, Naccache - 2016 - ARMv8 Shellcodes from 'A' to 'Z'](https://arxiv.org/pdf/1608.03415)
 
-#### June 30th and July 10th: Hanna on Probabilistic Algorithms
+#### June 30 and July 10: Hanna on Probabilistic Algorithms
 * Rabin - 1976 - Probabilistic Algorithms, in [J.F.Traub (ed) - Algorithms and Complexity - New directions and recent results](http://posner.library.cmu.edu/Collections/traub62/box00016/fld00008/bdl0043/doc0001/doc_16b8f43b1.pdf),
 see also this [github repo](https://github.com/hGl0/NearestPair)
 
-#### June 16th and June 23rd: Marius on Tolman
+#### June 16 and June 23rd: Marius on Tolman
 * [Edward Tolman - 1948 - Cognitive maps in rats and men](http://psychclassics.yorku.ca/Tolman/Maps/maps.htm)
 
 #### starting April 21st
@@ -126,12 +132,12 @@ see also this [github repo](https://github.com/hGl0/NearestPair)
 #### starting February 25th: on Lawvere's ETCS
 * [Leinster - 2012 - Rethinking Set Theory](https://arxiv.org/abs/1212.6543)
 
-#### January 21st to February 10th: Christoph on Random Walks and Electric Networks
+#### January 21 to February 10th: Christoph on Random Walks and Electric Networks
 Selection from
 * [Doyle, Snell - 1984(2000) - Random Walks and Electric Networks](https://arxiv.org/abs/math/0001057)
 
 
-#### January 7th and 14th: Nico on Graphical Languages
+#### January 7 and 14th: Nico on Graphical Languages
 We read the first half of
 * [Coecke - 2016 - From quantum foundations via natural language meaning to a theory of everything](https://arxiv.org/abs/1602.07618)
 and selected material from
@@ -166,10 +172,10 @@ and selected material from
 * [Appel, Schreiner - 2014 - Digitale Demenz? Mythen und wissenschaftliche Befundlage zur Auswirkung von Internetnutzung](https://econtent.hogrefe.com/doi/full/10.1026/0033-3042/a000186)
 * [Spitzer - 2015 - Über vermeintliche neue Erkenntnisse zu den Risiken und Nebenwirkungen digitaler Informationstechnik](https://econtent.hogrefe.com/doi/full/10.1026/0033-3042/a000251)
 
-#### May 21st, 28th : Nicola on thermodynamics
+#### May 21st, 28 : Nicola on thermodynamics
 * Straumann - 1986 - Thermodynamik
 
-#### April 16th - May 14th :
+#### April 16 - May 14 :
 * [Hughes - 1989 - Why functional programming matters](https://academic.oup.com/comjnl/article/32/2/98/543535)  - see also
   * the [Keynote by John Hughes and Mary Sheeran at Lambda Days 2017](https://www.youtube.com/watch?v=1qBHf8DrWR8)
   * Haskell implementation of Hughes' examples (incomplete): [hughes.lhs](1904/hughes.lhs)
