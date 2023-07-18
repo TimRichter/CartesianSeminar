@@ -30,6 +30,9 @@ For any question, please contact Tim Richter [(tim@cs.uni-potsdam.de)](mailto://
 
 ## Current reading (summer term 2023)
 
+#### starting July 11
+* Swierstra - 2021 - [A correct-by-contruction conversion to combinators](https://webspace.science.uu.nl/~swier004/publications/2021-jfp-submission-2.pdf), also see our [agda-code](2307/swierstra.agda).
+
 #### starting June 20
 * Schönfinkel - 1924 - [Über die Bausteine der mathematischen Logik](https://link.springer.com/content/pdf/10.1007/BF01448013.pdf)
 
