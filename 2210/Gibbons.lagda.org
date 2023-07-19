@@ -966,16 +966,11 @@ of functions.
 mapLPres=∙= : {A B : Set} → (f g : A → B) → f =∙= g → mapL f =∙= mapL g
 mapLPres=∙= f g fEEg [] = refl
 mapLPres=∙= f g fEEg (a ∷ as) =
-  mapL f (a ∷ as)
-    =⟨ refl ⟩
-  f a ∷ mapL f as
-    =⟨ cong (_∷ mapL f as) (fEEg a) ⟩
-  g a ∷ mapL f as
-    =⟨ cong (g a ∷_) (mapLPres=∙= f g fEEg as) ⟩
-  g a ∷ mapL g as
-    =⟨ refl ⟩
-  mapL g (a ∷ as)
-    QED
+  mapL f (a ∷ as)    =⟨ refl ⟩
+  f a ∷ mapL f as    =⟨ cong (_∷ mapL f as) (fEEg a) ⟩
+  g a ∷ mapL f as    =⟨ cong (g a ∷_) (mapLPres=∙= f g fEEg as) ⟩
+  g a ∷ mapL g as    =⟨ refl ⟩
+  mapL g (a ∷ as)    QED
 
 -- 2) =∙= is an equivalence relation
 
@@ -1009,11 +1004,11 @@ f =∙=⟨ fEEg ⟩ gEEh = =∙=Trans fEEg gEEh
 
 pre∘Pres=∙= : {A B C : Set} → (g : A → B) → {f h : B → C} →
                f =∙= h → f ∘ g =∙= h ∘ g
-pre∘Pres=∙= g {f} {h} fEh a = fEh (g a)
+pre∘Pres=∙= g fEh a = fEh (g a)
 
 post∘Pres=∙= : {A B C : Set} → (g : B → C) → {f h : A → B} →
                f =∙= h → g ∘ f =∙= g ∘ h
-post∘Pres=∙= g {f} {h} fEh a = cong g (fEh a)
+post∘Pres=∙= g fEh a = cong g (fEh a)
 
 
 -- 4) Our final preliminary is the following lemma, which follows easily
