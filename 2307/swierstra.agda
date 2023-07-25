@@ -1,4 +1,7 @@
-module swierstra {A : Set} where
+module swierstra where
+
+postulate
+  A : Set
 
 infix 15 _⇒_
 
@@ -118,4 +121,94 @@ data Ref (σ : U) : Ctx → Set where
   Pop : {τ : U} → {Γ : Ctx} → Ref σ (τ :: Γ)
 
   However, |τ| and |Γ| have to be indices!
+-}
+
+-- ≤  on natural numbers
+
+data ℕ : Set where
+  Z : ℕ
+  S : ℕ → ℕ
+
+{-# BUILTIN NATURAL ℕ #-}
+
+natAdd : ℕ → ℕ → ℕ
+natAdd  Z    y = y
+natAdd (S x) y = S (natAdd x y)
+
+{- Nicola: Bertrand Meyer (Eiffel-Autor) in "OOSC":
+   "Cosmetics matter!"
+   insbesondere Namensgebung
+-}
+
+_+ℕ_ : ℕ → ℕ → ℕ
+Z  +ℕ  y = y
+(S x) +ℕ y = S (natAdd x y)
+
+
+-- Julian:
+_≤B_ : ℕ → ℕ → Bool
+Z   ≤B n = true
+S m ≤B Z = false
+S m ≤B S n = m ≤B n
+
+data True : Set where
+  * : True
+
+-- Marcus:
+_≤S_ : ℕ → ℕ → Set
+Z ≤S n     = True -- could be any type but False!
+S m ≤S Z   = False
+S m ≤S S n = m ≤S n
+
+gugu : 0 ≤S 1
+gugu = *
+
+gugu' : 0 ≤S 5
+gugu' = *
+
+lala : 1 ≤S 0
+lala = {!!}  -- not implementable
+
+notLala : 1 ≤S 0 → False
+notLala = λ x → x
+-- or via absurd pattern (ex falso quodlibet)
+-- notLala ()
+
+gaga : 1 ≤S 3
+gaga = gugu
+
+-- Bastian:
+_≤N_ : ℕ → ℕ → ℕ
+m ≤N n = {!!}
+
+
+-- Nicola:
+data _≤D_ : ℕ → ℕ → Set where
+  ZLess : {m : ℕ} → 0 ≤D m
+  SLess : {m n : ℕ} → m ≤D n → S m ≤D S n
+
+tata : 1 ≤D 17
+tata = SLess ZLess
+
+{-
+-- Bastian:
+data _≤D_ : ℕ → ℕ → Set where
+  EQ : {m : ℕ} → m ≤D m
+  OneLess : {m : ℕ} → m ≤D S m
+  ChainLess : {m n o : ℕ} →
+              m ≤D n → n ≤D o → m ≤D o
+
+tata : 0 ≤D 3
+tata = ChainLess OneLess (ChainLess OneLess OneLess)
+-}
+
+{-
+-- Conor
+data _≤C_ : ℕ → ℕ → Set where
+  Base : 0 ≤C 0
+  Skip : {m n : ℕ} → m ≤C n → S m ≤C S n
+  Take : {m n : ℕ} → m ≤C n → m ≤C S n
+
+tata' : 2 ≤C 4
+tata' = Skip (Take (Skip (Take Base)))
 -}
