@@ -19,6 +19,7 @@ data List (B : Set) : Set where
  [] : List B
  _::_ : B → List B → List B
 
+
 Ctx : Set
 Ctx = List U
 
@@ -111,7 +112,7 @@ checkElem' {B} {deq} = checkElemByEq (checkEq {B} {deq})
 
 data Ref : U → Ctx → Set where
   Top : {σ : U}   → {Γ : Ctx} → Ref σ (σ :: Γ)
-  Pop : {σ τ : U} → {Γ : Ctx} → Ref σ (τ :: Γ)
+  Pop : {σ τ : U} → {Γ : Ctx} → Ref σ Γ → Ref σ (τ :: Γ)
 
 {- could have |σ| as a parameter (instead of an index) to
    shorten a little:
@@ -212,3 +213,72 @@ data _≤C_ : ℕ → ℕ → Set where
 tata' : 2 ≤C 4
 tata' = Skip (Take (Skip (Take Base)))
 -}
+
+ref2ℕ : ∀ {σ} {Γ} → Ref σ Γ → ℕ
+ref2ℕ Top = Z
+ref2ℕ (Pop x) = S (ref2ℕ x)
+
+data Term (Γ : Ctx) : U → Set where
+  App : ∀ {σ τ} → Term Γ (σ ⇒ τ) → Term Γ σ → Term Γ τ
+  Lam : ∀ {σ τ} → Term (σ :: Γ) τ → Term Γ (σ ⇒ τ)
+  Var : ∀ {σ}   → Ref σ Γ → Term Γ σ
+
+{- interestingly, Γ above can be a parameter (doesn't have to
+   be an index) -}
+
+{- examples :  - x -}
+x : Term ((ι ⇒ ι) :: ι :: []) ι
+x = Var (Pop Top)
+
+{-   - λ x . x
+   + : N -> N -> N  -}
+id : ∀ {Γ} {σ} → Term Γ (σ ⇒ σ)
+id = Lam (Var Top)
+
+{- constant function  λ x . y -}
+
+{- not so easy...
+   need ins... functions to insert types somewhere
+   in a context Γ (there are S (length Γ) possible positions !)
+   and "lift" references and terms over Γ to a thus extended context...
+-}
+
+data Fin : ℕ → Set where
+  FZ : ∀ {n} → Fin (S n)
+  FS : ∀ {n} → Fin n → Fin (S n)
+
+length : ∀ {B} → List B → ℕ
+length [] = Z
+length (b :: bs) = S (length bs)
+
+insList : ∀ {B} → (bs : List B) → Fin (S (length bs)) → B → List B
+insList bs FZ b'            = b' :: bs
+insList (b :: bs) (FS i) b' = b :: insList bs i b'
+
+insRef : ∀ {Γ σ τ} → (i : Fin (S (length Γ))) → Ref τ Γ → Ref τ (insList Γ i σ)
+insRef FZ r           = Pop r
+insRef (FS i) Top     = Top
+insRef (FS i) (Pop r) = Pop (insRef i r)
+
+insTerm : ∀ {Γ} {τ} → (σ : U) → (i : Fin (S (length Γ))) →
+          Term Γ τ → Term (insList Γ i σ) τ
+insTerm σ i (App t₁ t₂)        = App (insTerm σ i t₁) (insTerm σ i t₂)
+insTerm σ i (Lam t)            = Lam (insTerm σ (FS i) t)
+insTerm σ FZ (Var r)           = Var (Pop r)
+insTerm σ (FS i) (Var Top)     = Var Top
+insTerm σ (FS i) (Var (Pop x)) = Var (Pop (insRef i x))
+
+const : ∀ {Γ} {σ τ} → Term Γ τ → Term Γ (σ ⇒ τ)
+const {σ = σ} y = Lam (insTerm σ FZ y)
+
+{- f x  -}
+
+app1 : ∀ {Γ σ τ} → Term Γ (σ ⇒ τ) → Term Γ σ → Term Γ τ
+app1 = App
+
+{-   - λ x . (f x)  -}
+
+app : ∀ {Γ σ τ} → Term Γ (σ ⇒ τ) → Term Γ (σ ⇒ τ)
+app {σ = σ} f = Lam (App (insTerm σ FZ f) (Var Top))
+
+
