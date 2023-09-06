@@ -226,7 +226,9 @@ data Term (Γ : Ctx) : U → Set where
 {- interestingly, Γ above can be a parameter (doesn't have to
    be an index) -}
 
-{- examples :  - x -}
+{- ************  examples -}
+
+{- x -}
 x : Term ((ι ⇒ ι) :: ι :: []) ι
 x = Var (Pop Top)
 
@@ -268,17 +270,57 @@ insTerm σ FZ (Var r)           = Var (Pop r)
 insTerm σ (FS i) (Var Top)     = Var Top
 insTerm σ (FS i) (Var (Pop x)) = Var (Pop (insRef i x))
 
-const : ∀ {Γ} {σ τ} → Term Γ τ → Term Γ (σ ⇒ τ)
-const {σ = σ} y = Lam (insTerm σ FZ y)
+const : ∀ {Γ} {τ σ} → Term Γ σ → Term Γ (τ ⇒ σ)
+const {τ = τ} y = Lam (insTerm τ FZ y)
+
+{- on the other hand, if we model y as a (free) variable,
+   it is of course easier ... and probably more appropriate -}
+
+one : ∀ τ σ → Term (τ :: σ :: []) τ
+one τ σ = Var Top
+
+two : ∀ τ σ → Term (τ :: σ :: []) σ
+two τ σ = Var (Pop Top)
+
+const' : ∀ τ σ → Term (σ :: []) (τ ⇒ σ)
+const' τ σ = Lam (two τ σ) 
+
+{- How does const relate to const' ?
+   const {τ} {sigma} : Term Γ σ → Term Γ (τ ⇒ σ)
+   describes something like evaluating const' τ σ
+   in an environment where its free variable is
+   instantiated with something of type Term Γ σ
+   (?)
+-}
 
 {- f x  -}
 
 app1 : ∀ {Γ σ τ} → Term Γ (σ ⇒ τ) → Term Γ σ → Term Γ τ
 app1 = App
 
+{-    again, this might be more appropriate: -}
+
+fx : ∀ τ σ → Term (σ :: (σ ⇒ τ) :: []) τ
+fx τ σ = App (two σ (σ ⇒ τ)) (one σ (σ ⇒ τ))
+
 {-   - λ x . (f x)  -}
 
 app : ∀ {Γ σ τ} → Term Γ (σ ⇒ τ) → Term Γ (σ ⇒ τ)
 app {σ = σ} f = Lam (App (insTerm σ FZ f) (Var Top))
 
+{-      or, more appropriate... -}
 
+app' : ∀ τ σ → Term ((σ ⇒ τ) :: []) (σ ⇒ τ)
+app' τ σ = Lam (fx τ σ)
+
+{-  - λ f . f x
+      here we cannot use fx
+      but have to bring the function type (σ ⇒ τ)
+      to the head of the context, then we can use Lam...
+-}
+
+fx' : ∀ τ σ → Term ((σ ⇒ τ) :: σ :: []) τ
+fx' τ σ = App (one (σ ⇒ τ) σ) (two (σ ⇒ τ) σ)
+
+evalAt : ∀ τ σ → Term (σ :: []) ((σ ⇒ τ) ⇒ τ)
+evalAt τ σ = Lam (fx' τ σ)
