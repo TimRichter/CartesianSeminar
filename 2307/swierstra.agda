@@ -324,3 +324,35 @@ fx' τ σ = App (one (σ ⇒ τ) σ) (two (σ ⇒ τ) σ)
 
 evalAt : ∀ τ σ → Term (σ :: []) ((σ ⇒ τ) ⇒ τ)
 evalAt τ σ = Lam (fx' τ σ)
+
+{- Nicola suggested the following variants for
+   x, f, f x, λ x . x, λ x. f x und λ x . y
+   in arbitrary contexts that provide references
+   of appropriate types... -}
+
+-- x
+xN : ∀ {Γ σ} → Ref σ Γ → Term Γ σ
+xN = Var
+
+-- f
+fN : ∀ {Γ σ τ} → Ref (σ ⇒ τ) Γ → Term Γ (σ ⇒ τ)
+fN = Var
+
+-- f x
+fxN : ∀ {Γ σ τ} → Ref (σ ⇒ τ) Γ → Ref σ Γ → Term Γ τ
+fxN p q = App (Var p) (Var q) 
+
+-- λ x . x
+idN : ∀ {Γ} {σ} → Ref σ Γ → Term Γ (σ ⇒ σ)
+idN p = Lam (Var (Pop p))
+
+-- λ x . f x
+λfxN : ∀ {Γ σ τ} → Ref (σ ⇒ τ) Γ → Term Γ (σ ⇒ τ)
+-- Nicola simply put's "f" hier, i.e.
+-- λfxN = Var
+-- but I think this is better:
+λfxN q = Lam (App (Var (Pop q)) (Var Top))
+
+-- λ x . y  (a.k.a. const)
+constN : ∀ {Γ} {σ τ} → Ref τ Γ →  Term Γ (σ ⇒ τ)
+constN q = Lam (Var (Pop q))
