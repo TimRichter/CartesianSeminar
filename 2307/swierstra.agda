@@ -3,7 +3,7 @@ module swierstra where
 postulate
   A : Set
 
-infix 15 _⇒_
+infixr 15 _⇒_
 
 data U : Set where
  ι : U
@@ -223,21 +223,22 @@ data Term (Γ : Ctx) : U → Set where
   Lam : ∀ {σ τ} → Term (σ :: Γ) τ → Term Γ (σ ⇒ τ)
   Var : ∀ {σ}   → Ref σ Γ → Term Γ σ
 
-{- interestingly, Γ above can be a parameter (doesn't have to
-   be an index) -}
+-- interestingly, Γ above can be a parameter
+-- (doesn't have to be an index)
 
-{- ************  examples -}
+-------------------
+-- example λ terms
+-------------------
 
-{- x -}
+-- x
 x : Term ((ι ⇒ ι) :: ι :: []) ι
 x = Var (Pop Top)
 
-{-   - λ x . x
-   + : N -> N -> N  -}
+-- λ x . x
 id : ∀ {Γ} {σ} → Term Γ (σ ⇒ σ)
 id = Lam (Var Top)
 
-{- constant function  λ x . y -}
+-- constant function  λ x . y
 
 {- not so easy...
    need ins... functions to insert types somewhere
@@ -293,28 +294,28 @@ const' τ σ = Lam (two τ σ)
    (?)
 -}
 
-{- f x  -}
+-- f x
 
 app1 : ∀ {Γ σ τ} → Term Γ (σ ⇒ τ) → Term Γ σ → Term Γ τ
 app1 = App
 
-{-    again, this might be more appropriate: -}
+--    again, this might be more appropriate:
 
 fx : ∀ τ σ → Term (σ :: (σ ⇒ τ) :: []) τ
 fx τ σ = App (two σ (σ ⇒ τ)) (one σ (σ ⇒ τ))
 
-{-   - λ x . (f x)  -}
+-- λ x . (f x)
 
 app : ∀ {Γ σ τ} → Term Γ (σ ⇒ τ) → Term Γ (σ ⇒ τ)
 app {σ = σ} f = Lam (App (insTerm σ FZ f) (Var Top))
 
-{-      or, more appropriate... -}
+--    or, more appropriately
 
 app' : ∀ τ σ → Term ((σ ⇒ τ) :: []) (σ ⇒ τ)
 app' τ σ = Lam (fx τ σ)
 
-{-  - λ f . f x
-      here we cannot use fx
+-- λ f . f x
+{-    here we cannot use fx
       but have to bring the function type (σ ⇒ τ)
       to the head of the context, then we can use Lam...
 -}
@@ -348,7 +349,7 @@ idN p = Lam (Var (Pop p))
 
 -- λ x . f x
 λfxN : ∀ {Γ σ τ} → Ref (σ ⇒ τ) Γ → Term Γ (σ ⇒ τ)
--- Nicola simply put's "f" hier, i.e.
+-- Nicola simply puts "f" hier, i.e.
 -- λfxN = Var
 -- but I think this is better:
 λfxN q = Lam (App (Var (Pop q)) (Var Top))
@@ -356,3 +357,93 @@ idN p = Lam (Var (Pop p))
 -- λ x . y  (a.k.a. const)
 constN : ∀ {Γ} {σ τ} → Ref τ Γ →  Term Γ (σ ⇒ τ)
 constN q = Lam (Var (Pop q))
+
+
+
+----------------------------
+-- environments, evaluation
+----------------------------
+
+data Env : Ctx → Set where
+  Nil  : Env []
+  Cons : ∀ {Γ σ} → Val σ → Env Γ → Env (σ :: Γ)
+
+
+lookup : ∀ {Γ σ} → Ref σ Γ → Env Γ → Val σ
+lookup Top       (Cons x env) = x
+lookup (Pop ref) (Cons x env) = lookup ref env
+
+
+⟦_⟧ : ∀ {Γ σ} → Term Γ σ → Env Γ → Val σ
+⟦ App t₁ t₂ ⟧ = λ env → (⟦ t₁ ⟧ env)(⟦ t₂ ⟧ env)
+⟦ Lam t ⟧     = λ env → λ x → ⟦ t ⟧ (Cons x env)
+⟦ Var x ⟧     = λ env → lookup x env
+
+---------------------------------------
+-- 3. Translation to combinatory logic
+---------------------------------------
+
+-- Swierstra builds up to his final Comb datatype in three steps.
+-- We give only the final variant:
+-- Also, to have combinator terms closer to Schönfinkel's paper
+-- (and to avoid confusion with App constructor in Term), we use
+-- an infix operator instead of App
+
+infixl 20 _∙_
+
+
+data Comb (Γ : Ctx ) : (u : U)  → (Env Γ → Val u) → Set where
+  S   : ∀ {σ τ τ'}  → Comb Γ ((σ ⇒ τ ⇒ τ') ⇒ (σ ⇒ τ) ⇒ σ ⇒ τ') (λ env → λ f g x → ( f x ) ( g x ))
+  K   : ∀ {σ τ}     → Comb Γ (σ ⇒ (τ ⇒ σ)) (λ env → λ x y → x )
+  I   : ∀ {σ}       → Comb Γ (σ ⇒ σ) (λ env → λ x → x )
+  Var : ∀ {σ}       → (i : Ref σ Γ) → Comb Γ σ (λ env → lookup i env)
+  _∙_ : ∀ {σ τ f x} → Comb Γ (σ ⇒ τ) f → Comb Γ σ x → Comb Γ τ (λ env → ( f env ) ( x env ))
+
+-- "bracket abstraction" (?)
+
+lambda : ∀ {Γ σ τ f} → Comb (σ :: Γ) τ f → Comb Γ (σ ⇒ τ) (λ env x → f ( Cons x env ))
+lambda S                = K ∙ S
+lambda K                = K ∙ K
+lambda I                = K ∙ I
+lambda ( t₁ ∙ t₂ )      = S ∙ ( lambda t₁ ) ∙ ( lambda t₂ )
+lambda ( Var Top )      = I
+lambda ( Var ( Pop i )) = K ∙ ( Var i )
+
+
+translate : ∀ {Γ σ} → (t : Term Γ σ) → Comb Γ σ ⟦ t ⟧
+translate (App t₁ t₂) = (translate t₁) ∙ (translate t₂)
+translate (Lam t)     = lambda (translate t)
+translate (Var i)     = Var i
+
+
+-- further example λ-Terms, to test translate on
+-- something not completely trivial:
+
+--  composition (Schönfinkel's Z)
+comp : ∀ {σ τ ρ} → Term [] ((τ ⇒ ρ) ⇒ (σ ⇒ τ) ⇒ σ ⇒ ρ)
+comp = Lam (Lam (Lam (App (Var (Pop (Pop Top))) (App (Var (Pop Top)) (Var Top)))))
+
+-- const again, this time in empty context (Schönfinkel's K)
+k : ∀ {σ τ} → Term [] (σ ⇒ (τ ⇒ σ))
+k = Lam (Lam (Var (Pop Top)))  -- C-C C-A finds this!
+
+-- switching aguments of a binary function (Schönfinkel's T)
+switch : ∀ {σ τ ρ} → Term [] ((σ ⇒ τ ⇒ ρ) ⇒ (τ ⇒ σ ⇒ ρ))
+switch = Lam (Lam (Lam ( App (App (Var (Pop (Pop Top))) (Var Top)) (Var (Pop Top)) )))
+
+-- comparing to Schönfinkel:
+--  - Sch. eliminates I
+--  - terms here are longer then Schönfinkel's: e.g.
+--   translate k = S ∙ (K ∙ K) ∙ I
+--   is much longer than the expected K, but (ext.) equal to it:
+--   S (K K) I x
+--    ={Def. S}
+--   (K K x) (I x)
+--    ={Def. K, Def. I}
+--   K x
+--
+-- So,
+--  - can we formulate a variant of Comp without I and still define lambda and translate
+--  - can we find the reason for the blowup in size and eliminate it ?
+
+
