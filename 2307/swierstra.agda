@@ -347,6 +347,10 @@ fxN p q = App (Var p) (Var q)
 idN : ∀ {Γ} {σ} → Ref σ Γ → Term Γ (σ ⇒ σ)
 idN p = Lam (Var (Pop p))
 
+-- or, maybe better:
+idN' : ∀ {Γ} {σ} → Term Γ (σ ⇒ σ)
+idN' = Lam (Var Top)
+
 -- λ x . f x
 λfxN : ∀ {Γ σ τ} → Ref (σ ⇒ τ) Γ → Term Γ (σ ⇒ τ)
 -- Nicola simply puts "f" hier, i.e.
@@ -423,7 +427,7 @@ translate (Var i)     = Var i
 comp : ∀ {σ τ ρ} → Term [] ((τ ⇒ ρ) ⇒ (σ ⇒ τ) ⇒ σ ⇒ ρ)
 comp = Lam (Lam (Lam (App (Var (Pop (Pop Top))) (App (Var (Pop Top)) (Var Top)))))
 
--- const again, this time in empty context (Schönfinkel's K)
+-- const again, this time in empty context (Schönfinkel's C)
 k : ∀ {σ τ} → Term [] (σ ⇒ (τ ⇒ σ))
 k = Lam (Lam (Var (Pop Top)))  -- C-C C-A finds this!
 
@@ -443,7 +447,7 @@ switch = Lam (Lam (Lam ( App (App (Var (Pop (Pop Top))) (Var Top)) (Var (Pop Top
 --   K x
 --
 -- So,
---  - can we formulate a variant of Comp without I and still define lambda and translate
+--  - can we formulate a variant for Comp, lambda and translate  without I ?
 --  - can we find the reason for the blowup in size and eliminate it ?
 
 
