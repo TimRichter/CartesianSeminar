@@ -6,15 +6,18 @@ de la méthode" we aim for a thorough understanding of the texts we read.
 
 ## Participants
 ### Present
-Sebastian Böhne, Nicola Botta, Julian Bruns, Marcus Funke, Josephine Funken,
-Bastian Franke, Christoph Glinzer, Hanna Gloyna, Tom Kranz, Tim Richter
+Sebastian Böhne, Nicola Botta, Bastian Franke, Christoph Glinzer, Hanna Gloyna,
+Leo Günther, Raphael Kluge, Tom Kranz, Tim Richter
 ### Past 
-Denis Andreev, Alexander Benedict Behrens, Marc Beilcke, Nikolas Bertrand, Nuria Brede, Frederick Brumm, Margrit Dittmann,
-Georg Duchrau, Lucien Fumagalli, Jan Heuer, Cezar Ionescu, Ingram Jaccard, Henrik Jürges,
-Niklas Kämmer, Manuel Keilmann, Thomas Kern, Lucas Kerschke, Aleksandra Khatova, Christoph Kreitz, Lara Kursawe, David Simon Kuska,
-Jan Lemcke, Marc Fabian Lindner, David Linkiewicz, Philomena Moek, Tim Münzner, Florian Raab, Tarek Ramadan,
-Leo Repp, Eva Richter, Juliane Scherlitzki, Carla Schreiber, Matthias Seidel, Mika Strozyk, Jessica Trebst,
-Marius Wawerek, Luise Werner, Max Wiedenhöft, Axel Wiepke, Jonas Winter, Oliver Zernikow, David Zimmek
+Denis Andreev, Alexander Benedict Behrens, Marc Beilcke, Nikolas Bertrand, Nuria Brede, 
+Frederick Brumm, Julian Bruns, Margrit Dittmann, Georg Duchrau, Lucien Fumagalli, 
+Marcus Funke, Josephine Funken, Jan Heuer, Cezar Ionescu, Ingram Jaccard, Henrik Jürges,
+Niklas Kämmer, Manuel Keilmann, Thomas Kern, Lucas Kerschke, Aleksandra Khatova, 
+Christoph Kreitz, Lara Kursawe, David Simon Kuska, Jan Lemcke, Marc Fabian Lindner,
+David Linkiewicz, Philomena Moek, Tim Münzner, Florian Raab, Tarek Ramadan, Leo Repp, 
+Eva Richter, Juliane Scherlitzki, Carla Schreiber, Matthias Seidel, Mika Strozyk,
+Jessica Trebst, Marius Wawerek, Luise Werner, Max Wiedenhöft, Axel Wiepke, Jonas Winter,
+Oliver Zernikow, David Zimmek
 
 
 Guests are always welcome!
@@ -30,6 +33,13 @@ For any question, please contact Tim Richter [(tim@cs.uni-potsdam.de)](mailto://
 
 ## Current reading (summer term 2023)
 
+#### starting October 17
+* Introductory lessons on Type Theory for new participants
+
+## Archive
+
+### Summer 2023
+
 #### starting July 11
 * Swierstra - 2021 - [A correct-by-contruction conversion to combinators](https://webspace.science.uu.nl/~swier004/publications/2021-jfp-submission-2.pdf), also see our [agda-code](2307/swierstra.agda).
 
@@ -42,7 +52,6 @@ For any question, please contact Tim Richter [(tim@cs.uni-potsdam.de)](mailto://
 #### April 18th - Mai 30
 * starting from Wikipedia : [Bertrand paradox (probability)](https://en.wikipedia.org/wiki/Bertrand_paradox_(probability)) discussed some elementary probablilty theory
 
-## Archive
 
 ### Winter term 2022/2023
 

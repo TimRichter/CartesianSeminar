@@ -3,6 +3,11 @@ module swierstra where
 postulate
   A : Set
 
+infixl 15 _∘_
+
+_∘_ : {A B C : Set} → (B → C) → (A → B) → A → C
+(f ∘ g) x = f (g x)
+
 infixr 15 _⇒_
 
 data U : Set where
@@ -19,6 +24,9 @@ data List (B : Set) : Set where
  [] : List B
  _::_ : B → List B → List B
 
+data List₁ (B : Set₁) : Set₁ where
+ [] : List₁ B
+ _::_ : B → List₁ B → List₁ B
 
 Ctx : Set
 Ctx = List U
@@ -234,6 +242,7 @@ data Term (Γ : Ctx) : U → Set where
 x : Term ((ι ⇒ ι) :: ι :: []) ι
 x = Var (Pop Top)
 
+
 -- λ x . x
 id : ∀ {Γ} {σ} → Term Γ (σ ⇒ σ)
 id = Lam (Var Top)
@@ -284,7 +293,9 @@ two : ∀ τ σ → Term (τ :: σ :: []) σ
 two τ σ = Var (Pop Top)
 
 const' : ∀ τ σ → Term (σ :: []) (τ ⇒ σ)
-const' τ σ = Lam (two τ σ) 
+const' τ σ = Lam (two τ σ)
+-- this is a special case of Nicola's constN below
+--  const' τ σ = constN {Γ = σ :: []} {τ} {σ} Top
 
 {- How does const relate to const' ?
    const {τ} {sigma} : Term Γ σ → Term Γ (τ ⇒ σ)
@@ -303,16 +314,17 @@ app1 = App
 
 fx : ∀ τ σ → Term (σ :: (σ ⇒ τ) :: []) τ
 fx τ σ = App (two σ (σ ⇒ τ)) (one σ (σ ⇒ τ))
+-- again, this is a special case of fxN below
+-- fx τ σ = fxN {Γ = σ :: (σ ⇒ τ) :: []} {σ} {τ} (Pop (Top)) Top
 
 -- λ x . (f x)
 
-app : ∀ {Γ σ τ} → Term Γ (σ ⇒ τ) → Term Γ (σ ⇒ τ)
-app {σ = σ} f = Lam (App (insTerm σ FZ f) (Var Top))
-
+-- app : ∀ {Γ σ τ} → Term Γ (σ ⇒ τ) → Term Γ (σ ⇒ τ)
+-- app {σ = σ} f = Lam (App (insTerm σ FZ f) (Var Top))
 --    or, more appropriately
 
-app' : ∀ τ σ → Term ((σ ⇒ τ) :: []) (σ ⇒ τ)
-app' τ σ = Lam (fx τ σ)
+app : ∀ τ σ → Term ((σ ⇒ τ) :: []) (σ ⇒ τ)
+app τ σ = Lam (fx τ σ)
 
 -- λ f . f x
 {-    here we cannot use fx
@@ -341,15 +353,47 @@ fN = Var
 
 -- f x
 fxN : ∀ {Γ σ τ} → Ref (σ ⇒ τ) Γ → Ref σ Γ → Term Γ τ
-fxN p q = App (Var p) (Var q) 
+fxN p q = App (Var p) (Var q)
+
 
 -- λ x . x
+-- this is not! the identity function:
 idN : ∀ {Γ} {σ} → Ref σ Γ → Term Γ (σ ⇒ σ)
 idN p = Lam (Var (Pop p))
+-- but a constant function
 
--- or, maybe better:
+postulate
+  σ : U
+
+Γ' : Ctx
+Γ' = σ :: σ :: []
+
+first second : Ref σ Γ'
+first  = Top
+second = Pop (Top)
+
+id1 : Term Γ' (σ ⇒ σ)
+id1 = idN first
+
+id2 : Term Γ' (σ ⇒ σ)
+id2 = idN second
+
+test1 : Term Γ' σ
+test1 = App id1 (Var second)
+
+test2 : Term Γ' σ
+test2 = App id2 (Var second)
+
+-- Tim: idN p actually is a constant function mapping to variable p
+-- I think, this is better:
 idN' : ∀ {Γ} {σ} → Term Γ (σ ⇒ σ)
 idN' = Lam (Var Top)
+
+test1' : Term Γ' σ
+test1' = App idN' (Var second)
+
+test2' : Term Γ' σ
+test2' = App idN' (Var first)
 
 -- λ x . f x
 λfxN : ∀ {Γ σ τ} → Ref (σ ⇒ τ) Γ → Term Γ (σ ⇒ τ)
@@ -360,8 +404,18 @@ idN' = Lam (Var Top)
 
 -- λ x . y  (a.k.a. const)
 constN : ∀ {Γ} {σ τ} → Ref τ Γ →  Term Γ (σ ⇒ τ)
-constN q = Lam (Var (Pop q))
+--constN q = (Lam (Var (Pop q)))
+constN = Lam ∘ Var ∘ Pop
 
+-- λ f . f lala gugu
+fxy : ∀ {Γ} {σ τ ρ} → Ref σ Γ → Ref τ Γ → Term Γ ((σ ⇒ τ ⇒ ρ) ⇒ ρ)
+fxy x y = Lam (App (App (Var Top) (Var (Pop x))) (Var (Pop y)))
+-- Tom has qualms about the possibility that lala and gugu are allowed
+-- to be the same reference
+
+-- λ f . f lala lala
+fxx : ∀ {Γ} {σ ρ} → Ref σ Γ → Term Γ ((σ ⇒ σ ⇒ ρ) ⇒ ρ)
+fxx x = fxy x x
 
 
 ----------------------------
@@ -372,6 +426,11 @@ data Env : Ctx → Set where
   Nil  : Env []
   Cons : ∀ {Γ σ} → Val σ → Env Γ → Env (σ :: Γ)
 
+{- remark: Env is like HList of (Map Val Γ) -}
+data HList : List₁ Set → Set where
+  Nil'  : HList []
+  Cons' : ∀ {A} {As} → (a : A) → HList As → HList (A :: As)
+
 
 lookup : ∀ {Γ σ} → Ref σ Γ → Env Γ → Val σ
 lookup Top       (Cons x env) = x
@@ -379,9 +438,9 @@ lookup (Pop ref) (Cons x env) = lookup ref env
 
 
 ⟦_⟧ : ∀ {Γ σ} → Term Γ σ → Env Γ → Val σ
-⟦ App t₁ t₂ ⟧ = λ env → (⟦ t₁ ⟧ env)(⟦ t₂ ⟧ env)
-⟦ Lam t ⟧     = λ env → λ x → ⟦ t ⟧ (Cons x env)
-⟦ Var x ⟧     = λ env → lookup x env
+⟦ App t₁ t₂ ⟧ env = (⟦ t₁ ⟧ env)(⟦ t₂ ⟧ env)
+⟦ Lam t ⟧     env = λ x → ⟦ t ⟧ (Cons x env)
+⟦ Var x ⟧     env = lookup x env
 
 ---------------------------------------
 -- 3. Translation to combinatory logic
@@ -397,11 +456,13 @@ infixl 20 _∙_
 
 
 data Comb (Γ : Ctx ) : (u : U)  → (Env Γ → Val u) → Set where
-  S   : ∀ {σ τ τ'}  → Comb Γ ((σ ⇒ τ ⇒ τ') ⇒ (σ ⇒ τ) ⇒ σ ⇒ τ') (λ env → λ f g x → ( f x ) ( g x ))
+  S   : ∀ {σ τ τ'}  → Comb Γ ((σ ⇒ τ ⇒ τ') ⇒ (σ ⇒ τ) ⇒ σ ⇒ τ')
+                             (λ env → λ f g x → ( f x ) ( g x ))
   K   : ∀ {σ τ}     → Comb Γ (σ ⇒ (τ ⇒ σ)) (λ env → λ x y → x )
   I   : ∀ {σ}       → Comb Γ (σ ⇒ σ) (λ env → λ x → x )
   Var : ∀ {σ}       → (i : Ref σ Γ) → Comb Γ σ (λ env → lookup i env)
-  _∙_ : ∀ {σ τ f x} → Comb Γ (σ ⇒ τ) f → Comb Γ σ x → Comb Γ τ (λ env → ( f env ) ( x env ))
+  _∙_ : ∀ {σ τ f x} → Comb Γ (σ ⇒ τ) f → Comb Γ σ x →
+                      Comb Γ τ (λ env → ( f env ) ( x env ))
 
 -- "bracket abstraction" (?)
 
@@ -449,5 +510,3 @@ switch = Lam (Lam (Lam ( App (App (Var (Pop (Pop Top))) (Var Top)) (Var (Pop Top
 -- So,
 --  - can we formulate a variant for Comp, lambda and translate  without I ?
 --  - can we find the reason for the blowup in size and eliminate it ?
-
-
