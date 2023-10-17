@@ -31,14 +31,14 @@ Guests are always welcome!
 
 For any question, please contact Tim Richter [(tim@cs.uni-potsdam.de)](mailto://tim@cs.uni-potsdam.de).
 
-## Current reading (summer term 2023)
+## Current reading (winter term 2023-2024)
 
 #### starting October 17
 * Introductory lessons on Type Theory for new participants
 
 ## Archive
 
-### Summer 2023
+### Summer term 2023
 
 #### starting July 11
 * Swierstra - 2021 - [A correct-by-contruction conversion to combinators](https://webspace.science.uu.nl/~swier004/publications/2021-jfp-submission-2.pdf), also see our [agda-code](2307/swierstra.agda).
