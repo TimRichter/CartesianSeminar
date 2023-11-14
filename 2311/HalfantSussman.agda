@@ -2,7 +2,7 @@
 open import Agda.Builtin.Float renaming (primFloatSqrt to sqrt)
 open import Data.Nat hiding (_+_;_*_)
 open import Data.List hiding (head; tail; take; zip)
-open import Function.Base using (_∘_)
+open import Function.Base using (_∘_ ; id)
 
 module HalfantSussman where
 
@@ -64,7 +64,18 @@ flow next n = {!!}
 -- was ist flow next 0  ?
 -- wie verhält sich flow next (n + m)  zu  flow next n und flow next m ?
 
+-- Beispiele für Streams (bitte vervollständigen)!
 
+-- 0, 1, 2, 3, ...
+allℕ : Stream ℕ
+allℕ = stream-of-iterations {!!} {!!}
+
+-- a, a, a, ....
+constStream : {A : Set} → A → Stream A
+constStream a = stream-of-iterations {!!} {!!}
+
+
+-- on with the article:
 
 refine-by-doubling : Float → Float
 refine-by-doubling s = s / sqrt (2.0 + sqrt (4.0 - s * s))
