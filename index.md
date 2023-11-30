@@ -35,7 +35,7 @@ For any question, please contact Tim Richter [(tim@cs.uni-potsdam.de)](mailto://
 
 #### starting November 7
 * Halfant, Sussmann - 1988 - [Abstraction in Numerical Methods](https://dl.acm.org/doi/pdf/10.1145/62678.62679),
-  also see our [agda-code](2311/HalfantSussman.agda).
+  also see our [agda-code](2311/HalfantSussman.agda) and the [Notes](2311/HalfantSussman_Notes.pdf).
 
 #### October 17 - November 1
 * Introductory lessons on Type Theory for new participants
