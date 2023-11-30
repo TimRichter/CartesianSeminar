@@ -59,8 +59,8 @@ Stream.tail (stream-of-iterations next value) = stream-of-iterations next (next 
 
 -- complete the following definition
 flow : {A : Set} → (A → A) → ℕ → A → A
-flow next zero = λ a → a
-flow next (suc n) = λ a → (next (flow next n a))
+flow next zero    = id
+flow next (suc n) = next ∘ (flow next n)
 
 -- e.g. compute flow next 2:
 -- flow next (suc (suc zero)) a = next (flow next (suc zero) a)
@@ -70,7 +70,7 @@ flow next (suc n) = λ a → (next (flow next n a))
 
 -- Tim: when I gave the exercise, I had in mind:
 -- ℕ → A    and    Stream A   are  "the same" (isomorphic,
--- in bijection, equivalent) via the functions fun2Stream and _!!_
+-- in bijection, equivalent...) via the functions fun2Stream and _!!_
 -- and flow is nothing else than  stream-of-iterations transported
 -- along this equivalence ... What I missed was: stream-of-iterations f
 -- isn't a stream but of type  A → Stream A ...
@@ -146,6 +146,6 @@ even-better-pi-sequence =
   in
     zip-streams q' bseq (tail bseq)
 
--- already the 6th term of even-better-pi-sequence has
+-- Already the 6th term of even-better-pi-sequence has
 -- 15 digits of π correct.  However, after that it doesn't
--- get better and instead ocillates... to be discussed.
+-- get better and instead oscillates... to be discussed.
