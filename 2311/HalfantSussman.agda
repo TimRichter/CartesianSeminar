@@ -1,8 +1,9 @@
 {-# OPTIONS --guardedness #-}
 open import Agda.Builtin.Float renaming (primFloatSqrt to sqrt)
-open import Data.Nat hiding (_+_;_*_)
+open import Data.Nat hiding (_+_;_*_;_^_)
 open import Data.List hiding (head; tail; take; zip)
 open import Function.Base using (_∘_ ; id; flip)
+open import Data.Product
 
 module HalfantSussman where
 
@@ -10,12 +11,14 @@ infixl 20 _+_
 infixl 20 _-_
 infixl 21 _*_
 infixl 19 _/_
+infixl 18 _^_
 
-_+_ _-_ _*_ _/_ : Float → Float → Float
+_+_ _-_ _*_ _/_ _^_ : Float → Float → Float
 _+_ = primFloatPlus
 _-_ = primFloatMinus
 _*_ = primFloatTimes
 _/_ = primFloatDiv
+_^_ = primFloatPow
 
 record Stream (A : Set) : Set where
   coinductive
@@ -149,3 +152,42 @@ even-better-pi-sequence =
 -- Already the 6th term of even-better-pi-sequence has
 -- 15 digits of π correct.  However, after that it doesn't
 -- get better and instead oscillates... to be discussed.
+
+-- determine approximation order  ....
+
+-- approx-order : List Float → List (Float × Float)
+-- approx-order = ?
+
+----------------------
+-- Richardson toolbox
+----------------------
+
+make-zeno-sequence : (Float → Float) → Float → Stream Float
+head (make-zeno-sequence R h) = R h
+tail (make-zeno-sequence R h) = make-zeno-sequence R (h / 2.0)
+
+
+accelerate-zeno-sequence : Stream Float → Float → Stream Float
+accelerate-zeno-sequence seq p = zip-streams
+                               (λ rh rh/2 →  (((2.0 ^ p) * rh/2) - rh) / ((2.0 ^ p) - 1.0))
+                               seq (tail seq)
+
+make-zeno-tableau : Stream Float → Float → Float → Stream (Stream Float)
+make-zeno-tableau seq p q = sequences seq p where
+  sequences : Stream Float → Float → Stream (Stream Float)
+  sequences = {!!}
+
+-- ^^^^^^^
+-- Homework for 19.12.23
+-- As an exercise, also implement make-zeno-tableau using stream-of-iterations
+-- by completing the following:
+
+Stream×Order : Set
+Stream×Order = Stream Float × Float
+
+next : Float → Stream×Order → Stream×Order
+next q (seq , o) = ({!!} , {!!})
+
+make-zeno-tableau' : Stream Float → Float → Float → Stream (Stream Float)
+make-zeno-tableau' seq p q =
+    map-streams proj₁ (stream-of-iterations {!!} {!!})
