@@ -23,7 +23,14 @@ _+_ = primFloatPlus
 _-_ = primFloatMinus
 _*_ = primFloatTimes
 _/_ = primFloatDiv
+
+-- in Agda versions prior to 2.6.2, there was no primFloatPow
+-- (and primFloatExp and primFloatLog were named differently).
+-- So, for Agda versions ≥ 2.6.2
 _^_ = primFloatPow
+-- for older versions:
+-- x ^ y = primExp ((primLog x) * y)
+
 
 ln : Float → Float → Float
 ln base x = primFloatLog x / primFloatLog base
@@ -109,7 +116,7 @@ flow next (suc n) = next ∘ (flow next n)
 flow' : {A : Set} → (A → A) → ℕ → A → A
 flow' = flip ∘ (_!!_ ∘_) ∘ stream-of-iterations
 
--- flow f n  is usually writte   f^n
+-- flow f n  is usually written f^n
 -- flow next 0 ≐ id
 -- flow next (n + m) ≐ flow next n ∘ flow next m
 
