@@ -1,17 +1,22 @@
 {-# OPTIONS --guardedness #-}
 open import Agda.Builtin.Float renaming (primFloatSqrt to sqrt)
-open import Data.Nat hiding (_+_;_*_;_^_)
+open import Data.Bool hiding (_<_ ; _≤_)
+open import Data.Nat hiding (_+_;_*_;_^_;_<_;_≤_;∣_-_∣)
 open import Data.List hiding (head; tail; take; zip)
 open import Function.Base using (_∘_ ; id; flip)
 open import Data.Product
 
+-- Implementation of parts of Halfant, Sussmann - 1988 - "Abstraction in Numerical Methods"
+
 module HalfantSussman where
+
+-- Preliminaries: operations on floats
 
 infixl 20 _+_
 infixl 20 _-_
-infixl 21 _*_
-infixl 19 _/_
-infixl 18 _^_
+infixl 19 _*_
+infixl 18 _/_
+infixl 17 _^_
 
 _+_ _-_ _*_ _/_ _^_ : Float → Float → Float
 _+_ = primFloatPlus
@@ -19,6 +24,25 @@ _-_ = primFloatMinus
 _*_ = primFloatTimes
 _/_ = primFloatDiv
 _^_ = primFloatPow
+
+ln : Float → Float → Float
+ln base x = primFloatLog x / primFloatLog base
+
+infix 16 _<_
+infix 16 _≤_
+
+_<_ _≤_ : Float → Float → Bool
+_<_ = primFloatLess
+x ≤ y = not (y < x)
+
+infix 15 ∣_∣
+
+∣_∣  : Float → Float   -- ∣ is typed as \|
+∣ x ∣ with (x < 0.0)
+... | false = x
+... | true  = primFloatNegate x
+
+-- Streams  ... our first example of a coinductive type
 
 record Stream (A : Set) : Set where
   coinductive
@@ -28,6 +52,8 @@ record Stream (A : Set) : Set where
 
 open Stream public
 
+-- streams (or functions into streams) can be defined
+-- by copattern matching (or, what amounts to the same, by unfold, see below)
 
 constStream5 : Stream ℕ
 head constStream5 = 5
@@ -153,10 +179,127 @@ even-better-pi-sequence =
 -- 15 digits of π correct.  However, after that it doesn't
 -- get better and instead oscillates... to be discussed.
 
--- determine approximation order  ....
+-- Determine approximation order
+---------------------------------
+{-
+At the end of page 2, the paper says "Alternatively, the
+appropriate exponent p for a given column can be inferred
+numerically from the early terms of that column;..."
 
--- approx-order : List Float → List (Float × Float)
--- approx-order = ?
+Suppose we are given a stream s₀, s₁, s₂, ...
+(of Floats...). We assume (Ansatz!) that ∀ l : ℕ
+
+        sₗ = R (h/(2^l))
+
+where h is some (unknown but fixed) floating point number
+and
+
+  R h = A + B * h^p₀ + C * h^p₁ + ...
+
+with (unknown but fixed) floating point numbers
+A, B, C, ... and p₀ < p₁ < p₂ < ... . We want to estimate p₀.
+
+For any l : ℕ we have
+
+sₗ - sₗ₊₁ =  B * h^p₀ * 2^(- p₀ * l) * (1 - 2^(-p₀)) + O (h^p₁)
+
+and thus (up to higher order terms...)
+
+(sₗ - sₗ₊₁) / (sₗ₊₁ - sₗ₊₂) =
+2^((- p₀ * l) - (- p₀ * l - p)) = 2^p₀
+
+So we can compute an estimate of p₀ using three consecutive
+terms in our stream, e.g. s₀, s₁, s₂:
+-}
+
+approx-order : Stream Float → Float
+approx-order s =
+  let
+    s₀ = head s
+    s₁ = head (tail s)
+    s₂ = head (tail (tail s))
+  in
+    ln 2.0 ((s₀ - s₁) / (s₁ - s₂))
+
+{-
+For the above sequences, we respectively (using "normalize"
+i.e. C-c C-n) get:
+
+approx-order archimedean-pi-sequence
+1.9580817311389207
+
+approx-order better-pi-sequence
+3.979128373915537
+
+approx-order even-better-pi-sequence
+5.987692601668532
+
+which is roughly what to expect. Note however that we
+knew from our geometrical analysis that the "right"
+approximation order of archimedean-pi-sequence is 2 and
+used this value in the computation of better-pi-sequence...
+
+Now it is easy to compute a stream of approximations for
+the approximation order by "mapping approx-order to the
+stream of tails" of our given stream: We define tails-stream
+with help of the general unfold-stream
+-}
+
+unfold-stream : {A B : Set} → (A → B) → (A → A) → (A → Stream B)
+head (unfold-stream h t a) = h a
+tail (unfold-stream h t a) = unfold-stream h t (t a)
+
+tails-stream : {A : Set} → Stream A → Stream (Stream A)
+tails-stream = unfold-stream id tail
+
+{-
+and now map approx-order over this...
+-}
+
+approx-orders : Stream Float → Stream Float
+approx-orders = (map-streams approx-order) ∘ tails-stream
+
+{-
+Try this out normalizing "take 10 (approx-orders ...-sequence)" !
+
+While the first terms are quite good approximations, later terms
+are getting less accurate or even evaluate to exceptional values
+like NaN or -Infinity. This probably is because we didn't heed the
+advise to avoid computing differences of nearly equal numbers :
+sₗ , sₗ₊₁ , sₗ₊₂  get closer to one another with growing l.
+
+How to avoid this ? We also have (up to higher order terms...)
+
+(sₗ - s₀)/(sₗ₊₁ - s₁) =
+B * h^p₀ * (2^(-l * p₀) - 1)  /  B * h^p₀ * 2^(-p₀) * (2^(-l * p₀) - 1)
+2^p₀
+
+-}
+
+approx-orders'-help : Float → Float → Stream Float → Float
+approx-orders'-help s₀ s₁ seq =
+  let
+    sₗ = head seq
+    sₗ₊₁ = head (tail seq)
+  in
+    ln 2.0 ((sₗ - s₀) / (sₗ₊₁ - s₁))
+
+approx-orders' : Stream Float → Stream Float
+approx-orders' seq =
+  let
+    s₀ = head seq
+    s₁ = head (tail seq)
+    t = tail (tail seq)
+  in
+   map-streams (approx-orders'-help s₀ s₁) (tails-stream t)
+
+{-
+Ok, this doesn't give NaN, but ... these sequences of approximations
+don't seem to get "better" but instead are more or less constant...
+
+Any other ideas?
+
+-}
 
 ----------------------
 -- Richardson toolbox
@@ -175,7 +318,8 @@ accelerate-zeno-sequence seq p = zip-streams
 make-zeno-tableau : Stream Float → Float → Float → Stream (Stream Float)
 make-zeno-tableau seq p q = sequences seq p where
   sequences : Stream Float → Float → Stream (Stream Float)
-  sequences = {!!}
+  head (sequences s o) = s
+  tail (sequences s o) = sequences (accelerate-zeno-sequence s o) (o + q)
 
 -- ^^^^^^^
 -- Homework for 19.12.23
@@ -186,8 +330,36 @@ Stream×Order : Set
 Stream×Order = Stream Float × Float
 
 next : Float → Stream×Order → Stream×Order
-next q (seq , o) = ({!!} , {!!})
+next q (seq , o) = (accelerate-zeno-sequence seq o , o + q)
 
 make-zeno-tableau' : Stream Float → Float → Float → Stream (Stream Float)
-make-zeno-tableau' seq p q =
-    map-streams proj₁ (stream-of-iterations {!!} {!!})
+make-zeno-tableau' seq p q = map-streams proj₁ soStream where
+      soStream : Stream Stream×Order
+      soStream = stream-of-iterations (next q) (seq , p)
+
+-- we complete the Richardson toolbox by:
+
+first-term-of-zeno-tableau : Stream (Stream Float) → Stream Float
+first-term-of-zeno-tableau = map-streams head
+
+richardson-sequence : Stream Float → Float → Float → Stream Float
+richardson-sequence seq p q = first-term-of-zeno-tableau (make-zeno-tableau seq p q)
+
+close-enuf? : Float → Float → Float → Bool
+close-enuf? h₁ h₂ tolerance = ∣ h₁ - h₂ ∣ ≤ 0.5 * tolerance * (∣ h₁ ∣ + ∣ h₂ ∣ + 2.0)
+
+stream-limit : Stream Float → Float → ℕ → Float
+stream-limit seq tolerance fuel = loop fuel seq where
+  loop : ℕ → Stream Float → Float
+  loop zero    s = head (tail s)
+  loop (suc n) s =
+    let
+      h₁ = head s
+      t  = tail s
+      h₂ = head t
+    in
+      if (close-enuf? h₁ h₂ tolerance) then h₂ else (loop n t)
+
+richardson-limit : (Float → Float) → Float → Float → Float → Float → ℕ → Float
+richardson-limit f start-h ord inc tolerance fuel =
+   stream-limit (richardson-sequence (make-zeno-sequence f start-h) ord inc) tolerance fuel
