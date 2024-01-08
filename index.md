@@ -33,7 +33,10 @@ For any question, please contact Tim Richter [(tim@cs.uni-potsdam.de)](mailto://
 
 ## Current reading (winter term 2023-2024)
 
-#### starting November 7
+#### starting January 9
+* Euklid : [Elements](http://www.opera-platonis.de/euklid/)
+
+#### November 7 - December 19
 * Halfant, Sussmann - 1988 - [Abstraction in Numerical Methods](https://dl.acm.org/doi/pdf/10.1145/62678.62679),
   also see our [agda-code](2311/HalfantSussman.agda) and the [Notes](2311/HalfantSussman_Notes.pdf).
 
