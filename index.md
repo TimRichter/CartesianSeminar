@@ -6,12 +6,12 @@ de la méthode" we aim for a thorough understanding of the texts we read.
 
 ## Participants
 ### Present
-Sebastian Böhne, Nicola Botta, Bastian Franke, Christoph Glinzer, Hanna Gloyna,
+Sebastian Böhne, Nicola Botta, Bastian Franke, Christoph Glinzer,
 Leo Günther, Raphael Kluge, Tom Kranz, Tim Richter
 ### Past 
 Denis Andreev, Alexander Benedict Behrens, Marc Beilcke, Nikolas Bertrand, Nuria Brede, 
 Frederick Brumm, Julian Bruns, Margrit Dittmann, Georg Duchrau, Lucien Fumagalli, 
-Marcus Funke, Josephine Funken, Jan Heuer, Cezar Ionescu, Ingram Jaccard, Henrik Jürges,
+Marcus Funke, Josephine Funken, Hanna Gloyna, Jan Heuer, Cezar Ionescu, Ingram Jaccard, Henrik Jürges,
 Niklas Kämmer, Manuel Keilmann, Thomas Kern, Lucas Kerschke, Aleksandra Khatova, 
 Christoph Kreitz, Lara Kursawe, David Simon Kuska, Jan Lemcke, Marc Fabian Lindner,
 David Linkiewicz, Philomena Moek, Tim Münzner, Florian Raab, Tarek Ramadan, Leo Repp, 
@@ -31,7 +31,17 @@ Guests are always welcome!
 
 For any question, please contact Tim Richter [(tim@cs.uni-potsdam.de)](mailto://tim@cs.uni-potsdam.de).
 
-## Current reading (winter term 2023-2024)
+## Current reading (summer term 2024)
+
+#### starting April 9
+* Introductory lessons on Type Theory for new participants
+
+## Archive
+
+### Winter term 2023/2024
+
+#### starting March 5
+* Halpern : [Actual Causality](https://direct.mit.edu/books/oa-monograph/3451/Actual-Causality)
 
 #### starting January 9
 * Euklid : [Elements](http://www.opera-platonis.de/euklid/), also see the [notes](2401/EuclidNotes.pdf)
@@ -43,7 +53,6 @@ For any question, please contact Tim Richter [(tim@cs.uni-potsdam.de)](mailto://
 #### October 17 - November 1
 * Introductory lessons on Type Theory for new participants
 
-## Archive
 
 ### Summer term 2023
 
