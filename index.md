@@ -6,14 +6,14 @@ de la méthode" we aim for a thorough understanding of the texts we read.
 
 ## Participants
 ### Present
-Sebastian Böhne, Nicola Botta, Bastian Franke, Christoph Glinzer,
-Leo Günther, Raphael Kluge, Tom Kranz, Tim Richter
+Sebastian Böhne, Nicola Botta, Bastian Franke, 
+Leo Günther, Raphael Kluge, Tom Kranz, Tim Richter, Margarete Wohlleber
 ### Past 
 Denis Andreev, Alexander Benedict Behrens, Marc Beilcke, Nikolas Bertrand, Nuria Brede, 
 Frederick Brumm, Julian Bruns, Margrit Dittmann, Georg Duchrau, Lucien Fumagalli, 
-Marcus Funke, Josephine Funken, Hanna Gloyna, Jan Heuer, Cezar Ionescu, Ingram Jaccard, Henrik Jürges,
-Niklas Kämmer, Manuel Keilmann, Thomas Kern, Lucas Kerschke, Aleksandra Khatova, 
-Christoph Kreitz, Lara Kursawe, David Simon Kuska, Jan Lemcke, Marc Fabian Lindner,
+Marcus Funke, Josephine Funken, Christoph Glinzer, Hanna Gloyna, Jan Heuer, Cezar Ionescu,
+Ingram Jaccard, Henrik Jürges, Niklas Kämmer, Manuel Keilmann, Thomas Kern, Lucas Kerschke,
+Aleksandra Khatova, Christoph Kreitz, Lara Kursawe, David Simon Kuska, Jan Lemcke, Marc Fabian Lindner,
 David Linkiewicz, Philomena Moek, Tim Münzner, Florian Raab, Tarek Ramadan, Leo Repp, 
 Eva Richter, Juliane Scherlitzki, Carla Schreiber, Matthias Seidel, Mika Strozyk,
 Jessica Trebst, Marius Wawerek, Luise Werner, Max Wiedenhöft, Axel Wiepke, Jonas Winter,
