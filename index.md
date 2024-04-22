@@ -33,6 +33,9 @@ For any question, please contact Tim Richter [(tim@cs.uni-potsdam.de)](mailto://
 
 ## Current reading (summer term 2024)
 
+#### starting April 23
+* Chapter 2 ("Type theory in Principia Mathematice") of Kamareddine, Laan, Nederpelt : "A Modern Perspective on Type Theory - From Its Origins until Today"
+
 #### starting April 9
 * Introductory lessons on Type Theory for new participants
 
