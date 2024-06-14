@@ -38,21 +38,30 @@ Principia Mathematica (PM):
   a propostion as soon as a value is assigned to x. ⟪
 
 \begin{code}
-  (A : Set)          -- set(type) of individual sysmbols
-  (V : Set)          -- set(type) of variables
-  (R : Set)          -- set(type) of relation symbols
-  (a : R → ℕ)
+  (AS  : Set)          -- set(type) of individual symbols
+  (Var : Set)          -- set(type) of variables
+  (RS  : Set)          -- set(type) of relation symbols
+  (arity : RS → ℕ)        -- arity of a relation symbol
   where
 
   data AtomicProp : Set where
-    Lala : (r : R) → (args : List A) → (length args ≡ a r) → AtomicProp
+    Lala : (r : RS) → (args : List AS) → (length args ≡ arity r) → AtomicProp
 
-  ArityEq#Args : R × (List A) → Set
-  ArityEq#Args (r , args) = a r ≡ length args
+  ArityEq#Args : RS × (List AS) → Set
+  ArityEq#Args (r , args) = arity r ≡ length args
 
   AtomicProp' : Set
-  AtomicProp' -- = Σ R (λ r → Σ (List A) (λ args → a r ≡ length args))
-              -- = Σ (R × (List A)) (λ (r , args) → a r ≡ length args)
-              = Σ (R × (List A)) ArityEq#Args
+  AtomicProp' -- = Σ R (λ r → Σ (List A) (λ args → arity r ≡ length args))
+              -- = Σ (R × (List A)) (λ (r , args) → arity r ≡ length args)
+              = Σ (RS × (List AS)) ArityEq#Args
+
+  -- We define a type for the (disjoint) union of Individual symbols and Variables
+
+  data A∪V : Set where
+    I : AS → A∪V
+    V : Var → A∪V
+
+  --
+  
 
 \end{code}
