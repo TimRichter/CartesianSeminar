@@ -45,7 +45,7 @@ Principia Mathematica (PM):
   (A : Set)            -- set(type) of individual sysmbols
   (V : Set)            -- set(type) of variables
   (R : Set)            -- set(type) of relation symbols
-  (a : R → ℕ)          -- arity
+  (arity : R → ℕ)          -- arity
   -- alternative (relsyms : ℕ → Set)
   -- " R = Σ ℕ relsyms "  und " a = proj₁ "
 
@@ -61,17 +61,17 @@ Principia Mathematica (PM):
   -- as a warm-up : atomic propositions
 
   data AtomicProp : Set where
-    MkAtomicProp : (r : R) → (args : List A) → (length args ≡ a r) → AtomicProp
+    MkAtomicProp : (r : R) → (args : List A) → (length args ≡ arity r) → AtomicProp
     -- alternativ Lala :
     --   {n : ℕ} → relsyms n → Vect A n → AtomicProp
 
   ArityEq#Args : {X : Set} → R × (List X) → Set
-  ArityEq#Args (r , args) = a r ≡ length args
+  ArityEq#Args (r , args) = arity r ≡ length args
 
   AtomicProp' : Set
-  AtomicProp' -- = Σ R (λ r → Σ (List A) (λ args → arity r ≡ length args))
-              -- = Σ (R × (List A)) (λ (r , args) → arity r ≡ length args)
-              = Σ (RS × (List AS)) ArityEq#Args
+  AtomicProp' -- = Σ R (λ r → Σ (List A) (λ args → a r ≡ length args))
+              -- = Σ (R × (List A)) (λ (r , args) → a r ≡ length args)
+              = Σ (R × (List A)) ArityEq#Args
 
   -- now towards the type of propositional functions (Definition 2.3 in the book)
 
@@ -111,7 +111,7 @@ Principia Mathematica (PM):
   -- the type of propositional functions is defined mutually with the function FreeVars
   mutual
     data 𝒫 : Set where
-      ATOM   : (r : R) → (args : List (A + V)) → a r ≡ length args → 𝒫
+      ATOM   : (r : R) → (args : List (A + V)) → arity r ≡ length args → 𝒫
       OR     : 𝒫 → 𝒫 → 𝒫
       NOT    : 𝒫 → 𝒫
       FORALL : (f : 𝒫) → (x : V) → x ∈ (FreeVars f) → 𝒫
