@@ -48,6 +48,7 @@ Principia Mathematica (PM):
   (a : R → ℕ)          -- arity
   -- alternative (relsyms : ℕ → Set)
   -- " R = Σ ℕ relsyms "  und " a = proj₁ "
+
   (_<_ : V → V → Set)  -- variables are ordered
   (PV : Set)           -- we postulate a type of sets of variables
   (_∈_ : V → PV → Set)  -- with a membership predicate
@@ -68,9 +69,9 @@ Principia Mathematica (PM):
   ArityEq#Args (r , args) = a r ≡ length args
 
   AtomicProp' : Set
-  AtomicProp' -- = Σ R (λ r → Σ (List A) (λ args → a r ≡ length args))
-              -- = Σ (R × (List A)) (λ (r , args) → a r ≡ length args)
-              = Σ (R × (List A)) ArityEq#Args
+  AtomicProp' -- = Σ R (λ r → Σ (List A) (λ args → arity r ≡ length args))
+              -- = Σ (R × (List A)) (λ (r , args) → arity r ≡ length args)
+              = Σ (RS × (List AS)) ArityEq#Args
 
   -- now towards the type of propositional functions (Definition 2.3 in the book)
 
