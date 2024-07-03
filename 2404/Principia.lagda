@@ -26,7 +26,7 @@ Sebastian zum Buch:
 \begin{code}
 open import Data.Nat hiding (_+_)
 open import Data.List
-open import Data.Bool
+open import Data.Bool hiding (_∨_; _∧_)
 open import Agda.Builtin.Equality
 open import Data.Product
 open import Data.Empty
@@ -49,13 +49,14 @@ Principia Mathematica (PM):
   -- alternative (relsyms : ℕ → Set)
   -- " R = Σ ℕ relsyms "  und " a = proj₁ "
 
-  (_<_ : V → V → Set)  -- variables are ordered
-  (PV : Set)           -- we postulate a type of sets of variables
+  (_<_ : V → V → Set)   -- variables are ordered
+  (PV : Set)            -- we postulate a type of sets of variables
   (_∈_ : V → PV → Set)  -- with a membership predicate
-  (⟪_⟫ : List V → PV)  -- with a function from lists of variables (in particular, ∅ = ⟪[]⟫, {a} = ⟪a :: []⟫, a.s.o.
-  (_∪_ : PV → PV → PV) -- featuring a union,
-  (_∩_ : PV → PV → PV) -- an intersection, and
-  (_-_ : PV → PV → PV) -- and a "set minus" operation.
+  (⟪_⟫ : List V → PV)   -- with a function from lists of variables (in particular, ∅ = ⟪[]⟫, {a} = ⟪a :: []⟫, a.s.o.
+  (_∪_ : PV → PV → PV)  -- featuring a union,
+  (_∩_ : PV → PV → PV)  -- an intersection, and
+  (_-_ : PV → PV → PV)  -- and a "set minus" operation.
+
   where
 
   -- as a warm-up : atomic propositions
@@ -110,25 +111,29 @@ Principia Mathematica (PM):
 
   -- the type of propositional functions is defined mutually with the function FreeVars
   mutual
-    data 𝒫 : Set where
-      ATOM   : (r : R) → (args : List (A + V)) → arity r ≡ length args → 𝒫
-      OR     : 𝒫 → 𝒫 → 𝒫
-      NOT    : 𝒫 → 𝒫
-      FORALL : (f : 𝒫) → (x : V) → x ∈ (FreeVars f) → 𝒫
-      Z      : List (A + V + 𝒫) → 𝒫
+    data 𝒫ℱ : Set where
+      ATOM   : (r : R) → (args : List (A + V)) → arity r ≡ length args → 𝒫ℱ
+      OR     : 𝒫ℱ → 𝒫ℱ → 𝒫ℱ
+      NOT    : 𝒫ℱ → 𝒫ℱ
+      FORALL : (f : 𝒫ℱ) → (x : V) → x ∈ (FreeVars f) → 𝒫ℱ
+      -- Z      : List (A + V + 𝒫ℱ) → 𝒫ℱ
+      LALA      : V → List (A + V + 𝒫ℱ) → 𝒫ℱ
 
-    FreeVars : 𝒫 → PV
+    FreeVars : 𝒫ℱ → PV
     FreeVars (ATOM r avs x)     = ⟪ toVs avs ⟫
     FreeVars (OR f g)           = (FreeVars f) ∪ (FreeVars g)
     FreeVars (NOT f)            = FreeVars f
     FreeVars (FORALL f x x∈FVf) = FreeVars f - ⟪ x ∷ [] ⟫
-    FreeVars (Z avps)           = ⟪ toVs' avps ⟫
+    -- FreeVars (Z avps)         = ⟪ toVs' avps ⟫
        -- 1. bei uns z nicht drin, weil Konstruktor
-       -- 2. Hier die einzige Stelle, wo 𝒫's vorkommen (nämlich in der Liste avps),
+       -- 2. Hier die einzige Stelle, wo 𝒫ℱ's vorkommen (nämlich in der Liste avps),
        --    aber FreeVars nicht rekursiv aufgerufen wird.
        -- Es ist nicht klar, ob das adäquat ist...
+    FreeVars (LALA z avps)      --= ⟪ toVs' ((inr (inl z)) ∷ avps) ⟫
+                                = ⟪ z ∷ [] ⟫ ∪ ⟪ toVs' avps ⟫
 
-    toVs' : List ( A + V + 𝒫 ) → List V
+
+    toVs' : List ( A + V + 𝒫ℱ ) → List V
     toVs' = mapMaybe ((_>>= toMaybeL) ∘ toMaybeR)
     {-
     -- again, we could have defined this explicitely
@@ -146,5 +151,40 @@ Principia Mathematica (PM):
 
     -- Check the types! Why do we need _>>=_ ?
     -}
+
+
+  infix 22 ¬_
+  infix 20 _∨_
+  infix 21 _∧_
+
+  ¬_ : 𝒫ℱ → 𝒫ℱ
+  ¬_ = NOT
+  _∨_ _∧_ : 𝒫ℱ → 𝒫ℱ → 𝒫ℱ
+  _∨_ = OR
+  f ∧ g = ¬ (¬ f ∨ ¬ g)
+
+  infix 19 _⇒_ _⇔_
+  _⇒_ _⇔_ : 𝒫ℱ → 𝒫ℱ → 𝒫ℱ
+  p₁ ⇒ p₂ = (¬ p₁) ∨ p₂
+  p₁ ⇔ p₂ = (p₁ ⇒ p₂) ∧ (p₂ ⇒ p₁)
+
+  postulate
+    INL : (v : V) → (M N : PV) → (v ∈ M) → (v ∈ (M ∪ N))
+    INR : (v : V) → (M N : PV) → (v ∈ N) → (v ∈ (M ∪ N))
+    ∈∪Lemma : (v : V) → (M N : PV) → (v ∈ (M ∪ N)) → (v ∈ M) + (v ∈ N)
+
+  -- Hausaufgabe: Fomuliere Lemmata, die die freien Variablen von _∧_, _⇒_ und _⇔_
+  -- charakterisieren.
+  --  FVLemma∧ :
+  --  FVLemma⇒ :
+  --  FVLemma⇔ :
+
+  -- Hausaufgabe 2 : Benutze diese, um im Beweis von example1 progress zu machen!
+
+  example1 : V → V → V → 𝒫ℱ
+  example1 x y z = FORALL ((LALA z (inr (inl x) ∷ [])) ⇔ (LALA z (inr (inl y) ∷ [])))
+                           z {!!}
+
+
 
 \end{code}
