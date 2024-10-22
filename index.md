@@ -1,37 +1,46 @@
 The Potsdam Cartesian Seminar is an open topic weekly seminar that was started
-in 2000 by Rupert Klein and Cezar Ionescu at the Potsdam Institute for Climate 
+in 2000 by Rupert Klein and Cezar Ionescu at the Potsdam Institute for Climate
 Impact Research and is located at the Institute of Computer Science of the University
-of Potsdam since 2014. Guided by the rules René Descartes formulated in his "Discours 
+of Potsdam since 2014. Guided by the rules René Descartes formulated in his "Discours
 de la méthode" we aim for a thorough understanding of the texts we read.
 
 ## Participants
 ### Present
-Sebastian Böhne, Nicola Botta, Bastian Franke, 
-Leo Günther, Raphael Kluge, Tom Kranz, Tim Richter, Margarete Wohlleber
-### Past 
-Denis Andreev, Alexander Benedict Behrens, Marc Beilcke, Nikolas Bertrand, Nuria Brede, 
-Frederick Brumm, Julian Bruns, Margrit Dittmann, Georg Duchrau, Lucien Fumagalli, 
-Marcus Funke, Josephine Funken, Christoph Glinzer, Hanna Gloyna, Jan Heuer, Cezar Ionescu,
-Ingram Jaccard, Henrik Jürges, Niklas Kämmer, Manuel Keilmann, Thomas Kern, Lucas Kerschke,
-Aleksandra Khatova, Christoph Kreitz, Lara Kursawe, David Simon Kuska, Jan Lemcke, Marc Fabian Lindner,
-David Linkiewicz, Philomena Moek, Tim Münzner, Florian Raab, Tarek Ramadan, Leo Repp, 
-Eva Richter, Juliane Scherlitzki, Carla Schreiber, Matthias Seidel, Mika Strozyk,
-Jessica Trebst, Marius Wawerek, Luise Werner, Max Wiedenhöft, Axel Wiepke, Jonas Winter,
-Oliver Zernikow, David Zimmek
+Sebastian Böhne, Nicola Botta, Raphael Kluge, Tim Richter, Margarete Wohlleber
+### Past
+Denis Andreev, Alexander Benedict Behrens, Marc Beilcke, Nikolas Bertrand, Nuria Brede,
+Frederick Brumm, Julian Bruns, Margrit Dittmann, Georg Duchrau, Lucien Fumagalli,
+Marcus Funke, Josephine Funken, Bastian Franke, Christoph Glinzer, Hanna Gloyna, Leo Günther,
+Jan Heuer, Cezar Ionescu, Ingram Jaccard, Henrik Jürges, Niklas Kämmer, Manuel Keilmann,
+Thomas Kern, Lucas Kerschke, Aleksandra Khatova, Tom Kranz, Christoph Kreitz, Lara Kursawe,
+David Simon Kuska, Jan Lemcke, Marc Fabian Lindner, David Linkiewicz, Philomena Moek,
+Tim Münzner, Florian Raab, Tarek Ramadan, Leo Repp, Eva Richter, Juliane Scherlitzki,
+Carla Schreiber, Matthias Seidel, Mika Strozyk, Jessica Trebst, Marius Wawerek, Luise Werner,
+Max Wiedenhöft, Axel Wiepke, Jonas Winter, Oliver Zernikow, David Zimmek
 
 
 Guests are always welcome!
 
 ## Place and time
-  Tuesdays, 10-12 am  
-  Institute of Computer Science, University of Potsdam  
-  Campus Golm (An der Bahn 2)  
+  Tuesdays, 10-12 am
+  Institute of Computer Science, University of Potsdam
+  Campus Golm (An der Bahn 2)
   Building 70, Room 1.52
   [--> find on OpenStreetMap](https://www.openstreetmap.org/way/722427544)
 
 For any question, please contact Tim Richter [(tim@cs.uni-potsdam.de)](mailto://tim@cs.uni-potsdam.de).
 
-## Current reading (summer term 2024)
+## Current reading (winter term 2024/2025)
+
+#### starting October 15
+* Danielsson - 2012 - [Bag Equivalence via a Proof-Relevant Membership Relation](https://link.springer.com/chapter/10.1007/978-3-642-32347-8_11), also see [notes](2410/2410_Notes_Bag_Equivalence.pdf)
+
+#### starting September 10
+* Wadler - 1989 - [Theorems for free!](https://dl.acm.org/doi/pdf/10.1145/99370.99404)
+
+## Archive
+
+### Summer term 2024
 
 #### starting April 23
 * Chapter 2 ("Type theory in Principia Mathematice") of Kamareddine, Laan, Nederpelt : "A Modern Perspective on Type Theory - From Its Origins until Today"
@@ -39,7 +48,6 @@ For any question, please contact Tim Richter [(tim@cs.uni-potsdam.de)](mailto://
 #### starting April 9
 * Introductory lessons on Type Theory for new participants
 
-## Archive
 
 ### Winter term 2023/2024
 
@@ -97,7 +105,7 @@ Here are our notes: [Gibbons.lagda.org](2210/Gibbons.lagda.org)
 ### Winter term 2021/2022
 
 #### starting January 18
-* Steward Shapiro - 2005 - [Higher Order Logic](https://www.oxfordhandbooks.com/view/10.1093/oxfordhb/9780195325928.001.0001/oxfordhb-9780195325928-e-25) 
+* Steward Shapiro - 2005 - [Higher Order Logic](https://www.oxfordhandbooks.com/view/10.1093/oxfordhb/9780195325928.001.0001/oxfordhb-9780195325928-e-25)
 
 #### starting December 14
 * Dmitry Fuchs, Serge Tabachnikov - "Can a Number be Approximately Rational?" - Lecture 1 of ["Mathematical Omnibus: Thirty Lectures on Classic Mathematics"](https://archive.org/details/Dmitry_Fuchs_and_Serge_Tabachnikov__Mathematical_Omnibus_Thirty_Lectures_on_Classic_Mathematics). Here is an [overview](2112/RationalApprox.org) and an [Agda implementation of the "trick"](2112/RationalApprox.agda).
