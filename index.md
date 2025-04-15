@@ -30,15 +30,19 @@ Guests are always welcome!
 
 For any question, please contact Tim Richter [(tim@cs.uni-potsdam.de)](mailto://tim@cs.uni-potsdam.de).
 
-## Current reading (winter term 2024/2025)
+## Current reading (summer term 2025)
+
+#### Bölling - Herausbildung der exakten Grundlegung der Analysis (book chapter)
+
+## Archive
+
+### Winter term 2024/25
 
 #### starting October 15
 * Danielsson - 2012 - [Bag Equivalence via a Proof-Relevant Membership Relation](https://link.springer.com/chapter/10.1007/978-3-642-32347-8_11), also see [notes](2410/2410_Notes_Bag_Equivalence.pdf)
 
 #### starting September 10
 * Wadler - 1989 - [Theorems for free!](https://dl.acm.org/doi/pdf/10.1145/99370.99404)
-
-## Archive
 
 ### Summer term 2024
 
