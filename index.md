@@ -32,7 +32,8 @@ For any question, please contact Tim Richter [(tim@cs.uni-potsdam.de)](mailto://
 
 ## Current reading (summer term 2025)
 
-#### Bölling - Herausbildung der exakten Grundlegung der Analysis (book chapter)
+#### starting April 8
+* Bölling - Herausbildung der exakten Grundlegung der Analysis (book chapter)
 
 ## Archive
 
