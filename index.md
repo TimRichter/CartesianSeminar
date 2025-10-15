@@ -6,16 +6,16 @@ de la méthode" we aim for a thorough understanding of the texts we read.
 
 ## Participants
 ### Present
-Sebastian Böhne, Nicola Botta, Raphael Kluge, Tim Richter, Margarete Wohlleber
+Sebastian Böhne, Nicola Botta, Nathan Skupin, Tim Richter, Margarete Wohlleber
 ### Past
 Denis Andreev, Alexander Benedict Behrens, Marc Beilcke, Nikolas Bertrand, Nuria Brede,
 Frederick Brumm, Julian Bruns, Margrit Dittmann, Georg Duchrau, Lucien Fumagalli,
 Marcus Funke, Josephine Funken, Bastian Franke, Christoph Glinzer, Hanna Gloyna, Leo Günther,
 Jan Heuer, Cezar Ionescu, Ingram Jaccard, Henrik Jürges, Niklas Kämmer, Manuel Keilmann,
-Thomas Kern, Lucas Kerschke, Aleksandra Khatova, Tom Kranz, Christoph Kreitz, Lara Kursawe,
+Thomas Kern, Lucas Kerschke, Aleksandra Khatova, Raphael Kluge, Tom Kranz, Christoph Kreitz, Lara Kursawe,
 David Simon Kuska, Jan Lemcke, Marc Fabian Lindner, David Linkiewicz, Philomena Moek,
 Tim Münzner, Florian Raab, Tarek Ramadan, Leo Repp, Eva Richter, Juliane Scherlitzki,
-Carla Schreiber, Matthias Seidel, Mika Strozyk, Jessica Trebst, Marius Wawerek, Luise Werner,
+Carla Schreiber, Ludwig Schulz, Matthias Seidel, Mika Strozyk, Jessica Trebst, Marius Wawerek, Luise Werner,
 Max Wiedenhöft, Axel Wiepke, Jonas Winter, Oliver Zernikow, David Zimmek
 
 
@@ -30,12 +30,16 @@ Guests are always welcome!
 
 For any question, please contact Tim Richter [(tim@cs.uni-potsdam.de)](mailto://tim@cs.uni-potsdam.de).
 
-## Current reading (summer term 2025)
+## Current reading (winter term 2025/26)
+
+#### Abel, Cockx, Devriese, Timany, Wadler - 2020 - [Leibniz equality is isomorphic to Martin-Löf identity, parametrically](https://www.cambridge.org/core/journals/journal-of-functional-programming/article/leibniz-equality-is-isomorphic-to-martinlof-identity-parametrically/50D76A9C314AB24E7CD46DA4A0A766EB) (or pdf [here](https://lirias.kuleuven.be/retrieve/585729))
+
+## Archive
+
+### Summer term 2025
 
 #### starting April 8
 * Bölling - Herausbildung der exakten Grundlegung der Analysis (book chapter)
-
-## Archive
 
 ### Winter term 2024/25
 
