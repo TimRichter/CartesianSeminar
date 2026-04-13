@@ -32,10 +32,19 @@ For any question, please contact Tim Richter [(tim@cs.uni-potsdam.de)](mailto://
 
 ## Current reading (winter term 2025/26)
 
+#### starting April 14
+* Botta, Jansson - 2026 - [Types, equations, dimensions and the Pi theorem](https://arxiv.org/abs/2308.09481)
+
+## Archive
+
+### Winter term 2025/26
+
+#### starting January 20
+* Alefeld, Mayer - 2000 - [Interval analysis: theory and applications](https://www.sciencedirect.com/science/article/pii/S0377042700003423)
+
 #### starting October 14
 * Abel, Cockx, Devriese, Timany, Wadler - 2020 - [Leibniz equality is isomorphic to Martin-Löf identity, parametrically](https://www.cambridge.org/core/journals/journal-of-functional-programming/article/leibniz-equality-is-isomorphic-to-martinlof-identity-parametrically/50D76A9C314AB24E7CD46DA4A0A766EB) (or pdf [here](https://lirias.kuleuven.be/retrieve/585729))
 
-## Archive
 
 ### Summer term 2025
 
