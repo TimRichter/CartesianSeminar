@@ -30,7 +30,7 @@ Guests are always welcome!
 
 For any question, please contact Tim Richter [(tim@cs.uni-potsdam.de)](mailto://tim@cs.uni-potsdam.de).
 
-## Current reading (winter term 2025/26)
+## Current reading (summer term 2026)
 
 #### starting April 14
 * Botta, Jansson - 2026 - [Types, equations, dimensions and the Pi theorem](https://arxiv.org/abs/2308.09481)
