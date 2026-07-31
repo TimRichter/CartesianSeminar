@@ -35,6 +35,7 @@ For any question, please contact Tim Richter [(tim@cs.uni-potsdam.de)](mailto://
 
 #### starting June 30
 * Sebastian on Richard Carrier - 2012 - Proving History - Bayes's Theorem and the Quest for the Historical Jesus
+
 #### starting April 14
 * Botta, Jansson - 2026 - [Types, equations, dimensions and the Pi theorem](https://arxiv.org/abs/2308.09481)
 
