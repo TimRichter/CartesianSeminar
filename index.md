@@ -6,17 +6,18 @@ de la méthode" we aim for a thorough understanding of the texts we read.
 
 ## Participants
 ### Present
-Sebastian Böhne, Nicola Botta, Nathan Skupin, Tim Richter, Margarete Wohlleber
+Sebastian Böhne, Nicola Botta, Alexej Lesser, Nathan Skupin, Tim Richter
 ### Past
 Denis Andreev, Alexander Benedict Behrens, Marc Beilcke, Nikolas Bertrand, Nuria Brede,
 Frederick Brumm, Julian Bruns, Margrit Dittmann, Georg Duchrau, Lucien Fumagalli,
 Marcus Funke, Josephine Funken, Bastian Franke, Christoph Glinzer, Hanna Gloyna, Leo Günther,
 Jan Heuer, Cezar Ionescu, Ingram Jaccard, Henrik Jürges, Niklas Kämmer, Manuel Keilmann,
-Thomas Kern, Lucas Kerschke, Aleksandra Khatova, Raphael Kluge, Tom Kranz, Christoph Kreitz, Lara Kursawe,
-David Simon Kuska, Jan Lemcke, Marc Fabian Lindner, David Linkiewicz, Philomena Moek,
-Tim Münzner, Florian Raab, Tarek Ramadan, Leo Repp, Eva Richter, Juliane Scherlitzki,
-Carla Schreiber, Ludwig Schulz, Matthias Seidel, Mika Strozyk, Jessica Trebst, Marius Wawerek, Luise Werner,
-Max Wiedenhöft, Axel Wiepke, Jonas Winter, Oliver Zernikow, David Zimmek
+Thomas Kern, Lucas Kerschke, Aleksandra Khatova, Raphael Kluge, Tom Kranz, Christoph Kreitz,
+Lara Kursawe, David Simon Kuska, Jan Lemcke, Marc Fabian Lindner, David Linkiewicz,
+Philomena Moek, Tim Münzner, Florian Raab, Tarek Ramadan, Leo Repp, Eva Richter,
+Juliane Scherlitzki, Carla Schreiber, Ludwig Schulz, Matthias Seidel, Mika Strozyk,
+Jessica Trebst, Marius Wawerek, Luise Werner, Max Wiedenhöft, Axel Wiepke, Jonas Winter,
+Margarete Wohlleber, Oliver Zernikow, David Zimmek
 
 
 Guests are always welcome!
@@ -32,6 +33,8 @@ For any question, please contact Tim Richter [(tim@cs.uni-potsdam.de)](mailto://
 
 ## Current reading (summer term 2026)
 
+#### starting June 30
+* Sebastian on Richard Carrier - 2012 - Proving History - Bayes's Theorem and the Quest for the Historical Jesus
 #### starting April 14
 * Botta, Jansson - 2026 - [Types, equations, dimensions and the Pi theorem](https://arxiv.org/abs/2308.09481)
 
