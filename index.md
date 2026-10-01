@@ -31,15 +31,21 @@ Guests are always welcome!
 
 For any question, please contact Tim Richter [(tim@cs.uni-potsdam.de)](mailto://tim@cs.uni-potsdam.de).
 
-## Current reading (summer term 2026)
+## Current reading (winter term 2026/27)
+
+#### starting October 13
+* Howson, Urbach - 2010 - [Bayesian versus non-Bayesian approaches to confirmation](https://philpapers.org/rec/HOWBVN)
+
+
+## Archive
+
+### Summer term 2026
 
 #### starting June 30
 * Sebastian on Richard Carrier - 2012 - Proving History - Bayes's Theorem and the Quest for the Historical Jesus (Here are some [Agda Notes](2607/Background.lagda) - basically just proving Bayes' law from postulated Kolmogoroff axioms.)
 
 #### starting April 14
 * Botta, Jansson - 2026 - [Types, equations, dimensions and the Pi theorem](https://arxiv.org/abs/2308.09481)
-
-## Archive
 
 ### Winter term 2025/26
 
